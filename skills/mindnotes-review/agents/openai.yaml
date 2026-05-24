@@ -1,0 +1,5 @@
+interface:
+  display_name: "MindNotes Review"
+  short_description: "用 AI 陪你进行 MindNotes 抖卡复习"
+  default_prompt: "Use $mindnotes-review to start today's MindNotes review."
+  brand_color: "#0F766E"

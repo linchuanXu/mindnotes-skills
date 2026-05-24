@@ -1,0 +1,5 @@
+interface:
+  display_name: "MindNotes Canvas"
+  short_description: "让 AI 帮你整理 MindNotes 知识图谱和 Canvas"
+  default_prompt: "Use $mindnotes-canvas to organize these notes into a knowledge map."
+  brand_color: "#0F766E"

@@ -1,0 +1,5 @@
+interface:
+  display_name: "MindNotes Cards"
+  short_description: "把文本、错题、单词和读书片段生成 MindNotes 卡片"
+  default_prompt: "Use $mindnotes-cards to turn this text into MindNotes cards."
+  brand_color: "#0F766E"
