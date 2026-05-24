@@ -20,7 +20,8 @@ Restart Codex after installing a skill.
 1. Open MindNotes.
 2. Go to the Skill page.
 3. Generate a personal API Key.
-4. Set it as an environment variable.
+4. Set it as the `MINDNOTES_API_KEY` environment variable.
+5. Restart your AI client.
 
 Windows PowerShell:
 
@@ -40,7 +41,7 @@ The default API base URL is:
 https://app.mindnotes.cn
 ```
 
-For self-hosted or staging deployments, also set:
+Most users do not need any other configuration. For self-hosted or staging deployments only, also set:
 
 ```powershell
 setx MINDNOTES_BASE_URL "https://your-domain.example"

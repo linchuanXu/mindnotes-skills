@@ -9,7 +9,16 @@ Use this skill for MindNotes TikCard review workflows. Speak about "your cards" 
 
 ## Connection
 
-Use `MINDNOTES_API_KEY` from the environment. Use `MINDNOTES_BASE_URL` when set; otherwise use `https://app.mindnotes.cn`.
+Read the API Key from the environment variable `MINDNOTES_API_KEY`. The key format starts with `mn_sk_`.
+
+Use `https://app.mindnotes.cn` as the default base URL. Use `MINDNOTES_BASE_URL` only when the user explicitly says they are using a self-hosted, staging, or test deployment.
+
+If the Key is missing, give one concise setup instruction:
+
+- Windows PowerShell: `setx MINDNOTES_API_KEY "mn_sk_..."`
+- macOS/Linux: `export MINDNOTES_API_KEY="mn_sk_..."`
+
+Tell the user to restart the AI client after setting it. Do not list alternative secret stores, config files, shell profiles, or multiple setup methods unless the user specifically asks for them.
 
 Call:
 
@@ -59,5 +68,5 @@ Examples:
 ## Rules
 
 - Do not submit a review result from your own guess.
-- If authentication fails, ask the user to refresh their MindNotes API Key.
+- If authentication fails, ask the user to refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
 - If `review:write` is missing, explain that the current Key can view reviews but cannot submit results.

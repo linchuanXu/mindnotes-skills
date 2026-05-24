@@ -10,16 +10,21 @@ Use this skill to help the user work with their own MindNotes knowledge base. Tr
 ## Quick Start
 
 1. Read `references/api.md` before calling the API.
-2. Use `MINDNOTES_API_KEY` from the environment or ask the user to generate one in MindNotes if it is missing.
-3. Use `MINDNOTES_BASE_URL` when set; otherwise use `https://app.mindnotes.cn`.
-4. Call `POST /api/agent/gateway` with `Authorization: Bearer $MINDNOTES_API_KEY`.
-5. Put `api_name`, business parameters, and `skill_version` in the top-level JSON body.
-6. Never send or ask for `user_id`; the API Key identifies the current user.
+2. Read the API Key from the environment variable `MINDNOTES_API_KEY`. The key format starts with `mn_sk_`.
+3. Use `https://app.mindnotes.cn` as the default base URL. Use `MINDNOTES_BASE_URL` only when the user explicitly says they are using a self-hosted, staging, or test deployment.
+4. If `MINDNOTES_API_KEY` is missing, give one concise setup instruction:
+   - Windows PowerShell: `setx MINDNOTES_API_KEY "mn_sk_..."`
+   - macOS/Linux: `export MINDNOTES_API_KEY="mn_sk_..."`
+   Also tell the user to restart the AI client after setting it.
+5. Do not list alternative secret stores, config files, shell profiles, or multiple setup methods unless the user specifically asks for them.
+6. Call `POST /api/agent/gateway` with `Authorization: Bearer $MINDNOTES_API_KEY`.
+7. Put `api_name`, business parameters, and `skill_version` in the top-level JSON body.
+8. Never send or ask for `user_id`; the API Key identifies the current user.
 
 Minimal call:
 
 ```bash
-curl -sS "$MINDNOTES_BASE_URL/api/agent/gateway" \
+curl -sS "https://app.mindnotes.cn/api/agent/gateway" \
   -H "Authorization: Bearer $MINDNOTES_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"api_name":"/notes/search","query":"部署","count":10,"skill_version":"1.0.0"}'
@@ -81,7 +86,8 @@ For exports:
 - Do not imply access to all users; only the current authorized user's notes are accessible.
 - Do not fabricate note contents. Search/read first, then answer.
 - Do not submit review results, create cards, or modify canvases without explicit user intent.
-- When API authentication fails, ask the user to generate or refresh their MindNotes API Key.
+- When API authentication fails, ask the user to generate or refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
+- When the user asks how to configure the Key, give only the concise command for their OS and say to restart the AI client.
 - When a result may be incomplete due to limits, say what was searched and what limit was used.
 
 ## References

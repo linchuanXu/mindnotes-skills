@@ -10,7 +10,7 @@ Default base URL:
 https://app.mindnotes.cn
 ```
 
-Use `MINDNOTES_BASE_URL` if the user or environment provides a different base URL.
+Use `MINDNOTES_BASE_URL` only for self-hosted, staging, or test deployments. Do not suggest it during normal user setup.
 
 Gateway:
 
@@ -36,7 +36,23 @@ Read the token from:
 MINDNOTES_API_KEY
 ```
 
-If no token is available, tell the user to open MindNotes Skill settings and generate a personal API Key. Do not ask for account passwords. Do not ask for `user_id`.
+The token format starts with `mn_sk_`.
+
+If no token is available, tell the user to open MindNotes Skill settings and generate a personal API Key. Then give exactly one concise setup command for their OS:
+
+Windows PowerShell:
+
+```powershell
+setx MINDNOTES_API_KEY "mn_sk_..."
+```
+
+macOS/Linux:
+
+```bash
+export MINDNOTES_API_KEY="mn_sk_..."
+```
+
+Tell the user to restart the AI client after setting it. Do not list alternative secret stores, config files, shell profiles, or multiple setup methods unless the user asks. Do not ask for account passwords. Do not ask for `user_id`.
 
 ## Common Response Envelope
 

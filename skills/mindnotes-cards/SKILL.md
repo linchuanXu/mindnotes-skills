@@ -9,7 +9,16 @@ Use this skill to create cards in the user's MindNotes account. Only create card
 
 ## Connection
 
-Use `MINDNOTES_API_KEY` from the environment. Use `MINDNOTES_BASE_URL` when set; otherwise use `https://app.mindnotes.cn`.
+Read the API Key from the environment variable `MINDNOTES_API_KEY`. The key format starts with `mn_sk_`.
+
+Use `https://app.mindnotes.cn` as the default base URL. Use `MINDNOTES_BASE_URL` only when the user explicitly says they are using a self-hosted, staging, or test deployment.
+
+If the Key is missing, give one concise setup instruction:
+
+- Windows PowerShell: `setx MINDNOTES_API_KEY "mn_sk_..."`
+- macOS/Linux: `export MINDNOTES_API_KEY="mn_sk_..."`
+
+Tell the user to restart the AI client after setting it. Do not list alternative secret stores, config files, shell profiles, or multiple setup methods unless the user specifically asks for them.
 
 Call `POST /api/agent/gateway` with `Authorization: Bearer $MINDNOTES_API_KEY`.
 
