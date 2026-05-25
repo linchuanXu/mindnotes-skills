@@ -44,7 +44,7 @@ Suggest relations:
 {"api_name":"/canvas/suggest-relations","canvas_id":"canvas-1","skill_version":"1.0.0"}
 ```
 
-Show suggestions to the user first. Accept only after approval:
+Each suggestion may include `source_title`, `target_title`, and `reason`. Use these fields to explain why a link is being proposed. Show suggestions to the user first. Accept only after approval:
 
 ```json
 {"api_name":"/canvas/accept-relations","canvas_id":"canvas-1","suggestions":[{"source_node_id":"node-1","target_node_id":"node-2","type":"related"}],"skill_version":"1.0.0"}

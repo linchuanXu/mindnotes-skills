@@ -31,10 +31,10 @@ After several P1 rounds:
 
 Only consider new API/backend work after behavior is stable:
 
-- Better full-text collection for synthesis.
+- Better full-text collection for synthesis: started with `themes` and `timeline` in `/notes/collect`.
 - Cross-note topic clustering.
 - Card preview before write.
-- Canvas suggestion explanations.
+- Canvas suggestion explanations: started with `reason`, `source_title`, and `target_title` in `/canvas/suggest-relations`.
 - Skill call logging and failure analytics.
 
 Do not bump `skill_version` unless older Skills must stop for safety or protocol compatibility.

@@ -56,6 +56,17 @@ Use `/notes/collect` for synthesis, reports, and writing when the user wants you
 {"api_name":"/notes/collect","query":"学习方法","count":10,"skill_version":"1.0.0"}
 ```
 
+`/notes/collect` returns full notes plus synthesis helpers:
+
+| Field | Meaning |
+|---|---|
+| `top_tags` | Tag counts across the collected notes |
+| `themes` | Tag-based theme groups with source note titles and ids |
+| `timeline` | Collected notes ordered by recent update |
+| `notes` | Full note objects for detailed synthesis |
+
+Use `themes` and `timeline` to structure summaries before reading every note linearly.
+
 Use `/notes/export` only when the user asks to export, package, compile, or transform notes:
 
 ```json

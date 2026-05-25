@@ -46,6 +46,20 @@ curl -sS "https://app.mindnotes.cn/api/agent/gateway" \
   -d '{"api_name":"/notes/search","query":"部署","count":10,"skill_version":"1.0.0"}'
 ```
 
+## Safety Gates
+
+Before any write or irreversible action, check intent and permission:
+
+| Action | Gate |
+|---|---|
+| Submit review | User explicitly rates the active card as `remembered`, `fuzzy`, or `forgotten` |
+| Create cards | User explicitly asks to save/create/make cards; confirm broad batch creation |
+| Import notes to Canvas | User explicitly asks to add those notes to that canvas |
+| Accept Canvas relations | Suggestions were shown and the user approved them |
+| Export broad content | User asked to export/package/compile; confirm broad selections |
+
+If setup, permissions, pagination, writes, or failed calls are involved, read `references/anti-patterns.md`.
+
 ## Request Contract
 
 Always use flat top-level JSON:
@@ -72,9 +86,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 
 - Search/read: use `/notes/search`, then `/notes/get` for the notes you rely on. Do not answer detailed questions from previews alone.
 - Summaries/writing: read 3-10 relevant notes when possible, group by theme, and separate note facts from your synthesis.
-- Review: call `/review/submit` only after the user explicitly rates the card as `remembered`, `fuzzy`, or `forgotten`. Do not infer the rating from your own judgment.
-- Cards: call `/cards/create` only when the user asks to save, create, generate, or turn content into cards. If they only ask a question, answer without creating cards.
-- Canvas: call `/canvas/accept-relations` only after showing suggestions and getting user approval.
+- Review, cards, Canvas, and export: follow the Safety Gates before writing or exposing broad content.
 - Export: use `/notes/export` only when the user asks to export, package, compile, or transform a note set.
 
 ## Response Rules
