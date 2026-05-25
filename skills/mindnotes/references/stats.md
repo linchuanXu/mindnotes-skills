@@ -35,6 +35,20 @@ Review distribution:
 
 Keep the language personal and useful. Prefer "you have 12 notes due" over analytics-heavy phrasing.
 
+Dashboard summary:
+
+```json
+{"api_name":"/dashboard/summary","tag_limit":5,"skill_version":"1.0.0"}
+```
+
+Activity patterns:
+
+```json
+{"api_name":"/dashboard/activity","skill_version":"1.0.0"}
+```
+
+Use dashboard APIs when the user asks about recent learning state, streaks, activity, growth, or overall progress.
+
 ## Graph APIs
 
 Related notes:

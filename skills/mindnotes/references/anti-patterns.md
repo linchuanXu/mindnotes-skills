@@ -14,9 +14,11 @@ Use this reference when a request touches setup, permissions, review submission,
 | Preview hallucination | Summarize details from search previews | Call `/notes/get` or `/notes/collect` before detailed claims |
 | Note edit from preview | Rewrite or retag a note from search preview only | Call `/notes/get`, show or preview the intended change, then update |
 | Accidental deletion | Delete a note from a vague request or without confirmation | Read the note first and call `/notes/delete` only with `confirm_delete:true` after explicit user approval |
+| Image without upload | Put local file paths into notes or purchase records | Upload with `/assets/upload-image`, then use returned `asset.path` |
 | Review guessing | Submit `remembered`, `fuzzy`, or `forgotten` from your own judgment | Ask the user to self-rate before `/review/submit` |
 | Silent card writes | Create cards while answering a normal question | Create cards only when the user clearly asks to save/create/make cards |
 | Canvas write without consent | Accept suggested relations immediately | Show suggestions first, then accept only after approval |
+| Purchase write without intent | Create or delete purchase records from casual discussion | Use purchase writes only when user clearly asks to record/change/delete an item |
 | Upgrade loop | Continue API calls after `upgrade_info` | Stop and tell the user to update/reinstall the Skill |
 
 ## Correct And Incorrect Requests
@@ -57,6 +59,12 @@ Correct deletion only after explicit confirmation:
 
 ```json
 {"api_name":"/notes/delete","note_id":"abc123","confirm_delete":true,"skill_version":"1.0.0"}
+```
+
+Correct image upload before attaching to a note:
+
+```json
+{"api_name":"/assets/upload-image","image_base64":"...","filename":"cover.png","skill_version":"1.0.0"}
 ```
 
 ## Permission And Error Priority

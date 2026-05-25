@@ -1,5 +1,5 @@
 interface:
   display_name: "MindNotes"
-  short_description: "连接 MindNotes，让 AI 检索、整理、编辑和复盘你的个人笔记"
+  short_description: "连接 MindNotes，让 AI 检索、整理、编辑笔记和管理物卡"
   default_prompt: "Use $mindnotes to summarize my recent MindNotes notes and find related ideas."
   brand_color: "#0F766E"

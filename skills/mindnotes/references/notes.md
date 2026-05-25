@@ -1,6 +1,6 @@
 # Notes Reference
 
-Use this when searching, reading, editing, deleting, collecting, or exporting the user's notes.
+Use this when searching, reading, creating, editing, deleting, collecting, exporting, or organizing the user's notes.
 
 ## Search And Read
 
@@ -69,6 +69,14 @@ Use `themes` and `timeline` to structure summaries before reading every note lin
 
 ## Edit And Delete
 
+Create a normal note only when the user asks to save or create one:
+
+```json
+{"api_name":"/notes/create","title":"会议记录","content":"完整正文","tags":["会议"],"image":"static/uploads/7-alice/cover.png","skill_version":"1.0.0"}
+```
+
+Use `dry_run:true` first when the title/content/tags were inferred from broad instructions.
+
 Edit only one resolved note at a time. Search if needed, then call `/notes/get` first so the user can disambiguate the exact note.
 
 Preview an edit when the change is broad, destructive, or generated from your own rewrite:
@@ -113,6 +121,24 @@ Permission boundary:
 
 Do not treat `notes:read` as permission to export large bodies of content.
 Do not treat `notes:write` as permission to edit/delete without user intent.
+
+## Folders
+
+Folders are represented as tags that start with `📁`.
+
+List folders:
+
+```json
+{"api_name":"/folders/list","skill_version":"1.0.0"}
+```
+
+Move one note to a folder after resolving the exact note:
+
+```json
+{"api_name":"/folders/move-note","note_id":"abc123","folder":"📁项目","mode":"set","expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+Use `mode:"add"` to keep existing folder tags, `mode:"remove"` to remove one folder, and `mode:"set"` to replace existing folders.
 
 ## Field Meanings
 

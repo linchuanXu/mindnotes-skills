@@ -1,6 +1,6 @@
 ---
 name: mindnotes
-description: Connect to a user's authorized MindNotes account to search, read, edit, delete, summarize, organize, relate, review, create cards, inspect stats, work with Canvas maps, and export their personal notes through the MindNotes Skill API. Use when the user asks about "my MindNotes notes", "my notes", personal knowledge, study review, note summaries, related ideas, tags, recent notes, editing or deleting notes, TikCard review, card creation, Canvas knowledge maps, or exporting/organizing MindNotes content.
+description: Connect to a user's authorized MindNotes account to search, read, create, edit, delete, summarize, organize, relate, review, create cards, upload note images, inspect stats, manage folders, work with Canvas maps, manage purchase/asset records, and export their personal notes through the MindNotes Skill API. Use when the user asks about "my MindNotes notes", "my notes", personal knowledge, study review, note summaries, related ideas, tags, folders, recent notes, editing or deleting notes, uploading images, TikCard review, card creation, Canvas knowledge maps, purchases/assets/物卡, dashboard stats, or exporting/organizing MindNotes content.
 ---
 
 # MindNotes
@@ -14,19 +14,21 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 | Search my notes or answer from my notes | Search, then read details before making claims | `/notes/search`, `/notes/get` |
 | Summarize a topic from my notes | Collect enough notes, group by themes, cite sources | `/notes/search`, `/notes/get`, `/notes/collect` |
 | Show recent notes or tags | List recent activity or tag distribution | `/notes/recent`, `/notes/tags`, `/notes/by-tag` |
-| Edit or delete a note | Read the exact note first, show the intended change, then write only after clear intent | `/notes/get`, `/notes/update`, `/notes/delete` |
+| Create, edit, or delete a note | Upload image if needed, read exact existing note first, write only after clear intent | `/assets/upload-image`, `/notes/create`, `/notes/get`, `/notes/update`, `/notes/delete` |
+| Organize folders | Inspect folder tags, hierarchy, or move a note | `/folders/list`, `/folders/stats`, `/folders/relations`, `/folders/move-note` |
 | Review today / start TikCard | Show one due card, wait for self-rating, then submit | `/review/next`, `/review/submit` |
-| Plan review pressure | Summarize due, overdue, and future buckets | `/review/summary`, `/review/schedule`, `/stats/review` |
+| Plan review pressure or dashboard | Summarize due, overdue, activity, and dashboard buckets | `/dashboard/summary`, `/dashboard/activity`, `/review/summary`, `/review/schedule`, `/stats/review` |
 | Create or save cards | Choose card maker, then create only on explicit intent | `/cards/functions`, `/cards/create` |
 | Find related ideas | Resolve a source note, then explain visible relation cues | `/graph/related`, `/graph/tag-relations` |
-| Work with Canvas maps | Read maps, import notes, suggest links, accept only after approval | `/canvas/list`, `/canvas/get`, `/canvas/import-notes`, `/canvas/suggest-relations`, `/canvas/accept-relations` |
+| Work with Canvas maps | Read maps, edit nodes/edges/groups, import notes, suggest links, accept only after approval | `/canvas/list`, `/canvas/get`, `/canvas/create`, `/canvas/node-create`, `/canvas/edge-create`, `/canvas/import-notes`, `/canvas/suggest-relations`, `/canvas/accept-relations` |
+| Manage purchases / 物卡 | List, create, update, or delete personal purchase records | `/purchases/list`, `/purchases/create`, `/purchases/update`, `/purchases/delete` |
 | Export or compile notes | Export selected notes as Markdown or JSON | `/notes/export` |
 | Diagnose connection | Check account and scopes | `/me`, `/_list` |
 
 ## Quick Start
 
 1. Read `references/api.md` before calling the API.
-2. Load more specific references only when needed: `notes.md`, `review.md`, `cards.md`, `canvas.md`, `stats.md`, `output.md`, and `anti-patterns.md`.
+2. Load more specific references only when needed: `notes.md`, `assets.md`, `review.md`, `cards.md`, `canvas.md`, `stats.md`, `purchases.md`, `output.md`, and `anti-patterns.md`.
 3. Read the API Key from `MINDNOTES_API_KEY`. The key format starts with `mn_sk_`.
 4. Use `https://app.mindnotes.cn` as the default base URL. Use `MINDNOTES_BASE_URL` only when the user explicitly says they are using a self-hosted, staging, or test deployment.
 5. If `MINDNOTES_API_KEY` is missing, give one concise setup instruction:
@@ -54,11 +56,15 @@ Before any write or irreversible action, check intent and permission:
 | Action | Gate |
 |---|---|
 | Submit review | User explicitly rates the active card as `remembered`, `fuzzy`, or `forgotten` |
+| Create note | User clearly asks to save/create a normal note |
 | Edit note | Exact note was read first; user clearly asked to modify that note; use `dry_run` when the change is broad or ambiguous |
 | Delete note | Exact note was read first; user explicitly confirms deletion; send `confirm_delete:true` only after that confirmation |
+| Upload image | User provides a local image, data URL, base64 image, or public image URL for a note or asset |
 | Create cards | User explicitly asks to save/create/make cards; confirm broad batch creation |
 | Import notes to Canvas | User explicitly asks to add those notes to that canvas |
+| Delete Canvas items | User explicitly confirms deletion; send `confirm_delete:true` |
 | Accept Canvas relations | Suggestions were shown and the user approved them |
+| Create/update/delete purchase record | User explicitly asks to record, change, retire, or delete a purchase/asset; deletion needs confirmation |
 | Export broad content | User asked to export/package/compile; confirm broad selections |
 
 If setup, permissions, pagination, writes, or failed calls are involved, read `references/anti-patterns.md`.
@@ -89,8 +95,9 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 
 - Search/read: use `/notes/search`, then `/notes/get` for the notes you rely on. Do not answer detailed questions from previews alone.
 - Summaries/writing: read 3-10 relevant notes when possible, group by theme, and separate note facts from your synthesis.
-- Edit/delete: resolve the exact note with `/notes/get`, prefer `/notes/update` with `dry_run:true` for non-trivial changes, and never call `/notes/delete` without explicit deletion confirmation.
+- Create/edit/delete: use `/assets/upload-image` before attaching images; resolve exact existing notes with `/notes/get`; prefer `/notes/update` with `dry_run:true` for non-trivial changes; never call delete APIs without explicit deletion confirmation.
 - Review, cards, Canvas, and export: follow the Safety Gates before writing or exposing broad content.
+- Purchases/物卡: use purchase APIs only for the current user's personal records; deletion requires explicit confirmation.
 - Export: use `/notes/export` only when the user asks to export, package, compile, or transform a note set.
 
 ## Response Rules
@@ -100,7 +107,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - Do not reveal API keys, internal paths, token hashes, or implementation details.
 - Do not imply access to all users; only the current authorized user's notes are accessible.
 - Do not fabricate note contents. Search/read first, then answer.
-- Do not submit review results, edit notes, delete notes, create cards, import notes, or accept Canvas relations without explicit user intent.
+- Do not submit review results, create/edit/delete notes, upload unrelated images, create cards, edit Canvas, import notes, accept Canvas relations, or change purchase records without explicit user intent.
 - When authentication fails, ask the user to refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
 - When a result may be incomplete due to limits, say what was searched and what limit was used.
 - Use `references/output.md` for result formats.
@@ -110,9 +117,11 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 
 - `references/api.md`: gateway protocol, version handling, API names, and response envelope.
 - `references/notes.md`: note search, reading, collection, export, tags, and field meanings.
+- `references/assets.md`: image upload and reuse for note covers or purchase records.
 - `references/review.md`: TikCard review flow, memory fields, statuses, and scheduling.
 - `references/cards.md`: card maker selection and safe creation rules.
 - `references/canvas.md`: Canvas node/edge/suggestion meanings and approval workflow.
 - `references/stats.md`: overview, timeline, review pressure, and graph stats.
+- `references/purchases.md`: purchase/asset record fields and safe write rules.
 - `references/output.md`: user-facing output templates and failure wording.
 - `references/anti-patterns.md`: high-risk mistakes, forbidden behavior, and correct/incorrect examples.

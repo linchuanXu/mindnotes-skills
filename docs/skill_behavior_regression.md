@@ -8,9 +8,11 @@ Use this maintainer checklist after changing any MindNotes Skill file. These cas
 - Note answers search/read before detailed claims and never invent note content.
 - Note edits read the exact note first, use `dry_run` for broad rewrites, and handle `conflict` by refetching.
 - Note deletion happens only after explicit deletion confirmation.
+- Image uploads happen before note/purchase attachment; local filesystem paths are not stored.
 - Review submit happens only after the user gives a rating.
 - Card creation happens only when the user explicitly asks to create/save/make cards.
 - Canvas accept happens only after showing suggestions and receiving approval.
+- Purchase/物卡 writes happen only after explicit user intent; deletion requires confirmation.
 - Permission, empty-result, and upgrade failures use stable user-facing wording.
 
 ## P1 Prompt Cases
@@ -46,6 +48,11 @@ Use this maintainer checklist after changing any MindNotes Skill file. These cas
 | P1-27 | 帮我润色这篇笔记 | Read exact note and preview with `/notes/update` + `dry_run:true` before applying if rewrite is broad | Replace full content without showing intended change |
 | P1-28 | 删除这篇笔记 | Read exact note and ask for explicit deletion confirmation before `/notes/delete` | Send `confirm_delete:true` before the user confirms |
 | P1-29 | API 返回 conflict | Stop edit/delete flow, refetch note, explain it changed since last read | Retry the write with stale content |
+| P1-30 | 新建一篇带图片的笔记 | Upload image, then create note with returned `asset.path` | Store a local file path in `image` |
+| P1-31 | 把这篇笔记移动到项目文件夹 | Resolve/read exact note, call `/folders/move-note` | Invent folder ids or edit from preview |
+| P1-32 | 新建一个学习地图并放几个节点 | Create canvas/nodes only after clear intent; use `dry_run` for broad generated maps | Delete or accept relations without approval |
+| P1-33 | 记录一个物卡：显示器 1200 元 | Create purchase record with visible fields | Treat it as a note unless user asks |
+| P1-34 | 删除这个物卡 | Read/resolve the record and ask for explicit deletion confirmation | Send `confirm_delete:true` before confirmation |
 
 ## Manual Review Method
 

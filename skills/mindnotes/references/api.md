@@ -110,16 +110,25 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/due` | `notes:read` | `review.md` |
 | `/notes/random` | `notes:read` | `notes.md` |
 | `/notes/snippets` | `notes:read` | `notes.md` |
+| `/notes/create` | `notes:write` | `notes.md` |
 | `/notes/update` | `notes:write` | `notes.md` |
 | `/notes/delete` | `notes:write` | `notes.md` |
+| `/assets/upload-image` | `notes:write` | `assets.md` |
 | `/notes/collect` | `notes:export` | `notes.md` |
 | `/notes/export` | `notes:export` | `notes.md` |
 | `/stats/overview` | `stats:read` | `stats.md` |
 | `/stats/timeline` | `stats:read` | `stats.md` |
 | `/stats/review` | `stats:read` | `stats.md` |
+| `/dashboard/summary` | `stats:read` | `stats.md` |
+| `/dashboard/activity` | `stats:read` | `stats.md` |
 | `/graph/related` | `graph:read` | `stats.md` |
 | `/graph/tag-relations` | `graph:read` | `stats.md` |
 | `/graph/orphans` | `graph:read` | `stats.md` |
+| `/folders/list` | `notes:read` | `notes.md` |
+| `/folders/stats` | `stats:read` | `stats.md` |
+| `/folders/relations` | `notes:read` | `notes.md` |
+| `/folders/set-relations` | `notes:write` | `notes.md` |
+| `/folders/move-note` | `notes:write` | `notes.md` |
 | `/review/today` | `notes:read` | `review.md` |
 | `/review/next` | `notes:read` | `review.md` |
 | `/review/preview` | `notes:read` | `review.md` |
@@ -130,9 +139,30 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/cards/create` | `cards:write` | `cards.md` |
 | `/canvas/list` | `canvas:read` | `canvas.md` |
 | `/canvas/get` | `canvas:read` | `canvas.md` |
+| `/canvas/relation-types` | `canvas:read` | `canvas.md` |
+| `/canvas/create` | `canvas:write` | `canvas.md` |
+| `/canvas/update` | `canvas:write` | `canvas.md` |
+| `/canvas/delete` | `canvas:write` | `canvas.md` |
+| `/canvas/node-create` | `canvas:write` | `canvas.md` |
+| `/canvas/node-update` | `canvas:write` | `canvas.md` |
+| `/canvas/node-delete` | `canvas:write` | `canvas.md` |
+| `/canvas/edge-create` | `canvas:write` | `canvas.md` |
+| `/canvas/edge-update` | `canvas:write` | `canvas.md` |
+| `/canvas/edge-delete` | `canvas:write` | `canvas.md` |
+| `/canvas/group-create` | `canvas:write` | `canvas.md` |
+| `/canvas/group-update` | `canvas:write` | `canvas.md` |
+| `/canvas/group-delete` | `canvas:write` | `canvas.md` |
+| `/canvas/batch-delete` | `canvas:write` | `canvas.md` |
+| `/canvas/layout-save` | `canvas:write` | `canvas.md` |
+| `/canvas/importable-notes` | `canvas:read` | `canvas.md` |
 | `/canvas/import-notes` | `canvas:write` | `canvas.md` |
 | `/canvas/suggest-relations` | `canvas:read` | `canvas.md` |
 | `/canvas/accept-relations` | `canvas:write` | `canvas.md` |
+| `/purchases/list` | `purchases:read` | `purchases.md` |
+| `/purchases/categories` | `purchases:read` | `purchases.md` |
+| `/purchases/create` | `purchases:write` | `purchases.md` |
+| `/purchases/update` | `purchases:write` | `purchases.md` |
+| `/purchases/delete` | `purchases:write` | `purchases.md` |
 
 ## Diagnostics
 
