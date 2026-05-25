@@ -25,7 +25,7 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 ## Quick Start
 
 1. Read `references/api.md` before calling the API.
-2. Load more specific references only when needed: `notes.md`, `review.md`, `cards.md`, `canvas.md`, `stats.md`, and `output.md`.
+2. Load more specific references only when needed: `notes.md`, `review.md`, `cards.md`, `canvas.md`, `stats.md`, `output.md`, and `anti-patterns.md`.
 3. Read the API Key from `MINDNOTES_API_KEY`. The key format starts with `mn_sk_`.
 4. Use `https://app.mindnotes.cn` as the default base URL. Use `MINDNOTES_BASE_URL` only when the user explicitly says they are using a self-hosted, staging, or test deployment.
 5. If `MINDNOTES_API_KEY` is missing, give one concise setup instruction:
@@ -88,6 +88,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - When authentication fails, ask the user to refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
 - When a result may be incomplete due to limits, say what was searched and what limit was used.
 - Use `references/output.md` for result formats.
+- Use `references/anti-patterns.md` when the request involves setup, permissions, review submission, card creation, Canvas writes, pagination, or failed calls.
 
 ## References
 
@@ -98,3 +99,4 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - `references/canvas.md`: Canvas node/edge/suggestion meanings and approval workflow.
 - `references/stats.md`: overview, timeline, review pressure, and graph stats.
 - `references/output.md`: user-facing output templates and failure wording.
+- `references/anti-patterns.md`: high-risk mistakes, forbidden behavior, and correct/incorrect examples.
