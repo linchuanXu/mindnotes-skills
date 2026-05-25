@@ -32,6 +32,7 @@ After several P1 rounds:
 Only consider new API/backend work after behavior is stable:
 
 - Better full-text collection for synthesis: started with `themes` and `timeline` in `/notes/collect`.
+- Safer note editing and deletion: started with `/notes/update`, `/notes/delete`, `dry_run`, `confirm_delete`, and `expected_updated_at`.
 - Cross-note topic clustering.
 - Card preview before write.
 - Canvas suggestion explanations: started with `reason`, `source_title`, and `target_title` in `/canvas/suggest-relations`.

@@ -1,6 +1,6 @@
 ---
 name: mindnotes
-description: Connect to a user's authorized MindNotes account to search, read, summarize, organize, relate, review, create cards, inspect stats, work with Canvas maps, and export their personal notes through the MindNotes Skill API. Use when the user asks about "my MindNotes notes", "my notes", personal knowledge, study review, note summaries, related ideas, tags, recent notes, TikCard review, card creation, Canvas knowledge maps, or exporting/organizing MindNotes content.
+description: Connect to a user's authorized MindNotes account to search, read, edit, delete, summarize, organize, relate, review, create cards, inspect stats, work with Canvas maps, and export their personal notes through the MindNotes Skill API. Use when the user asks about "my MindNotes notes", "my notes", personal knowledge, study review, note summaries, related ideas, tags, recent notes, editing or deleting notes, TikCard review, card creation, Canvas knowledge maps, or exporting/organizing MindNotes content.
 ---
 
 # MindNotes
@@ -14,6 +14,7 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 | Search my notes or answer from my notes | Search, then read details before making claims | `/notes/search`, `/notes/get` |
 | Summarize a topic from my notes | Collect enough notes, group by themes, cite sources | `/notes/search`, `/notes/get`, `/notes/collect` |
 | Show recent notes or tags | List recent activity or tag distribution | `/notes/recent`, `/notes/tags`, `/notes/by-tag` |
+| Edit or delete a note | Read the exact note first, show the intended change, then write only after clear intent | `/notes/get`, `/notes/update`, `/notes/delete` |
 | Review today / start TikCard | Show one due card, wait for self-rating, then submit | `/review/next`, `/review/submit` |
 | Plan review pressure | Summarize due, overdue, and future buckets | `/review/summary`, `/review/schedule`, `/stats/review` |
 | Create or save cards | Choose card maker, then create only on explicit intent | `/cards/functions`, `/cards/create` |
@@ -53,6 +54,8 @@ Before any write or irreversible action, check intent and permission:
 | Action | Gate |
 |---|---|
 | Submit review | User explicitly rates the active card as `remembered`, `fuzzy`, or `forgotten` |
+| Edit note | Exact note was read first; user clearly asked to modify that note; use `dry_run` when the change is broad or ambiguous |
+| Delete note | Exact note was read first; user explicitly confirms deletion; send `confirm_delete:true` only after that confirmation |
 | Create cards | User explicitly asks to save/create/make cards; confirm broad batch creation |
 | Import notes to Canvas | User explicitly asks to add those notes to that canvas |
 | Accept Canvas relations | Suggestions were shown and the user approved them |
@@ -86,6 +89,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 
 - Search/read: use `/notes/search`, then `/notes/get` for the notes you rely on. Do not answer detailed questions from previews alone.
 - Summaries/writing: read 3-10 relevant notes when possible, group by theme, and separate note facts from your synthesis.
+- Edit/delete: resolve the exact note with `/notes/get`, prefer `/notes/update` with `dry_run:true` for non-trivial changes, and never call `/notes/delete` without explicit deletion confirmation.
 - Review, cards, Canvas, and export: follow the Safety Gates before writing or exposing broad content.
 - Export: use `/notes/export` only when the user asks to export, package, compile, or transform a note set.
 
@@ -96,7 +100,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - Do not reveal API keys, internal paths, token hashes, or implementation details.
 - Do not imply access to all users; only the current authorized user's notes are accessible.
 - Do not fabricate note contents. Search/read first, then answer.
-- Do not submit review results, create cards, import notes, or accept Canvas relations without explicit user intent.
+- Do not submit review results, edit notes, delete notes, create cards, import notes, or accept Canvas relations without explicit user intent.
 - When authentication fails, ask the user to refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
 - When a result may be incomplete due to limits, say what was searched and what limit was used.
 - Use `references/output.md` for result formats.

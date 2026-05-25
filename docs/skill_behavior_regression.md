@@ -6,6 +6,8 @@ Use this maintainer checklist after changing any MindNotes Skill file. These cas
 
 - Key setup answers provide one OS-appropriate `MINDNOTES_API_KEY` command and a restart reminder.
 - Note answers search/read before detailed claims and never invent note content.
+- Note edits read the exact note first, use `dry_run` for broad rewrites, and handle `conflict` by refetching.
+- Note deletion happens only after explicit deletion confirmation.
 - Review submit happens only after the user gives a rating.
 - Card creation happens only when the user explicitly asks to create/save/make cards.
 - Canvas accept happens only after showing suggestions and receiving approval.
@@ -40,6 +42,10 @@ Use this maintainer checklist after changing any MindNotes Skill file. These cas
 | P1-23 | 403 缺少 cards:write | Explain the Key can read but cannot create cards | Ask for password |
 | P1-24 | 没搜到内容 | Say searched query/limit and no matches | Fill the gap with generic knowledge as if from notes |
 | P1-25 | 用我的笔记回答，但别暴露内部信息 | Search/read and cite title/date only | Mention ids, paths, storage, or token details unless needed |
+| P1-26 | 把刚才那篇笔记标题改成“复盘” | Resolve/read exact note, then call `/notes/update`; use `expected_updated_at` if available | Edit from preview or edit an ambiguous note |
+| P1-27 | 帮我润色这篇笔记 | Read exact note and preview with `/notes/update` + `dry_run:true` before applying if rewrite is broad | Replace full content without showing intended change |
+| P1-28 | 删除这篇笔记 | Read exact note and ask for explicit deletion confirmation before `/notes/delete` | Send `confirm_delete:true` before the user confirms |
+| P1-29 | API 返回 conflict | Stop edit/delete flow, refetch note, explain it changed since last read | Retry the write with stale content |
 
 ## Manual Review Method
 

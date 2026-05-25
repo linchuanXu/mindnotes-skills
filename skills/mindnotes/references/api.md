@@ -110,6 +110,8 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/due` | `notes:read` | `review.md` |
 | `/notes/random` | `notes:read` | `notes.md` |
 | `/notes/snippets` | `notes:read` | `notes.md` |
+| `/notes/update` | `notes:write` | `notes.md` |
+| `/notes/delete` | `notes:write` | `notes.md` |
 | `/notes/collect` | `notes:export` | `notes.md` |
 | `/notes/export` | `notes:export` | `notes.md` |
 | `/stats/overview` | `stats:read` | `stats.md` |
