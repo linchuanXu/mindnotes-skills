@@ -120,6 +120,36 @@ Use `/notes/board-notes-dashboard` when the user wants the saved board notes sum
 | `archived_notes` | Saved board notes that are currently archived |
 | `suggested_next_steps` | Short guidance about syncing stale notes or restoring archived ones |
 
+When the user wants that saved-board dashboard preserved as one reusable note, preview `/notes/board-notes-dashboard-note` first:
+
+```json
+{"api_name":"/notes/board-notes-dashboard-note","count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it only after explicit intent:
+
+```json
+{"api_name":"/notes/board-notes-dashboard-note","count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+When the user already has that saved board-notes dashboard note and wants it refreshed from the latest state, preview `/notes/board-notes-dashboard-note-refresh` first:
+
+```json
+{"api_name":"/notes/board-notes-dashboard-note-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants to archive one of those saved dashboard notes, preview `/notes/board-notes-dashboard-note-archive` first:
+
+```json
+{"api_name":"/notes/board-notes-dashboard-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several saved dashboard notes refreshed to the same latest saved-board state, preview `/notes/board-notes-dashboard-note-sync` first:
+
+```json
+{"api_name":"/notes/board-notes-dashboard-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/board-notes-archive` when the user wants one archive or unarchive pass across saved board notes without remembering each note family separately:
 
 ```json
