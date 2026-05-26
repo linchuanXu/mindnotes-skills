@@ -118,9 +118,75 @@ Use `/notes/workboard` when the user wants that same unified queue plus recent s
 | `work_queue` | The same ordered unified queue payload |
 | `saved_notes.tracking_notes` | Recent tracking notes that belong to the active board context |
 | `saved_notes.work_queue_notes` | Recent saved work queue notes, optionally excluding archived ones |
+| `saved_notes.workboard_notes` | Recent saved workboard notes, optionally excluding archived ones |
 | `suggested_next_steps` | Short next-step guidance synthesized across queue state and saved notes |
 
 Use it when the user asks “给我一个统一工作台”“把 tracking note 和 work queue note 一起看” or wants one response that includes both active priorities and the notes already saved from them.
+
+When the user wants that unified workboard saved as one reusable note, preview `/notes/workboard-note` first:
+
+```json
+{"api_name":"/notes/workboard-note","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"title":"Workboard","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it:
+
+```json
+{"api_name":"/notes/workboard-note","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"title":"Workboard","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/workboard-note` returns:
+
+| Field | Meaning |
+|---|---|
+| `preview.title` | The note title that will be created |
+| `preview.tags` | Tags/folder attached to the saved workboard note |
+| `preview.workboard` | The underlying unified workboard payload |
+| `preview.content_preview` | The start of the generated workboard markdown |
+
+Use it when the user wants one saved note that captures the current dashboard, queue, and recent saved-note context inside MindNotes.
+
+When the user already has that saved workboard note and wants it refreshed from the latest board state, preview `/notes/workboard-note-refresh` first:
+
+```json
+{"api_name":"/notes/workboard-note-refresh","note_id":"abc123","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"title":"Workboard refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then refresh it:
+
+```json
+{"api_name":"/notes/workboard-note-refresh","note_id":"abc123","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"title":"Workboard refreshed","confirm_refresh":true,"expected_updated_at":"2026-05-26T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/workboard-note-refresh` returns the usual `current_note`, `refreshed_note`, `changes`, and the latest `workboard` payload behind the refresh.
+
+When the user wants to archive one of those saved workboard notes, preview `/notes/workboard-note-archive` first:
+
+```json
+{"api_name":"/notes/workboard-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply it:
+
+```json
+{"api_name":"/notes/workboard-note-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
+
+Set `archived:false` to remove the archive tags again. The archive flow only changes tags; it does not delete content.
+
+When the user wants several saved workboard notes refreshed to the same current board state, preview `/notes/workboard-note-sync` first:
+
+```json
+{"api_name":"/notes/workboard-note-sync","note_ids":["abc123","def456"],"count":8,"note_count":5,"stale_days":30,"threshold":0.88,"title":"Workboard synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then sync them:
+
+```json
+{"api_name":"/notes/workboard-note-sync","note_ids":["abc123","def456"],"count":8,"note_count":5,"stale_days":30,"threshold":0.88,"title":"Workboard synced","confirm_sync":true,"skill_version":"1.0.0"}
+```
+
+`/notes/workboard-note-sync` returns one preview or result per target note, including `current_note`, `refreshed_note`, `changes`, and the shared `workboard` payload behind the sync.
 
 When the user wants that unified queue saved as one reusable note, preview `/notes/work-queue-note` first:
 
