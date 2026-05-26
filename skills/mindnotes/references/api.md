@@ -116,6 +116,11 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/tracking-overview` | `notes:read` | `notes.md` |
 | `/notes/tracking-status` | `notes:read` | `notes.md` |
 | `/notes/tracking-dashboard` | `notes:read` | `notes.md` |
+| `/notes/tracking-actions` | `notes:export` | `notes.md` |
+| `/notes/tracking-apply` | `notes:write` | `notes.md` |
+| `/notes/tracking-batch-apply` | `notes:write` | `notes.md` |
+| `/notes/tracking-preview` | `notes:export` | `notes.md` |
+| `/notes/tracking-runbook` | `notes:export` | `notes.md` |
 | `/notes/board-notes` | `notes:read` | `notes.md` |
 | `/notes/board-notes-actions` | `notes:export` | `notes.md` |
 | `/notes/board-notes-apply` | `notes:write` | `notes.md` |
