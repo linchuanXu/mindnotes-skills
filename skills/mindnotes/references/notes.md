@@ -103,6 +103,20 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 
 Use it when the user asks “我保存过哪些 dashboard/work queue/workboard note”“把这些 board notes 一起列出来” or wants one saved-note overview before refreshing or archiving them.
 
+Use `/notes/board-notes-archive` when the user wants one archive or unarchive pass across saved board notes without remembering each note family separately:
+
+```json
+{"api_name":"/notes/board-notes-archive","note_ids":["note-1","note-2"],"archived":true,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/board-notes-sync` when the user wants one refresh pass across saved `tracking-note`, `work-queue-note`, and `workboard-note` items:
+
+```json
+{"api_name":"/notes/board-notes-sync","kind":"workboard-note","count":5,"title":"Board note synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+`/notes/board-notes-sync` and `/notes/board-notes-archive` accept `note_id` or `note_ids` directly, or they can select notes through the same `kind` / `kinds` / `query` / `count` filters used by `/notes/board-notes`.
+
 Use `/notes/work-queue` when the user wants one queue that mixes tracking priorities with cleanup action suggestions:
 
 ```json
