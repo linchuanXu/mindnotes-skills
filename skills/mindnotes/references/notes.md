@@ -52,6 +52,22 @@ Review cleanup/topic tracking notes in one overview when the user wants to see o
 
 Use it when the user asks for a centralized view of cleanup reports, cleanup tasks, or topic task notes before drilling into one note with `/notes/get`.
 
+Use `/notes/tracking-status` when the user wants those same tracking notes grouped by execution state instead of only seeing a recent list:
+
+```json
+{"api_name":"/notes/tracking-status","kinds":["cleanup-task","topic-task"],"status":"pending","count":10,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+`/notes/tracking-status` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.by_status` | Counts for `pending`, `in_progress`, `done`, `needs_refresh`, and `snapshot` |
+| `summary.focus_status` | The most urgent status bucket to look at first |
+| `notes` | Tracking notes annotated with `status`, optional progress percentage, and stale flag |
+
+Use it when the user asks “哪些整理任务还没做完”“哪些 tracking note 该刷新了” or wants a compact status board instead of a plain recent-notes view.
+
 Read edit history when the user asks what changed or wants a quick audit trail:
 
 ```json
