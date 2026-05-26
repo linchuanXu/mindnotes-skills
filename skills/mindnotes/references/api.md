@@ -124,7 +124,10 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/board-notes-dashboard-note-sync` | `notes:write` | `notes.md` |
 | `/notes/saved-views` | `notes:read` | `notes.md` |
 | `/notes/saved-views-actions` | `notes:export` | `notes.md` |
+| `/notes/saved-views-apply` | `notes:write` | `notes.md` |
+| `/notes/saved-views-batch-apply` | `notes:write` | `notes.md` |
 | `/notes/saved-views-preview` | `notes:export` | `notes.md` |
+| `/notes/saved-views-runbook` | `notes:export` | `notes.md` |
 | `/notes/saved-views-dashboard` | `notes:read` | `notes.md` |
 | `/notes/saved-views-dashboard-note` | `notes:write` | `notes.md` |
 | `/notes/saved-views-dashboard-note-refresh` | `notes:write` | `notes.md` |

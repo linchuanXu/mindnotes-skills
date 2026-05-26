@@ -168,6 +168,24 @@ Use `/notes/saved-views-preview` when the user wants one of those saved-view act
 {"api_name":"/notes/saved-views-preview","action_kind":"unarchive_saved_views","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/saved-views-runbook` when the user wants a small bundle of the top saved-view actions plus their previews:
+
+```json
+{"api_name":"/notes/saved-views-runbook","count":5,"stale_days":30,"include_archived":true,"action_count":3,"skill_version":"1.0.0"}
+```
+
+When the user wants to actually run one of the write-capable saved-view actions, preview `/notes/saved-views-apply` first:
+
+```json
+{"api_name":"/notes/saved-views-apply","action_kind":"unarchive_saved_views","count":5,"stale_days":30,"include_archived":true,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several write-capable saved-view actions applied together, preview `/notes/saved-views-batch-apply` first:
+
+```json
+{"api_name":"/notes/saved-views-batch-apply","count":5,"stale_days":30,"include_archived":true,"action_count":3,"dry_run":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/saved-views-dashboard` when the user wants those saved views summarized as a small action board instead of a flat list:
 
 ```json
