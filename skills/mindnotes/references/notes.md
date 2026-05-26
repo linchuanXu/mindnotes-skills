@@ -156,6 +156,18 @@ Use `/notes/saved-views` when the user wants one unified list across saved `trac
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/saved-views-actions` when the user wants the next likely saved-view maintenance actions spelled out as concrete API suggestions:
+
+```json
+{"api_name":"/notes/saved-views-actions","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/saved-views-preview` when the user wants one of those saved-view actions expanded into a real preview before deciding to sync or unarchive anything:
+
+```json
+{"api_name":"/notes/saved-views-preview","action_kind":"unarchive_saved_views","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/saved-views-dashboard` when the user wants those saved views summarized as a small action board instead of a flat list:
 
 ```json
