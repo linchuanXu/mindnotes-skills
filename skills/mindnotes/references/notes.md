@@ -209,6 +209,29 @@ Then create it only after approval:
 
 Use it when the user wants a cleanup plan to become a durable task or planning note inside MindNotes.
 
+When the user wants to actually run one of the write-capable cleanup actions, preview `/notes/cleanup-apply` first:
+
+```json
+{"api_name":"/notes/cleanup-apply","count":8,"stale_days":90,"action_kind":"organize_folders","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then execute it only after approval:
+
+```json
+{"api_name":"/notes/cleanup-apply","count":8,"stale_days":90,"action_kind":"organize_folders","confirm_apply":true,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-apply` returns:
+
+| Field | Meaning |
+|---|---|
+| `action` | The selected cleanup action from `/notes/cleanup-actions` |
+| `executed_api_name` | The underlying write API that will run |
+| `result` | The underlying batch update or batch rewrite result |
+| `apply_requirement` | Present during dry-run mode to remind the caller to set `confirm_apply:true` |
+
+Use it when the user wants the cleanup pipeline to continue from suggestion into a real write action without manually translating parameters.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
