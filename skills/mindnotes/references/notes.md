@@ -363,6 +363,50 @@ Use `/notes/workboard` when the user wants that same unified queue plus recent s
 
 Use it when the user asks “给我一个统一工作台”“把 tracking note 和 work queue note 一起看” or wants one response that includes both active priorities and the notes already saved from them.
 
+When the user wants the workboard turned into a concrete maintenance queue, call `/notes/workboard-actions`:
+
+```json
+{"api_name":"/notes/workboard-actions","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+`/notes/workboard-actions` returns:
+
+| Field | Meaning |
+| --- | --- |
+| `summary` | The same top-level workboard summary so you can explain the current state |
+| `actions[]` | Ordered action suggestions such as syncing stale workboard notes, syncing stale work queue notes, unarchiving older notes, or saving the current board/queue as reusable notes |
+| `workboard` | The underlying unified workboard payload that produced those actions |
+
+Use it when the user asks “这个工作台下一步该做什么”“帮我把 workboard 变成操作清单”.
+
+When the user wants one of those workboard actions expanded into the real downstream dry-run, call `/notes/workboard-preview`:
+
+```json
+{"api_name":"/notes/workboard-preview","action_kind":"sync_stale_workboard_notes","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+When they want the first few workboard actions packaged together with their previews, call `/notes/workboard-runbook`:
+
+```json
+{"api_name":"/notes/workboard-runbook","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"skill_version":"1.0.0"}
+```
+
+When they want one suggested workboard action executed after review, call `/notes/workboard-apply`:
+
+```json
+{"api_name":"/notes/workboard-apply","action_kind":"save_workboard_note","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Set `confirm_apply:true` to execute the underlying write-capable action.
+
+When they want several write-capable workboard actions executed together after review, call `/notes/workboard-batch-apply`:
+
+```json
+{"api_name":"/notes/workboard-batch-apply","action_kinds":["save_workboard_note","save_work_queue_note"],"count":8,"note_count":5,"stale_days":30,"threshold":0.88,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Set `confirm_apply:true` to execute the selected downstream note sync/create/archive actions.
+
 When the user wants that unified workboard saved as one reusable note, preview `/notes/workboard-note` first:
 
 ```json
