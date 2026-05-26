@@ -221,8 +221,12 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/cleanup-batch-apply` | `notes:write` | `notes.md` |
 | `/notes/cleanup-report` | `notes:write` | `notes.md` |
 | `/notes/cleanup-report-refresh` | `notes:write` | `notes.md` |
+| `/notes/cleanup-report-archive` | `notes:write` | `notes.md` |
+| `/notes/cleanup-report-sync` | `notes:write` | `notes.md` |
 | `/notes/cleanup-task` | `notes:write` | `notes.md` |
 | `/notes/cleanup-task-refresh` | `notes:write` | `notes.md` |
+| `/notes/cleanup-task-archive` | `notes:write` | `notes.md` |
+| `/notes/cleanup-task-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-brief` | `notes:export` | `notes.md` |
 | `/notes/topic-clusters` | `notes:export` | `notes.md` |
 | `/notes/topic-draft` | `notes:export` | `notes.md` |
