@@ -114,6 +114,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/snippets` | `notes:read` | `notes.md` |
 | `/notes/create` | `notes:write` | `notes.md` |
 | `/notes/import` | `notes:write` | `notes.md` |
+| `/notes/restore-version` | `notes:write` | `notes.md` |
 | `/notes/update` | `notes:write` | `notes.md` |
 | `/notes/batch-update` | `notes:write` | `notes.md` |
 | `/notes/delete` | `notes:write` | `notes.md` |

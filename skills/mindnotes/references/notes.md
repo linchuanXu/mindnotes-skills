@@ -32,6 +32,27 @@ Read edit history when the user asks what changed or wants a quick audit trail:
 
 `/notes/history` is read-only. It returns changed fields plus short previews of old/new content so you can explain the change without dumping large bodies by default.
 
+To restore a note to a previous version, preview the rollback first:
+
+```json
+{"api_name":"/notes/restore-version","note_id":"abc123","history_index":0,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+You can target a history entry by:
+
+| Field | Meaning |
+|---|---|
+| `history_index` | `0` means the newest history record returned by `/notes/history` |
+| `update_time` | Exact `update_time` from a history record |
+
+`/notes/restore-version` restores only user-editable fields: `title`, `content`, `tags`, and `image`. It does not roll back review memory or other hidden state.
+
+Apply only after reviewing the preview:
+
+```json
+{"api_name":"/notes/restore-version","note_id":"abc123","history_index":0,"confirm_restore":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
 Search results contain previews. Previews are enough for ranking and short match lists, but not enough for detailed summaries, quotes, plans, or decisions. Use `/notes/get` for the notes you rely on.
 
 ## Recent, Tags, And Pagination
