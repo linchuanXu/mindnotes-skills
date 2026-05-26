@@ -134,6 +134,22 @@ Use `/notes/topic-brief` when the user wants a fast structured overview before a
 
 Use it to frame the conversation, then read the key notes in full before making strong claims.
 
+Use `/notes/topic-clusters` when the user wants the topic split into subthemes:
+
+```json
+{"api_name":"/notes/topic-clusters","query":"学习方法","topic":"学习方法","count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-clusters` returns:
+
+| Field | Meaning |
+|---|---|
+| `clusters` | Subtopic groups labeled by the strongest recurring tag |
+| `orphan_notes` | Notes that did not fit into the top clusters |
+| `suggested_next_steps` | Practical next actions for cleaning up the structure |
+
+Use it when the note set feels broad and you need to decide how many separate summaries or folders the topic should become.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:

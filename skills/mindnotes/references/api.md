@@ -122,6 +122,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/assets/upload-image` | `notes:write` | `assets.md` |
 | `/notes/collect` | `notes:export` | `notes.md` |
 | `/notes/topic-brief` | `notes:export` | `notes.md` |
+| `/notes/topic-clusters` | `notes:export` | `notes.md` |
 | `/notes/export` | `notes:export` | `notes.md` |
 | `/stats/overview` | `stats:read` | `stats.md` |
 | `/stats/timeline` | `stats:read` | `stats.md` |
