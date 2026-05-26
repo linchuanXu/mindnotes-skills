@@ -160,6 +160,20 @@ Use `/notes/topic-draft` when the user wants a first-pass written draft assemble
 
 Treat this as a working draft, not a final claim. Read the key notes in full before sending the draft back as a polished answer or saving it as a note.
 
+When the user wants to turn that draft into a note, use `/notes/topic-note` first as a preview:
+
+```json
+{"api_name":"/notes/topic-note","query":"学习方法","topic":"学习方法","title":"学习方法整理","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it only after approval:
+
+```json
+{"api_name":"/notes/topic-note","query":"学习方法","topic":"学习方法","title":"学习方法整理","tags":["整理"],"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-note` is the bridge between topic analysis and a saved note. It reuses the generated topic draft and shows the exact title, tags, and content preview before writing.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:
