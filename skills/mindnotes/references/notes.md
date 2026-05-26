@@ -150,7 +150,7 @@ When the user wants several saved dashboard notes refreshed to the same latest s
 {"api_name":"/notes/board-notes-dashboard-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views` when the user wants one unified list across saved `tracking-note`, `work-queue-note`, `workboard-note`, and `board-notes-dashboard-note` items:
+Use `/notes/saved-views` when the user wants one unified list across saved `tracking-note`, `work-queue-note`, `workboard-note`, `board-notes-dashboard-note`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
 
 ```json
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
@@ -198,6 +198,18 @@ When the user already has a saved-views report note and wants it refreshed from 
 {"api_name":"/notes/saved-views-report-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"title":"Saved views report refreshed","dry_run":true,"skill_version":"1.0.0"}
 ```
 
+When the user wants to archive one of those saved-views report notes, preview `/notes/saved-views-report-archive` first:
+
+```json
+{"api_name":"/notes/saved-views-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several saved-views report notes refreshed to the same latest saved-view batch result, preview `/notes/saved-views-report-sync` first:
+
+```json
+{"api_name":"/notes/saved-views-report-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"title":"Saved views report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 When the user wants the saved-view work tracked as a checklist-style task note rather than only a report, preview `/notes/saved-views-task` first:
 
 ```json
@@ -208,6 +220,18 @@ When the user already has a saved-views task note and wants it refreshed with th
 
 ```json
 {"api_name":"/notes/saved-views-task-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"title":"Saved views task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants to archive one of those saved-views task notes, preview `/notes/saved-views-task-archive` first:
+
+```json
+{"api_name":"/notes/saved-views-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several saved-views task notes refreshed to the same latest saved-view plan and status, preview `/notes/saved-views-task-sync` first:
+
+```json
+{"api_name":"/notes/saved-views-task-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"title":"Saved views task synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
 Use `/notes/saved-views-dashboard` when the user wants those saved views summarized as a small action board instead of a flat list:

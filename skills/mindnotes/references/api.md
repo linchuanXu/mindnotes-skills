@@ -129,9 +129,13 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/saved-views-preview` | `notes:export` | `notes.md` |
 | `/notes/saved-views-report` | `notes:write` | `notes.md` |
 | `/notes/saved-views-report-refresh` | `notes:write` | `notes.md` |
+| `/notes/saved-views-report-archive` | `notes:write` | `notes.md` |
+| `/notes/saved-views-report-sync` | `notes:write` | `notes.md` |
 | `/notes/saved-views-runbook` | `notes:export` | `notes.md` |
 | `/notes/saved-views-task` | `notes:write` | `notes.md` |
 | `/notes/saved-views-task-refresh` | `notes:write` | `notes.md` |
+| `/notes/saved-views-task-archive` | `notes:write` | `notes.md` |
+| `/notes/saved-views-task-sync` | `notes:write` | `notes.md` |
 | `/notes/saved-views-dashboard` | `notes:read` | `notes.md` |
 | `/notes/saved-views-dashboard-note` | `notes:write` | `notes.md` |
 | `/notes/saved-views-dashboard-note-refresh` | `notes:write` | `notes.md` |
