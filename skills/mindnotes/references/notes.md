@@ -408,7 +408,7 @@ When the user wants that queue turned into concrete maintenance suggestions, cal
 | `work_queue` | The underlying unified work queue payload that produced those actions |
 
 Use it when the user asks “这个队列下一步该怎么处理”“把 work queue 变成动作建议”.
-Those actions can include `save_work_queue_note`, `save_work_queue_report`, and `save_work_queue_task` when the reusable queue notes do not exist yet.
+Those actions can include `sync_stale_work_queue_notes`, `unarchive_work_queue_notes`, `refresh_active_work_queue_notes`, `sync_stale_work_queue_reports`, `unarchive_work_queue_reports`, `sync_stale_work_queue_tasks`, `unarchive_work_queue_tasks`, plus `save_work_queue_note`, `save_work_queue_report`, and `save_work_queue_task` when the reusable queue families do not exist yet.
 
 When the user wants one of those queue actions expanded into the real downstream dry-run, call `/notes/work-queue-preview`:
 
@@ -482,7 +482,7 @@ When the user wants the workboard turned into a concrete maintenance queue, call
 
 Use it when the user asks “这个工作台下一步该做什么”“帮我把 workboard 变成操作清单”.
 
-Those actions can include `save_workboard_note`, `save_workboard_report`, and `save_workboard_task` when the reusable workboard notes do not exist yet.
+Those actions can include `sync_stale_workboard_notes`, `unarchive_workboard_notes`, `refresh_active_workboard_notes`, `sync_stale_work_queue_notes`, `unarchive_work_queue_notes`, `sync_stale_workboard_reports`, `unarchive_workboard_reports`, `sync_stale_workboard_tasks`, `unarchive_workboard_tasks`, plus `save_workboard_note`, `save_workboard_report`, and `save_workboard_task` when the reusable workboard families do not exist yet.
 
 When the user wants one of those workboard actions expanded into the real downstream dry-run, call `/notes/workboard-preview`:
 
@@ -768,7 +768,7 @@ Use `/notes/tracking-actions` when the user wants the next likely tracking maint
 {"api_name":"/notes/tracking-actions","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-Those actions can include `sync_stale_tracking_notes`, `archive_done_tracking_notes`, `refresh_active_tracking_notes`, `save_tracking_dashboard`, `save_tracking_report`, and `save_tracking_task` when the reusable tracking notes are missing.
+Those actions can include `sync_stale_tracking_notes`, `archive_done_tracking_notes`, `refresh_active_tracking_notes`, `sync_stale_tracking_reports`, `unarchive_tracking_reports`, `sync_stale_tracking_tasks`, `unarchive_tracking_tasks`, `save_tracking_dashboard`, `save_tracking_report`, and `save_tracking_task` when the reusable tracking families are missing.
 
 Use `/notes/tracking-preview` when the user wants one of those tracking actions expanded into a real preview before deciding to sync, archive, or save a tracking dashboard note:
 
