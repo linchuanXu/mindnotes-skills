@@ -116,6 +116,24 @@ Use `/notes/collect` for synthesis, reports, and writing when the user wants you
 
 Use `themes` and `timeline` to structure summaries before reading every note linearly.
 
+Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
+
+```json
+{"api_name":"/notes/topic-brief","query":"学习方法","topic":"学习方法","count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-brief` returns:
+
+| Field | Meaning |
+|---|---|
+| `topic` | User-facing topic label |
+| `key_notes` | A few notes worth reading first |
+| `anchors` | Repeated terms that seem to hold the topic together |
+| `coverage_gaps` | Signals that the topic is still sparse or loosely connected |
+| `suggested_next_steps` | Safe follow-ups for organizing or summarizing the topic |
+
+Use it to frame the conversation, then read the key notes in full before making strong claims.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:
