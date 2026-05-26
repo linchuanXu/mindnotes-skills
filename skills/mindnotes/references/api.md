@@ -126,6 +126,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/delete` | `notes:write` | `notes.md` |
 | `/assets/upload-image` | `notes:write` | `assets.md` |
 | `/notes/collect` | `notes:export` | `notes.md` |
+| `/notes/cleanup-plan` | `notes:export` | `notes.md` |
 | `/notes/topic-brief` | `notes:export` | `notes.md` |
 | `/notes/topic-clusters` | `notes:export` | `notes.md` |
 | `/notes/topic-draft` | `notes:export` | `notes.md` |

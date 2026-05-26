@@ -116,6 +116,27 @@ Use `/notes/collect` for synthesis, reports, and writing when the user wants you
 
 Use `themes` and `timeline` to structure summaries before reading every note linearly.
 
+Use `/notes/cleanup-plan` when the user wants to know what to organize next across the note base:
+
+```json
+{"api_name":"/notes/cleanup-plan","count":8,"stale_days":90,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-plan` returns:
+
+| Field | Meaning |
+|---|---|
+| `duplicate_candidates` | Small groups worth reviewing with `/graph/duplicates` or `/graph/merge-preview` |
+| `inbox_notes` | Notes still sitting in `📁Inbox` |
+| `no_folder_notes` | Notes missing any folder tag |
+| `no_tags_notes` | Notes with no tags at all |
+| `orphan_notes` | Notes whose tags do not connect to any other note |
+| `stale_notes` | Notes not updated within the requested stale window |
+| `long_notes` | Long notes that may benefit from topic summaries or batch rewrites |
+| `suggested_actions` | Ordered next steps that map to other Skill APIs |
+
+Use it as a planning layer before choosing batch updates, batch rewrites, merge previews, or topic summaries.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
