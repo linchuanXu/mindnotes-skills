@@ -214,6 +214,9 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/create` | `notes:write` | `notes.md` |
 | `/notes/import` | `notes:write` | `notes.md` |
 | `/notes/restore-version` | `notes:write` | `notes.md` |
+| `/notes/topic-overview` | `notes:read` | `notes.md` |
+| `/notes/topic-status` | `notes:read` | `notes.md` |
+| `/notes/topic-dashboard` | `notes:read` | `notes.md` |
 | `/notes/topic-actions` | `notes:export` | `notes.md` |
 | `/notes/topic-apply` | `notes:write` | `notes.md` |
 | `/notes/topic-batch-apply` | `notes:write` | `notes.md` |

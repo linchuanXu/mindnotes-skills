@@ -1309,6 +1309,28 @@ Use `/notes/topic-draft` when the user wants a first-pass written draft assemble
 
 Treat this as a working draft, not a final claim. Read the key notes in full before sending the draft back as a polished answer or saving it as a note.
 
+Use `/notes/topic-overview` when the user wants a unified read-only list of the saved topic surfaces already tied to the current topic:
+
+```json
+{"api_name":"/notes/topic-overview","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+It returns the matching saved `topic-note`, `topic-report`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task` entries plus a `summary` and `suggested_next_steps`.
+
+Use `/notes/topic-status` when the user wants those same saved topic notes grouped by `active`, `stale`, or `archived` state:
+
+```json
+{"api_name":"/notes/topic-status","query":"学习方法","topic":"学习方法","status":"active","count":10,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+Use `/notes/topic-dashboard` when the user wants a compact priority board instead of a flat list:
+
+```json
+{"api_name":"/notes/topic-dashboard","query":"学习方法","topic":"学习方法","count":5,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-dashboard` highlights `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, and `suggested_next_steps`.
+
 When the user wants one unified "what should I do next with this topic" list before writing or syncing notes, use `/notes/topic-actions`:
 
 ```json
