@@ -162,7 +162,9 @@ Use `/notes/saved-views-actions` when the user wants the next likely saved-view 
 {"api_name":"/notes/saved-views-actions","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views-preview` when the user wants one of those saved-view actions expanded into a real preview before deciding to sync or unarchive anything:
+Those actions can now include sync/unarchive steps plus save-a-note suggestions such as `save_saved_views_report`, `save_saved_views_task`, and `save_saved_views_dashboard` when the corresponding reusable notes do not exist yet.
+
+Use `/notes/saved-views-preview` when the user wants one of those saved-view actions expanded into a real preview before deciding to sync, unarchive, or save a report/task/dashboard note:
 
 ```json
 {"api_name":"/notes/saved-views-preview","action_kind":"unarchive_saved_views","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
