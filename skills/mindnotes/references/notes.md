@@ -174,6 +174,29 @@ Then create it only after approval:
 
 `/notes/topic-note` is the bridge between topic analysis and a saved note. It reuses the generated topic draft and shows the exact title, tags, and content preview before writing.
 
+When the user already has a summary note and wants it refreshed from the latest related notes, preview `/notes/topic-refresh` first:
+
+```json
+{"api_name":"/notes/topic-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","title":"学习方法整理","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply only after approval:
+
+```json
+{"api_name":"/notes/topic-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","confirm_refresh":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/topic-refresh` keeps the same note id and previews:
+
+| Field | Meaning |
+|---|---|
+| `current_note` | The existing note before refresh |
+| `refreshed_note` | The proposed updated note content |
+| `changes` | Title/content/tag/image differences that would be written |
+| `draft_markdown` | The regenerated topic draft backing the refresh |
+
+Use it when a topic summary note already exists and should be updated instead of creating a second summary note.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:
