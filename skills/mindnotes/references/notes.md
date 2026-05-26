@@ -197,6 +197,29 @@ Then apply only after approval:
 
 Use it when a topic summary note already exists and should be updated instead of creating a second summary note.
 
+When the user wants one summary note per subtopic cluster, preview `/notes/topic-cluster-notes` first:
+
+```json
+{"api_name":"/notes/topic-cluster-notes","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create the cluster notes only after approval:
+
+```json
+{"api_name":"/notes/topic-cluster-notes","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-cluster-notes` returns:
+
+| Field | Meaning |
+|---|---|
+| `previews` | One proposed summary note per top cluster |
+| `cluster_note_count` | How many cluster notes will be created |
+| `brief` | Each preview includes its own topic-specific synthesis brief |
+| `note_ids` | The source notes used for that cluster preview |
+
+Use it when one large topic should become several smaller summary notes instead of one broad recap.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:
