@@ -121,6 +121,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/topic-refresh` | `notes:write` | `notes.md` |
 | `/notes/topic-task-refresh` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-notes` | `notes:write` | `notes.md` |
+| `/notes/topic-cluster-tasks` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-sync` | `notes:write` | `notes.md` |
 | `/notes/update` | `notes:write` | `notes.md` |
 | `/notes/batch-update` | `notes:write` | `notes.md` |

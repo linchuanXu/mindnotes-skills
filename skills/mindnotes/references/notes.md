@@ -480,6 +480,29 @@ Then create the cluster notes only after approval:
 
 Use it when one large topic should become several smaller summary notes instead of one broad recap.
 
+When the user wants one checklist-style task note per cluster instead of one summary note per cluster, preview `/notes/topic-cluster-tasks` first:
+
+```json
+{"api_name":"/notes/topic-cluster-tasks","query":"学习方法","topic":"学习方法","title_prefix":"学习方法任务","folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create them:
+
+```json
+{"api_name":"/notes/topic-cluster-tasks","query":"学习方法","topic":"学习方法","title_prefix":"学习方法任务","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-cluster-tasks` returns:
+
+| Field | Meaning |
+|---|---|
+| `previews` | One proposed task note per top cluster |
+| `cluster_task_count` | How many cluster task notes will be created |
+| `brief` | Each preview includes its own cluster-specific synthesis brief |
+| `note_ids` | The source notes used for that cluster task |
+
+Use it when the topic is big enough that each cluster should become its own tracked checklist instead of a plain summary note.
+
 When the user already has cluster summary notes and wants to sync them with the latest source notes, preview `/notes/topic-cluster-sync` first:
 
 ```json
