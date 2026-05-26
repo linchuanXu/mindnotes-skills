@@ -140,6 +140,34 @@ Then refresh it:
 
 `/notes/work-queue-note-refresh` returns the usual `current_note`, `refreshed_note`, `changes`, and the latest `work_queue` payload behind the refresh.
 
+When the user wants to archive one of those saved work queue notes, preview `/notes/work-queue-note-archive` first:
+
+```json
+{"api_name":"/notes/work-queue-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply it:
+
+```json
+{"api_name":"/notes/work-queue-note-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
+
+Set `archived:false` to remove the archive tags again. The archive flow only changes tags; it does not delete content.
+
+When the user wants several saved work queue notes refreshed to the same current queue state, preview `/notes/work-queue-note-sync` first:
+
+```json
+{"api_name":"/notes/work-queue-note-sync","note_ids":["abc123","def456"],"count":8,"stale_days":30,"threshold":0.88,"title":"Work queue synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then sync them:
+
+```json
+{"api_name":"/notes/work-queue-note-sync","note_ids":["abc123","def456"],"count":8,"stale_days":30,"threshold":0.88,"title":"Work queue synced","confirm_sync":true,"skill_version":"1.0.0"}
+```
+
+`/notes/work-queue-note-sync` returns one preview or result per target note, including `current_note`, `refreshed_note`, `changes`, and the shared `work_queue` payload behind the sync.
+
 When the user wants that dashboard briefing saved as one reusable note, preview `/notes/tracking-note` first:
 
 ```json
