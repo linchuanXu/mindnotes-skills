@@ -16,6 +16,7 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 | Summarize a topic from my notes | Collect enough notes, group by themes, cite sources | `/notes/search`, `/notes/get`, `/notes/collect` |
 | Show recent notes or tags | List recent activity or tag distribution | `/notes/recent`, `/notes/tags`, `/notes/by-tag` |
 | Create, edit, or delete a note | Upload image if needed, read exact existing note first, write only after clear intent | `/assets/upload-image`, `/notes/create`, `/notes/get`, `/notes/update`, `/notes/delete` |
+| Import external notes | Preview Markdown/JSON imports first, then create only after explicit approval | `/notes/import` |
 | Organize folders or tags | Inspect folder tags, hierarchy, move one note, or batch-preview tag/folder cleanup | `/folders/list`, `/folders/stats`, `/folders/relations`, `/folders/move-note`, `/notes/batch-update` |
 | Review today / start TikCard | Show one due card, wait for self-rating, then submit | `/review/next`, `/review/submit` |
 | Plan review pressure or dashboard | Summarize due, overdue, activity, and dashboard buckets | `/dashboard/summary`, `/dashboard/activity`, `/review/summary`, `/review/schedule`, `/stats/review` |

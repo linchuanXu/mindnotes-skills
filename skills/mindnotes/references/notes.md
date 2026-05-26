@@ -93,6 +93,43 @@ Create a normal note only when the user asks to save or create one:
 
 Use `dry_run:true` first when the title/content/tags were inferred from broad instructions.
 
+For bulk import from Markdown or JSON, preview first:
+
+```json
+{"api_name":"/notes/import","markdown":"# 标题\n\n正文","default_tags":["导入"],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+You can also send:
+
+```json
+{"api_name":"/notes/import","json_text":"[{\"title\":\"A\",\"content\":\"B\"}]","dry_run":true,"skill_version":"1.0.0"}
+```
+
+or:
+
+```json
+{"api_name":"/notes/import","notes":[{"title":"A","content":"B","tags":["学习"]}],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+`/notes/import` supports:
+
+| Field | Meaning |
+|---|---|
+| `notes` | Explicit note objects to import |
+| `markdown` / `markdown_text` | Markdown source split by `# ` headings |
+| `json_text` | JSON note object, array, or `{ "notes": [...] }` |
+| `source_text` | Auto-detect JSON vs Markdown |
+| `default_tags` | Tags applied to every imported note |
+| `folder` | Folder tag applied to every imported note; must start with `📁` |
+
+The preview returns title matches against existing notes so you can spot duplicates before writing.
+
+Apply only after reviewing the preview:
+
+```json
+{"api_name":"/notes/import","notes":[{"title":"A","content":"B"}],"confirm_import":true,"skill_version":"1.0.0"}
+```
+
 Edit only one resolved note at a time. Search if needed, then call `/notes/get` first so the user can disambiguate the exact note.
 
 Preview an edit when the change is broad, destructive, or generated from your own rewrite:
