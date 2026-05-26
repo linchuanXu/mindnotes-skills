@@ -111,7 +111,7 @@ Use `/notes/board-notes-actions` when the user wants the next likely board-note 
 {"api_name":"/notes/board-notes-actions","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, `sync_stale_board_dashboards`, `unarchive_board_dashboards`, `refresh_active_board_dashboards`, `sync_stale_board_reports`, `unarchive_board_reports`, `sync_stale_board_tasks`, `unarchive_board_tasks`, plus `save_board_notes_dashboard`, `save_board_notes_report`, and `save_board_notes_task` when the reusable dashboard/report/task notes do not exist yet.
+Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, `sync_stale_board_dashboards`, `unarchive_board_dashboards`, `refresh_active_board_dashboards`, `sync_stale_board_reports`, `unarchive_board_reports`, `refresh_active_board_reports`, `sync_stale_board_tasks`, `unarchive_board_tasks`, `refresh_active_board_tasks`, plus `save_board_notes_dashboard`, `save_board_notes_report`, and `save_board_notes_task` when the reusable dashboard/report/task notes do not exist yet.
 
 Use `/notes/board-notes-dashboard` when the user wants the saved board notes summarized as a small action board instead of a plain list:
 
@@ -408,7 +408,7 @@ When the user wants that queue turned into concrete maintenance suggestions, cal
 | `work_queue` | The underlying unified work queue payload that produced those actions |
 
 Use it when the user asks “这个队列下一步该怎么处理”“把 work queue 变成动作建议”.
-Those actions can include `sync_stale_work_queue_notes`, `unarchive_work_queue_notes`, `refresh_active_work_queue_notes`, `sync_stale_work_queue_reports`, `unarchive_work_queue_reports`, `sync_stale_work_queue_tasks`, `unarchive_work_queue_tasks`, plus `save_work_queue_note`, `save_work_queue_report`, and `save_work_queue_task` when the reusable queue families do not exist yet.
+Those actions can include `sync_stale_work_queue_notes`, `unarchive_work_queue_notes`, `refresh_active_work_queue_notes`, `sync_stale_work_queue_reports`, `unarchive_work_queue_reports`, `refresh_active_work_queue_reports`, `sync_stale_work_queue_tasks`, `unarchive_work_queue_tasks`, `refresh_active_work_queue_tasks`, plus `save_work_queue_note`, `save_work_queue_report`, and `save_work_queue_task` when the reusable queue families do not exist yet.
 
 When the user wants one of those queue actions expanded into the real downstream dry-run, call `/notes/work-queue-preview`:
 
@@ -482,7 +482,7 @@ When the user wants the workboard turned into a concrete maintenance queue, call
 
 Use it when the user asks “这个工作台下一步该做什么”“帮我把 workboard 变成操作清单”.
 
-Those actions can include `sync_stale_workboard_notes`, `unarchive_workboard_notes`, `refresh_active_workboard_notes`, `sync_stale_work_queue_notes`, `unarchive_work_queue_notes`, `sync_stale_workboard_reports`, `unarchive_workboard_reports`, `sync_stale_workboard_tasks`, `unarchive_workboard_tasks`, plus `save_workboard_note`, `save_workboard_report`, and `save_workboard_task` when the reusable workboard families do not exist yet.
+Those actions can include `sync_stale_workboard_notes`, `unarchive_workboard_notes`, `refresh_active_workboard_notes`, `sync_stale_work_queue_notes`, `unarchive_work_queue_notes`, `sync_stale_workboard_reports`, `unarchive_workboard_reports`, `refresh_active_workboard_reports`, `sync_stale_workboard_tasks`, `unarchive_workboard_tasks`, `refresh_active_workboard_tasks`, plus `save_workboard_note`, `save_workboard_report`, and `save_workboard_task` when the reusable workboard families do not exist yet.
 
 When the user wants one of those workboard actions expanded into the real downstream dry-run, call `/notes/workboard-preview`:
 
