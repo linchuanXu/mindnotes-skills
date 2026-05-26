@@ -746,51 +746,59 @@ Use `/notes/work-queue-task-sync` when several saved work queue task notes shoul
 Use `/notes/tracking-actions` when the user wants the next likely tracking maintenance actions spelled out as concrete API suggestions:
 
 ```json
-{"api_name":"/notes/tracking-actions","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-actions","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-Those actions can include `sync_stale_tracking_notes`, `archive_done_tracking_notes`, `refresh_active_tracking_notes`, and `save_tracking_dashboard` when a reusable tracking note does not exist yet.
+Those actions can include `sync_stale_tracking_notes`, `archive_done_tracking_notes`, `refresh_active_tracking_notes`, `save_tracking_dashboard`, `save_tracking_report`, and `save_tracking_task` when the reusable tracking notes are missing.
 
 Use `/notes/tracking-preview` when the user wants one of those tracking actions expanded into a real preview before deciding to sync, archive, or save a tracking dashboard note:
 
 ```json
-{"api_name":"/notes/tracking-preview","action_kind":"archive_done_tracking_notes","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-preview","action_kind":"archive_done_tracking_notes","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/tracking-preview","action_kind":"save_tracking_report","count":5,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/tracking-preview","action_kind":"save_tracking_task","count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
 Use `/notes/tracking-runbook` when the user wants a small bundle of the top tracking actions plus their previews:
 
 ```json
-{"api_name":"/notes/tracking-runbook","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-runbook","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"skill_version":"1.0.0"}
 ```
 
 When the user wants to actually run one of the write-capable tracking actions, preview `/notes/tracking-apply` first:
 
 ```json
-{"api_name":"/notes/tracking-apply","action_kind":"archive_done_tracking_notes","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"dry_run":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-apply","action_kind":"archive_done_tracking_notes","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"dry_run":true,"skill_version":"1.0.0"}
 ```
 
 When the user wants several write-capable tracking actions applied together, preview `/notes/tracking-batch-apply` first:
 
 ```json
-{"api_name":"/notes/tracking-batch-apply","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["archive_done_tracking_notes","sync_stale_tracking_notes"],"dry_run":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-batch-apply","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["archive_done_tracking_notes","sync_stale_tracking_notes"],"dry_run":true,"skill_version":"1.0.0"}
 ```
 
 When the user wants a durable receipt of what the tracking batch actually did, preview `/notes/tracking-report` first:
 
 ```json
-{"api_name":"/notes/tracking-report","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"title":"Tracking report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-report","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"title":"Tracking report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
 ```
 
 Then create it from a real batch result:
 
 ```json
-{"api_name":"/notes/tracking-report","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-report","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
 ```
 
 Use `/notes/tracking-report-refresh` when the user already has a tracking report note and wants it refreshed from the latest tracking batch result:
 
 ```json
-{"api_name":"/notes/tracking-report-refresh","note_id":"abc123","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report refreshed","dry_run":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/tracking-report-refresh","note_id":"abc123","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report refreshed","dry_run":true,"skill_version":"1.0.0"}
 ```
 
 Archive or unarchive one of those report notes with `/notes/tracking-report-archive`:
