@@ -12,13 +12,14 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 | User intent | Primary workflow | Main APIs |
 |---|---|---|
 | Search my notes or answer from my notes | Search or hybrid-search, then read details before making claims | `/notes/search`, `/notes/hybrid-search`, `/notes/get` |
+| Explain what changed in a note | Read the note history, then summarize changed fields and previews | `/notes/history`, `/notes/get` |
 | Summarize a topic from my notes | Collect enough notes, group by themes, cite sources | `/notes/search`, `/notes/get`, `/notes/collect` |
 | Show recent notes or tags | List recent activity or tag distribution | `/notes/recent`, `/notes/tags`, `/notes/by-tag` |
 | Create, edit, or delete a note | Upload image if needed, read exact existing note first, write only after clear intent | `/assets/upload-image`, `/notes/create`, `/notes/get`, `/notes/update`, `/notes/delete` |
 | Organize folders or tags | Inspect folder tags, hierarchy, move one note, or batch-preview tag/folder cleanup | `/folders/list`, `/folders/stats`, `/folders/relations`, `/folders/move-note`, `/notes/batch-update` |
 | Review today / start TikCard | Show one due card, wait for self-rating, then submit | `/review/next`, `/review/submit` |
 | Plan review pressure or dashboard | Summarize due, overdue, activity, and dashboard buckets | `/dashboard/summary`, `/dashboard/activity`, `/review/summary`, `/review/schedule`, `/stats/review` |
-| Create or save cards | Choose card maker, then create only on explicit intent | `/cards/functions`, `/cards/create` |
+| Evaluate, create, or save cards | Evaluate candidate cards first when helpful, choose card maker, then create only on explicit intent | `/cards/evaluate`, `/cards/functions`, `/cards/create` |
 | Find related, isolated, or duplicate ideas | Resolve source notes, explain relation cues, and suggest duplicate candidates only | `/graph/related`, `/graph/duplicates`, `/graph/tag-relations`, `/graph/orphans` |
 | Work with Canvas maps | Read maps, edit nodes/edges/groups, import notes, suggest links, accept only after approval | `/canvas/list`, `/canvas/get`, `/canvas/create`, `/canvas/node-create`, `/canvas/edge-create`, `/canvas/import-notes`, `/canvas/suggest-relations`, `/canvas/accept-relations` |
 | Manage purchases / 物卡 | List, create, update, or delete personal purchase records | `/purchases/list`, `/purchases/create`, `/purchases/update`, `/purchases/delete` |

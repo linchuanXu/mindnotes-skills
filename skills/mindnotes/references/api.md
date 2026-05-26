@@ -106,6 +106,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/hybrid-search` | `notes:read` | `notes.md` |
 | `/notes/recent` | `notes:read` | `notes.md` |
 | `/notes/get` | `notes:read` | `notes.md` |
+| `/notes/history` | `notes:read` | `notes.md` |
 | `/notes/tags` | `notes:read` | `notes.md` |
 | `/notes/by-tag` | `notes:read` | `notes.md` |
 | `/notes/due` | `notes:read` | `review.md` |
@@ -139,6 +140,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/review/schedule` | `stats:read` | `review.md` |
 | `/review/submit` | `review:write` | `review.md` |
 | `/cards/functions` | `notes:read` | `cards.md` |
+| `/cards/evaluate` | `notes:read` | `cards.md` |
 | `/cards/create` | `cards:write` | `cards.md` |
 | `/canvas/list` | `canvas:read` | `canvas.md` |
 | `/canvas/get` | `canvas:read` | `canvas.md` |

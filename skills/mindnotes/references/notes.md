@@ -24,6 +24,14 @@ Read a note before making detailed claims:
 {"api_name":"/notes/get","note_id":"abc123","skill_version":"1.0.0"}
 ```
 
+Read edit history when the user asks what changed or wants a quick audit trail:
+
+```json
+{"api_name":"/notes/history","note_id":"abc123","count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/history` is read-only. It returns changed fields plus short previews of old/new content so you can explain the change without dumping large bodies by default.
+
 Search results contain previews. Previews are enough for ranking and short match lists, but not enough for detailed summaries, quotes, plans, or decisions. Use `/notes/get` for the notes you rely on.
 
 ## Recent, Tags, And Pagination
