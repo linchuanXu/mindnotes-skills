@@ -150,6 +150,16 @@ Use `/notes/topic-clusters` when the user wants the topic split into subthemes:
 
 Use it when the note set feels broad and you need to decide how many separate summaries or folders the topic should become.
 
+Use `/notes/topic-draft` when the user wants a first-pass written draft assembled from the topic structure:
+
+```json
+{"api_name":"/notes/topic-draft","query":"学习方法","topic":"学习方法","count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-draft` returns a `draft_markdown` preview plus the supporting `brief` and `clusters` it was built from.
+
+Treat this as a working draft, not a final claim. Read the key notes in full before sending the draft back as a polished answer or saving it as a note.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:
