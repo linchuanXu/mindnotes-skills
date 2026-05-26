@@ -1055,6 +1055,18 @@ Then refresh it:
 
 Use it when the cleanup work is ongoing and the user wants one standing report note to stay current.
 
+When the user wants to archive one of those cleanup report notes, preview `/notes/cleanup-report-archive` first:
+
+```json
+{"api_name":"/notes/cleanup-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several cleanup report notes refreshed to the same latest batch result, preview `/notes/cleanup-report-sync` first:
+
+```json
+{"api_name":"/notes/cleanup-report-sync","note_ids":["abc123","def456"],"count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 When the user wants the cleanup work tracked as a checklist-style task note rather than only a report, preview `/notes/cleanup-task` first:
 
 ```json
@@ -1101,6 +1113,18 @@ Then refresh it:
 | `report` | The latest execution state behind the checklist |
 
 Use it when the task note should remain the living checklist for ongoing cleanup work.
+
+When the user wants to archive one of those cleanup task notes, preview `/notes/cleanup-task-archive` first:
+
+```json
+{"api_name":"/notes/cleanup-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several cleanup task notes refreshed together, preview `/notes/cleanup-task-sync` first:
+
+```json
+{"api_name":"/notes/cleanup-task-sync","note_ids":["abc123","def456"],"count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup task synced","dry_run":true,"skill_version":"1.0.0"}
+```
 
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
