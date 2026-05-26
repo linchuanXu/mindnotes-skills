@@ -186,6 +186,30 @@ When the user wants several write-capable saved-view actions applied together, p
 {"api_name":"/notes/saved-views-batch-apply","count":5,"stale_days":30,"include_archived":true,"action_count":3,"dry_run":true,"skill_version":"1.0.0"}
 ```
 
+When the user wants a durable receipt of what the saved-view batch actually did, preview `/notes/saved-views-report` first:
+
+```json
+{"api_name":"/notes/saved-views-report","count":5,"stale_days":30,"include_archived":true,"action_count":3,"title":"Saved views report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user already has a saved-views report note and wants it refreshed from the latest saved-view batch result, preview `/notes/saved-views-report-refresh` first:
+
+```json
+{"api_name":"/notes/saved-views-report-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"title":"Saved views report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants the saved-view work tracked as a checklist-style task note rather than only a report, preview `/notes/saved-views-task` first:
+
+```json
+{"api_name":"/notes/saved-views-task","count":5,"stale_days":30,"include_archived":true,"action_count":3,"title":"Saved views task","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user already has a saved-views task note and wants it refreshed with the latest saved-view plan and execution state, preview `/notes/saved-views-task-refresh` first:
+
+```json
+{"api_name":"/notes/saved-views-task-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"title":"Saved views task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/saved-views-dashboard` when the user wants those saved views summarized as a small action board instead of a flat list:
 
 ```json
