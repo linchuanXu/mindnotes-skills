@@ -635,6 +635,66 @@ Then sync them:
 
 `/notes/work-queue-note-sync` returns one preview or result per target note, including `current_note`, `refreshed_note`, `changes`, and the shared `work_queue` payload behind the sync.
 
+When the user wants the executed work queue actions captured as one durable receipt, preview `/notes/work-queue-report` first:
+
+```json
+{"api_name":"/notes/work-queue-report","count":8,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Work queue report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it with both confirmations:
+
+```json
+{"api_name":"/notes/work-queue-report","count":8,"stale_days":30,"threshold":0.88,"action_kinds":["unarchive_work_queue_notes"],"title":"Work queue report","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+When the user already has that work queue report note and wants it refreshed, preview `/notes/work-queue-report-refresh` first:
+
+```json
+{"api_name":"/notes/work-queue-report-refresh","note_id":"abc123","count":8,"stale_days":30,"threshold":0.88,"action_kinds":["unarchive_work_queue_notes"],"title":"Work queue report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/work-queue-report-archive` to archive or unarchive one of those report notes:
+
+```json
+{"api_name":"/notes/work-queue-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/work-queue-report-sync` when several saved work queue report notes should be refreshed to the same latest result state:
+
+```json
+{"api_name":"/notes/work-queue-report-sync","note_ids":["abc123","def456"],"count":8,"stale_days":30,"threshold":0.88,"action_kinds":["unarchive_work_queue_notes"],"title":"Work queue report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants the work queue plan and execution state turned into a checklist-style note, preview `/notes/work-queue-task` first:
+
+```json
+{"api_name":"/notes/work-queue-task","count":8,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Work queue task","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it with both confirmations:
+
+```json
+{"api_name":"/notes/work-queue-task","count":8,"stale_days":30,"threshold":0.88,"action_kinds":["unarchive_work_queue_notes"],"title":"Work queue task","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+When the user already has that work queue task note and wants it refreshed, preview `/notes/work-queue-task-refresh` first:
+
+```json
+{"api_name":"/notes/work-queue-task-refresh","note_id":"abc123","count":8,"stale_days":30,"threshold":0.88,"action_kinds":["unarchive_work_queue_notes"],"title":"Work queue task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/work-queue-task-archive` to archive or unarchive one of those task notes:
+
+```json
+{"api_name":"/notes/work-queue-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/work-queue-task-sync` when several saved work queue task notes should be refreshed to the same latest plan and result state:
+
+```json
+{"api_name":"/notes/work-queue-task-sync","note_ids":["abc123","def456"],"count":8,"stale_days":30,"threshold":0.88,"action_kinds":["unarchive_work_queue_notes"],"title":"Work queue task synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/tracking-actions` when the user wants the next likely tracking maintenance actions spelled out as concrete API suggestions:
 
 ```json

@@ -191,6 +191,14 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/work-queue-note-refresh` | `notes:write` | `notes.md` |
 | `/notes/work-queue-note-archive` | `notes:write` | `notes.md` |
 | `/notes/work-queue-note-sync` | `notes:write` | `notes.md` |
+| `/notes/work-queue-report` | `notes:write` | `notes.md` |
+| `/notes/work-queue-report-refresh` | `notes:write` | `notes.md` |
+| `/notes/work-queue-report-archive` | `notes:write` | `notes.md` |
+| `/notes/work-queue-report-sync` | `notes:write` | `notes.md` |
+| `/notes/work-queue-task` | `notes:write` | `notes.md` |
+| `/notes/work-queue-task-refresh` | `notes:write` | `notes.md` |
+| `/notes/work-queue-task-archive` | `notes:write` | `notes.md` |
+| `/notes/work-queue-task-sync` | `notes:write` | `notes.md` |
 | `/notes/tracking-note` | `notes:write` | `notes.md` |
 | `/notes/tracking-note-refresh` | `notes:write` | `notes.md` |
 | `/notes/tracking-note-archive` | `notes:write` | `notes.md` |
