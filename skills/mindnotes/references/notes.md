@@ -50,7 +50,7 @@ Review cleanup/topic tracking notes in one overview when the user wants to see o
 | `notes` | Recent tracking notes with `kind`, preview, folder tags, and optional checklist progress |
 | `kinds` | The active kind filter, or all supported kinds when omitted |
 
-Supported tracking kinds include `cleanup-report`, `cleanup-task`, `topic-note`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task`.
+Supported tracking kinds include `cleanup-report`, `cleanup-task`, `topic-note`, `topic-report`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task`.
 
 Use it when the user asks for a centralized view of cleanup reports, cleanup tasks, or topic task notes before drilling into one note with `/notes/get`.
 
@@ -1286,7 +1286,7 @@ When the user wants one unified "what should I do next with this topic" list bef
 {"api_name":"/notes/topic-actions","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-`/notes/topic-actions` returns a compact topic draft summary, matching saved topic notes/tasks, and an `actions` list such as saving the main topic note/task, saving cluster notes/tasks, syncing stale topic notes, or unarchiving archived topic notes.
+`/notes/topic-actions` returns a compact topic draft summary, matching saved topic notes/reports/tasks, and an `actions` list such as saving the main topic note/report/task, saving cluster notes/tasks, syncing stale topic notes or reports, or unarchiving archived topic notes.
 
 Use `/notes/topic-preview` to expand one of those actions into the exact dry-run payload it would produce:
 
