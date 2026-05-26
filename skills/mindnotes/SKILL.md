@@ -20,7 +20,7 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 | Review today / start TikCard | Show one due card, wait for self-rating, then submit | `/review/next`, `/review/submit` |
 | Plan review pressure or dashboard | Summarize due, overdue, activity, and dashboard buckets | `/dashboard/summary`, `/dashboard/activity`, `/review/summary`, `/review/schedule`, `/stats/review` |
 | Evaluate, create, or save cards | Evaluate candidate cards first when helpful, choose card maker, then create only on explicit intent | `/cards/evaluate`, `/cards/functions`, `/cards/create` |
-| Find related, isolated, or duplicate ideas | Resolve source notes, explain relation cues, and suggest duplicate candidates only | `/graph/related`, `/graph/duplicates`, `/graph/tag-relations`, `/graph/orphans` |
+| Find related, isolated, or duplicate ideas | Resolve source notes, explain relation cues, suggest duplicate candidates, and preview safe merge plans only | `/graph/related`, `/graph/duplicates`, `/graph/merge-preview`, `/graph/tag-relations`, `/graph/orphans` |
 | Work with Canvas maps | Read maps, edit nodes/edges/groups, import notes, suggest links, accept only after approval | `/canvas/list`, `/canvas/get`, `/canvas/create`, `/canvas/node-create`, `/canvas/edge-create`, `/canvas/import-notes`, `/canvas/suggest-relations`, `/canvas/accept-relations` |
 | Manage purchases / 物卡 | List, create, update, or delete personal purchase records | `/purchases/list`, `/purchases/create`, `/purchases/update`, `/purchases/delete` |
 | Export or compile notes | Export selected notes as Markdown or JSON | `/notes/export` |

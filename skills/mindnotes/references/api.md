@@ -126,6 +126,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/dashboard/activity` | `stats:read` | `stats.md` |
 | `/graph/related` | `graph:read` | `stats.md` |
 | `/graph/duplicates` | `graph:read` | `stats.md` |
+| `/graph/merge-preview` | `graph:read` | `notes.md` |
 | `/graph/tag-relations` | `graph:read` | `stats.md` |
 | `/graph/orphans` | `graph:read` | `stats.md` |
 | `/folders/list` | `notes:read` | `notes.md` |

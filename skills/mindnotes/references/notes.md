@@ -172,6 +172,24 @@ Modes:
 
 Never merge or delete from duplicate candidates alone. Read the full notes, show the candidate group, propose a merge plan, and get explicit approval before any write.
 
+When the user wants to see how duplicates could be consolidated, preview a merge plan first:
+
+```json
+{"api_name":"/graph/merge-preview","note_ids":["abc123","def456"],"skill_version":"1.0.0"}
+```
+
+`/graph/merge-preview` is read-only. It proposes:
+
+| Field | Meaning |
+|---|---|
+| `primary_note` | Suggested note to keep editing, usually the most recently updated one |
+| `duplicate_notes` | The other notes that would stay separate until the user confirms anything |
+| `merged_note` | A draft title, tag set, and combined content preview |
+| `content_sources` | Which duplicates contribute unique lines beyond the primary note |
+| `warnings` | Reasons to slow down before merging or deleting |
+
+Use merge preview to explain the plan and ask for approval. Do not apply updates or deletions from this preview alone.
+
 Permission boundary:
 
 | Scope | Allows |
