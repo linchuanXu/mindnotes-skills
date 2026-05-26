@@ -1184,6 +1184,32 @@ Then create it only after approval:
 
 `/notes/topic-note` is the bridge between topic analysis and a saved note. It reuses the generated topic draft and shows the exact title, tags, and content preview before writing.
 
+When the user wants to archive or unarchive a saved topic summary note, preview `/notes/topic-note-archive` first:
+
+```json
+{"api_name":"/notes/topic-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply the archive change:
+
+```json
+{"api_name":"/notes/topic-note-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several saved topic summary notes refreshed to the same latest draft, preview `/notes/topic-note-sync` first:
+
+```json
+{"api_name":"/notes/topic-note-sync","note_ids":["abc123","def456"],"query":"学习方法","topic":"学习方法","title":"学习方法整理","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then sync them only after approval:
+
+```json
+{"api_name":"/notes/topic-note-sync","note_ids":["abc123","def456"],"query":"学习方法","topic":"学习方法","title":"学习方法整理","confirm_sync":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/topic-note-sync` returns one preview or result per target note, including `current_note`, `refreshed_note`, `changes`, and the shared regenerated draft behind the sync.
+
 When the user wants a checklist-style topic task note rather than a plain summary note, preview `/notes/topic-task` first:
 
 ```json
@@ -1234,6 +1260,32 @@ Then refresh it:
 ```
 
 `/notes/topic-task-refresh` returns the same kind of `current_note`, `refreshed_note`, `changes`, `draft_markdown`, `brief`, and `clusters` preview, but updates the checklist-style task note instead of the summary note.
+
+When the user wants to archive or unarchive a saved topic task note, preview `/notes/topic-task-archive` first:
+
+```json
+{"api_name":"/notes/topic-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply the archive change:
+
+```json
+{"api_name":"/notes/topic-task-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several topic task notes refreshed to the same latest draft, preview `/notes/topic-task-sync` first:
+
+```json
+{"api_name":"/notes/topic-task-sync","note_ids":["abc123","def456"],"query":"学习方法","topic":"学习方法","title":"学习方法任务","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then sync them only after approval:
+
+```json
+{"api_name":"/notes/topic-task-sync","note_ids":["abc123","def456"],"query":"学习方法","topic":"学习方法","title":"学习方法任务","confirm_sync":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/topic-task-sync` returns one preview or result per target task note, including `current_note`, `refreshed_note`, `changes`, and the regenerated topic draft behind the sync.
 
 When the user wants one summary note per subtopic cluster, preview `/notes/topic-cluster-notes` first:
 
