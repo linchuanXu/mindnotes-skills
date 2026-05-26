@@ -665,6 +665,66 @@ When the user wants several write-capable tracking actions applied together, pre
 {"api_name":"/notes/tracking-batch-apply","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["archive_done_tracking_notes","sync_stale_tracking_notes"],"dry_run":true,"skill_version":"1.0.0"}
 ```
 
+When the user wants a durable receipt of what the tracking batch actually did, preview `/notes/tracking-report` first:
+
+```json
+{"api_name":"/notes/tracking-report","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"title":"Tracking report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it from a real batch result:
+
+```json
+{"api_name":"/notes/tracking-report","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/tracking-report-refresh` when the user already has a tracking report note and wants it refreshed from the latest tracking batch result:
+
+```json
+{"api_name":"/notes/tracking-report-refresh","note_id":"abc123","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Archive or unarchive one of those report notes with `/notes/tracking-report-archive`:
+
+```json
+{"api_name":"/notes/tracking-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Refresh several tracking report notes to the same latest batch result with `/notes/tracking-report-sync`:
+
+```json
+{"api_name":"/notes/tracking-report-sync","note_ids":["abc123","def456"],"kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants the tracking plan and execution state captured as a checklist-style note, preview `/notes/tracking-task` first:
+
+```json
+{"api_name":"/notes/tracking-task","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"title":"Tracking task","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it from a real batch result:
+
+```json
+{"api_name":"/notes/tracking-task","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking task","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/tracking-task-refresh` when the user already has that task note and wants the checklist refreshed:
+
+```json
+{"api_name":"/notes/tracking-task-refresh","note_id":"abc123","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Archive or unarchive one of those task notes with `/notes/tracking-task-archive`:
+
+```json
+{"api_name":"/notes/tracking-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Refresh several tracking task notes together with `/notes/tracking-task-sync`:
+
+```json
+{"api_name":"/notes/tracking-task-sync","note_ids":["abc123","def456"],"kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["refresh_active_tracking_notes"],"title":"Tracking task synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 When the user wants that dashboard briefing saved as one reusable note, preview `/notes/tracking-note` first:
 
 ```json
