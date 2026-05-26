@@ -504,6 +504,23 @@ Use `/notes/workboard` when the user wants that same unified queue plus recent s
 
 Use it when the user asks “给我一个统一工作台”“把 tracking note 和 work queue note 一起看” or wants one response that includes both active priorities and the notes already saved from them.
 
+Use `/notes/workboard-status` when the user specifically wants the `stale`, `active`, or `archived` slice of the saved work queue/workboard surfaces inside that board:
+
+```json
+{"api_name":"/notes/workboard-status","status":"active","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+`/notes/workboard-status` returns:
+
+| Field | Meaning |
+|---|---|
+| `status` | The requested saved-note status bucket, or `null` for the mixed board view |
+| `summary.focus_status` | The active saved-note status after filtering |
+| `summary.by_kind` | Counts for `work-queue-note` and `workboard-note` inside that status |
+| `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board surfaces |
+| `saved_notes.work_queue_notes` | Only the saved work queue notes that match the selected status |
+| `saved_notes.workboard_notes` | Only the saved workboard notes that match the selected status |
+
 When the user wants the workboard turned into a concrete maintenance queue, call `/notes/workboard-actions`:
 
 ```json
