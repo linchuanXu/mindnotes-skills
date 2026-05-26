@@ -451,6 +451,58 @@ When they want several write-capable workboard actions executed together after r
 
 Set `confirm_apply:true` to execute the selected downstream note sync/create/archive actions.
 
+When the user wants the executed workboard actions captured as one durable receipt, preview `/notes/workboard-report` first:
+
+```json
+{"api_name":"/notes/workboard-report","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Workboard report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Set `confirm_apply:true` if the report should include real executed results, and `confirm_create:true` to save it as a note.
+
+When the user already has that workboard report note and wants it refreshed, preview `/notes/workboard-report-refresh` first:
+
+```json
+{"api_name":"/notes/workboard-report-refresh","note_id":"abc123","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Workboard report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/workboard-report-archive` to archive or unarchive one of those report notes:
+
+```json
+{"api_name":"/notes/workboard-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/workboard-report-sync` when several saved workboard report notes should be refreshed to the same latest state:
+
+```json
+{"api_name":"/notes/workboard-report-sync","note_ids":["abc123","def456"],"count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Workboard report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants the workboard plan and execution state turned into a checklist-style note, preview `/notes/workboard-task` first:
+
+```json
+{"api_name":"/notes/workboard-task","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Workboard task","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Set `confirm_apply:true` if the task should reflect real executed results, and `confirm_create:true` to save it as a note.
+
+When the user already has that workboard task note and wants it refreshed, preview `/notes/workboard-task-refresh` first:
+
+```json
+{"api_name":"/notes/workboard-task-refresh","note_id":"abc123","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Workboard task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/workboard-task-archive` to archive or unarchive one of those task notes:
+
+```json
+{"api_name":"/notes/workboard-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/workboard-task-sync` when several saved workboard task notes should be refreshed to the same latest plan and result state:
+
+```json
+{"api_name":"/notes/workboard-task-sync","note_ids":["abc123","def456"],"count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"title":"Workboard task synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 When the user wants that unified workboard saved as one reusable note, preview `/notes/workboard-note` first:
 
 ```json

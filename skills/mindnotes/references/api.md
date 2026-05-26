@@ -166,7 +166,15 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/workboard-apply` | `notes:write` | `notes.md` |
 | `/notes/workboard-batch-apply` | `notes:write` | `notes.md` |
 | `/notes/workboard-preview` | `notes:export` | `notes.md` |
+| `/notes/workboard-report` | `notes:write` | `notes.md` |
+| `/notes/workboard-report-refresh` | `notes:write` | `notes.md` |
+| `/notes/workboard-report-archive` | `notes:write` | `notes.md` |
+| `/notes/workboard-report-sync` | `notes:write` | `notes.md` |
 | `/notes/workboard-runbook` | `notes:export` | `notes.md` |
+| `/notes/workboard-task` | `notes:write` | `notes.md` |
+| `/notes/workboard-task-refresh` | `notes:write` | `notes.md` |
+| `/notes/workboard-task-archive` | `notes:write` | `notes.md` |
+| `/notes/workboard-task-sync` | `notes:write` | `notes.md` |
 | `/notes/workboard-note` | `notes:write` | `notes.md` |
 | `/notes/workboard-note-refresh` | `notes:write` | `notes.md` |
 | `/notes/workboard-note-archive` | `notes:write` | `notes.md` |
