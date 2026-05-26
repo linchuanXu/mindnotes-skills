@@ -220,6 +220,29 @@ Then create the cluster notes only after approval:
 
 Use it when one large topic should become several smaller summary notes instead of one broad recap.
 
+When the user already has cluster summary notes and wants to sync them with the latest source notes, preview `/notes/topic-cluster-sync` first:
+
+```json
+{"api_name":"/notes/topic-cluster-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","tags":["同步"],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply only after approval:
+
+```json
+{"api_name":"/notes/topic-cluster-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","confirm_sync":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/topic-cluster-sync` previews one result per cluster:
+
+| Field | Meaning |
+|---|---|
+| `action` | `update`, `create`, or `skip` for that cluster note |
+| `existing_note` | Present when the cluster already has a matching summary note |
+| `proposed_note` | The note state that would be written or created |
+| `changes` | Field-level differences for update actions |
+
+Use it when the cluster summaries already exist and should stay aligned with the latest topic structure without manually refreshing each one.
+
 ## Edit And Delete
 
 Create a normal note only when the user asks to save or create one:
