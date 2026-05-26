@@ -1034,6 +1034,8 @@ Use `/notes/cleanup-actions` when the user wants that plan translated into concr
 {"api_name":"/notes/cleanup-actions","count":8,"stale_days":90,"skill_version":"1.0.0"}
 ```
 
+It covers both base cleanup actions and cleanup note maintenance, so the returned kinds can include `save_cleanup_report`, `sync_stale_cleanup_reports`, `unarchive_cleanup_reports`, `refresh_active_cleanup_reports`, `save_cleanup_task`, `sync_stale_cleanup_tasks`, `unarchive_cleanup_tasks`, and `refresh_active_cleanup_tasks` alongside the underlying note-organizing moves.
+
 `/notes/cleanup-actions` returns:
 
 | Field | Meaning |
