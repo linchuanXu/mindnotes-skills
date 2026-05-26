@@ -103,6 +103,14 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 
 Use it when the user asks “我保存过哪些 dashboard/work queue/workboard note”“把这些 board notes 一起列出来” or wants one saved-note overview before refreshing or archiving them.
 
+Use `/notes/board-notes-actions` when the user wants the next likely board-note maintenance actions spelled out as concrete API suggestions:
+
+```json
+{"api_name":"/notes/board-notes-actions","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, and `save_board_notes_dashboard` when the reusable dashboard note does not exist yet.
+
 Use `/notes/board-notes-dashboard` when the user wants the saved board notes summarized as a small action board instead of a plain list:
 
 ```json
@@ -119,6 +127,30 @@ Use `/notes/board-notes-dashboard` when the user wants the saved board notes sum
 | `stale_notes` | Saved board notes that are out of date |
 | `archived_notes` | Saved board notes that are currently archived |
 | `suggested_next_steps` | Short guidance about syncing stale notes or restoring archived ones |
+
+Use `/notes/board-notes-preview` when the user wants one of those board-note actions expanded into a real preview before deciding to sync, unarchive, or save a dashboard note:
+
+```json
+{"api_name":"/notes/board-notes-preview","action_kind":"unarchive_board_notes","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/board-notes-runbook` when the user wants a small bundle of the top board-note actions plus their previews:
+
+```json
+{"api_name":"/notes/board-notes-runbook","count":5,"stale_days":30,"include_archived":true,"action_count":3,"skill_version":"1.0.0"}
+```
+
+When the user wants to actually run one of the write-capable board-note actions, preview `/notes/board-notes-apply` first:
+
+```json
+{"api_name":"/notes/board-notes-apply","action_kind":"unarchive_board_notes","count":5,"stale_days":30,"include_archived":true,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several write-capable board-note actions applied together, preview `/notes/board-notes-batch-apply` first:
+
+```json
+{"api_name":"/notes/board-notes-batch-apply","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes","sync_stale_board_notes"],"dry_run":true,"skill_version":"1.0.0"}
+```
 
 When the user wants that saved-board dashboard preserved as one reusable note, preview `/notes/board-notes-dashboard-note` first:
 
