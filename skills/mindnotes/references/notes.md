@@ -150,6 +150,26 @@ When the user wants several saved dashboard notes refreshed to the same latest s
 {"api_name":"/notes/board-notes-dashboard-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/saved-views` when the user wants one unified list across saved `tracking-note`, `work-queue-note`, `workboard-note`, and `board-notes-dashboard-note` items:
+
+```json
+{"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/saved-views-archive` when the user wants one archive or unarchive pass across all those saved-view note families:
+
+```json
+{"api_name":"/notes/saved-views-archive","note_ids":["note-1","note-2"],"archived":true,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/saved-views-sync` when the user wants one refresh pass across the same saved-view families:
+
+```json
+{"api_name":"/notes/saved-views-sync","kind":"workboard-note","count":5,"title":"Saved view synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+`/notes/saved-views-sync` and `/notes/saved-views-archive` accept `note_id` or `note_ids` directly, or they can select notes through the same `kind` / `kinds` / `query` / `count` filters used by `/notes/saved-views`.
+
 Use `/notes/board-notes-archive` when the user wants one archive or unarchive pass across saved board notes without remembering each note family separately:
 
 ```json
