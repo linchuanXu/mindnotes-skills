@@ -105,6 +105,22 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 
 Use it when the user asks “我保存过哪些 dashboard/work queue/workboard note”“把这些 board notes 一起列出来” or wants one saved-note overview before refreshing or archiving them.
 
+Use `/notes/board-notes-status` when the user already knows they want only the `stale`, `active`, or `archived` slice of those saved board notes:
+
+```json
+{"api_name":"/notes/board-notes-status","status":"active","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+`/notes/board-notes-status` returns:
+
+| Field | Meaning |
+|---|---|
+| `status` | The requested status bucket, or `null` when showing the mixed view |
+| `summary.focus_status` | The active status bucket after filtering |
+| `summary.by_kind` | Counts for board-note kinds inside the selected status |
+| `summary.by_status` | Counts for `stale`, `active`, and `archived` after the current filters |
+| `notes` | Only the saved board notes that match the selected status |
+
 Use `/notes/board-notes-actions` when the user wants the next likely board-note maintenance actions spelled out as concrete API suggestions:
 
 ```json

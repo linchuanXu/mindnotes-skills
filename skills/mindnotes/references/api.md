@@ -130,6 +130,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/tracking-task-archive` | `notes:write` | `notes.md` |
 | `/notes/tracking-task-sync` | `notes:write` | `notes.md` |
 | `/notes/board-notes` | `notes:read` | `notes.md` |
+| `/notes/board-notes-status` | `notes:read` | `notes.md` |
 | `/notes/board-notes-actions` | `notes:export` | `notes.md` |
 | `/notes/board-notes-apply` | `notes:write` | `notes.md` |
 | `/notes/board-notes-batch-apply` | `notes:write` | `notes.md` |
