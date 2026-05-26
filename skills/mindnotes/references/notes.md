@@ -103,6 +103,43 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 
 Use it when the user says “给我一个统一待办”“topic 和 cleanup 一起排一下先做什么”.
 
+When the user wants that unified queue saved as one reusable note, preview `/notes/work-queue-note` first:
+
+```json
+{"api_name":"/notes/work-queue-note","count":8,"stale_days":30,"threshold":0.88,"title":"Work queue","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it:
+
+```json
+{"api_name":"/notes/work-queue-note","count":8,"stale_days":30,"threshold":0.88,"title":"Work queue","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/work-queue-note` returns:
+
+| Field | Meaning |
+|---|---|
+| `preview.title` | The note title that will be created |
+| `preview.tags` | Tags/folder attached to the saved work queue note |
+| `preview.work_queue` | The underlying unified work queue payload |
+| `preview.content_preview` | The start of the generated queue markdown |
+
+Use it when the user wants one saved note that combines tracking priorities with cleanup action suggestions inside MindNotes.
+
+When the user already has that saved work queue note and wants it refreshed from the latest queue state, preview `/notes/work-queue-note-refresh` first:
+
+```json
+{"api_name":"/notes/work-queue-note-refresh","note_id":"abc123","count":8,"stale_days":30,"threshold":0.88,"title":"Work queue refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then refresh it:
+
+```json
+{"api_name":"/notes/work-queue-note-refresh","note_id":"abc123","count":8,"stale_days":30,"threshold":0.88,"title":"Work queue refreshed","confirm_refresh":true,"expected_updated_at":"2026-05-26T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/work-queue-note-refresh` returns the usual `current_note`, `refreshed_note`, `changes`, and the latest `work_queue` payload behind the refresh.
+
 When the user wants that dashboard briefing saved as one reusable note, preview `/notes/tracking-note` first:
 
 ```json
