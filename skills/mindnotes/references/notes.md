@@ -1333,6 +1333,18 @@ Then create them:
 
 Use it when the topic is big enough that each cluster should become its own tracked checklist instead of a plain summary note.
 
+When the user wants to archive or unarchive one of those cluster task notes, preview `/notes/topic-cluster-task-archive` first:
+
+```json
+{"api_name":"/notes/topic-cluster-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply the archive change:
+
+```json
+{"api_name":"/notes/topic-cluster-task-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
+
 When the user already has cluster task notes and wants to sync them with the latest topic state, preview `/notes/topic-cluster-task-sync` first:
 
 ```json
@@ -1378,6 +1390,18 @@ Then apply only after approval:
 | `changes` | Field-level differences for update actions |
 
 Use it when the cluster summaries already exist and should stay aligned with the latest topic structure without manually refreshing each one.
+
+When the user wants to archive or unarchive one of those cluster summary notes, preview `/notes/topic-cluster-note-archive` first:
+
+```json
+{"api_name":"/notes/topic-cluster-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply the archive change:
+
+```json
+{"api_name":"/notes/topic-cluster-note-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
 
 ## Edit And Delete
 
