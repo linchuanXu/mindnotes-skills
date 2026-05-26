@@ -123,6 +123,11 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/board-notes-dashboard-note-archive` | `notes:write` | `notes.md` |
 | `/notes/board-notes-dashboard-note-sync` | `notes:write` | `notes.md` |
 | `/notes/saved-views` | `notes:read` | `notes.md` |
+| `/notes/saved-views-dashboard` | `notes:read` | `notes.md` |
+| `/notes/saved-views-dashboard-note` | `notes:write` | `notes.md` |
+| `/notes/saved-views-dashboard-note-refresh` | `notes:write` | `notes.md` |
+| `/notes/saved-views-dashboard-note-archive` | `notes:write` | `notes.md` |
+| `/notes/saved-views-dashboard-note-sync` | `notes:write` | `notes.md` |
 | `/notes/saved-views-archive` | `notes:write` | `notes.md` |
 | `/notes/saved-views-sync` | `notes:write` | `notes.md` |
 | `/notes/board-notes-archive` | `notes:write` | `notes.md` |

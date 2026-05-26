@@ -156,6 +156,36 @@ Use `/notes/saved-views` when the user wants one unified list across saved `trac
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/saved-views-dashboard` when the user wants those saved views summarized as a small action board instead of a flat list:
+
+```json
+{"api_name":"/notes/saved-views-dashboard","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+When the user wants that saved-views dashboard preserved as one reusable note, preview `/notes/saved-views-dashboard-note` first:
+
+```json
+{"api_name":"/notes/saved-views-dashboard-note","count":5,"stale_days":30,"include_archived":true,"title":"Saved views dashboard","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user already has that saved-views dashboard note and wants it refreshed from the latest state, preview `/notes/saved-views-dashboard-note-refresh` first:
+
+```json
+{"api_name":"/notes/saved-views-dashboard-note-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"title":"Saved views dashboard refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants to archive one of those saved-views dashboard notes, preview `/notes/saved-views-dashboard-note-archive` first:
+
+```json
+{"api_name":"/notes/saved-views-dashboard-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several saved-views dashboard notes refreshed to the same latest saved-view state, preview `/notes/saved-views-dashboard-note-sync` first:
+
+```json
+{"api_name":"/notes/saved-views-dashboard-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"title":"Saved views dashboard synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/saved-views-archive` when the user wants one archive or unarchive pass across all those saved-view note families:
 
 ```json
