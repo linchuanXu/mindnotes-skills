@@ -86,6 +86,43 @@ Use `/notes/tracking-dashboard` when the user wants one compact answer to “我
 
 Use it when the user wants a dashboard-like briefing instead of raw lists, for example “现在我应该先整理什么”“先看哪几篇 task note”.
 
+When the user wants that dashboard briefing saved as one reusable note, preview `/notes/tracking-note` first:
+
+```json
+{"api_name":"/notes/tracking-note","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"title":"Tracking dashboard","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it:
+
+```json
+{"api_name":"/notes/tracking-note","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"title":"Tracking dashboard","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/tracking-note` returns:
+
+| Field | Meaning |
+|---|---|
+| `preview.title` | The note title that will be created |
+| `preview.tags` | Tags/folder attached to the saved tracking note |
+| `preview.dashboard` | The underlying tracking dashboard payload |
+| `preview.content_preview` | The start of the generated dashboard markdown |
+
+Use it when the user wants one note that captures the current tracking board inside MindNotes.
+
+When the user already has that saved tracking note and wants it refreshed from the latest dashboard state, preview `/notes/tracking-note-refresh` first:
+
+```json
+{"api_name":"/notes/tracking-note-refresh","note_id":"abc123","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"title":"Tracking dashboard refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then refresh it:
+
+```json
+{"api_name":"/notes/tracking-note-refresh","note_id":"abc123","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"title":"Tracking dashboard refreshed","confirm_refresh":true,"expected_updated_at":"2026-05-26T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/tracking-note-refresh` returns the usual `current_note`, `refreshed_note`, `changes`, and the latest `dashboard` payload behind the refresh.
+
 Read edit history when the user asks what changed or wants a quick audit trail:
 
 ```json
