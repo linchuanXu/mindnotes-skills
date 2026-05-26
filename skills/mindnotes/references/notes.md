@@ -86,6 +86,23 @@ Use `/notes/tracking-dashboard` when the user wants one compact answer to “我
 
 Use it when the user wants a dashboard-like briefing instead of raw lists, for example “现在我应该先整理什么”“先看哪几篇 task note”.
 
+Use `/notes/board-notes` when the user wants one list for saved `tracking-note`, `work-queue-note`, and `workboard-note` items:
+
+```json
+{"api_name":"/notes/board-notes","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+`/notes/board-notes` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.by_kind` | Counts for `tracking-note`, `work-queue-note`, and `workboard-note` |
+| `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board notes |
+| `notes` | Saved board notes with `kind`, folder tags, stale flag, and archive flag |
+| `suggested_next_steps` | Short guidance about refreshing stale board notes or reopening archived ones |
+
+Use it when the user asks “我保存过哪些 dashboard/work queue/workboard note”“把这些 board notes 一起列出来” or wants one saved-note overview before refreshing or archiving them.
+
 Use `/notes/work-queue` when the user wants one queue that mixes tracking priorities with cleanup action suggestions:
 
 ```json
