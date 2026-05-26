@@ -50,6 +50,8 @@ Review cleanup/topic tracking notes in one overview when the user wants to see o
 | `notes` | Recent tracking notes with `kind`, preview, folder tags, and optional checklist progress |
 | `kinds` | The active kind filter, or all supported kinds when omitted |
 
+Supported tracking kinds include `cleanup-report`, `cleanup-task`, `topic-note`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task`.
+
 Use it when the user asks for a centralized view of cleanup reports, cleanup tasks, or topic task notes before drilling into one note with `/notes/get`.
 
 Use `/notes/tracking-status` when the user wants those same tracking notes grouped by execution state instead of only seeing a recent list:
