@@ -68,6 +68,24 @@ Use `/notes/tracking-status` when the user wants those same tracking notes group
 
 Use it when the user asks “哪些整理任务还没做完”“哪些 tracking note 该刷新了” or wants a compact status board instead of a plain recent-notes view.
 
+Use `/notes/tracking-dashboard` when the user wants one compact answer to “我现在先看什么”:
+
+```json
+{"api_name":"/notes/tracking-dashboard","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+`/notes/tracking-dashboard` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.focus_status` | The most urgent bucket to work from first |
+| `top_priorities` | The first few tracking notes worth opening next, with reasons |
+| `recently_updated` | A compact list of the newest tracking notes |
+| `stale_notes` | Tracking notes that may need a refresh |
+| `suggested_next_steps` | Short next-step guidance based on the current board |
+
+Use it when the user wants a dashboard-like briefing instead of raw lists, for example “现在我应该先整理什么”“先看哪几篇 task note”.
+
 Read edit history when the user asks what changed or wants a quick audit trail:
 
 ```json
