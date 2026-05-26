@@ -205,6 +205,10 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/topic-note-archive` | `notes:write` | `notes.md` |
 | `/notes/topic-note-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-preview` | `notes:export` | `notes.md` |
+| `/notes/topic-report` | `notes:write` | `notes.md` |
+| `/notes/topic-report-refresh` | `notes:write` | `notes.md` |
+| `/notes/topic-report-archive` | `notes:write` | `notes.md` |
+| `/notes/topic-report-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-task` | `notes:write` | `notes.md` |
 | `/notes/topic-task-archive` | `notes:write` | `notes.md` |
 | `/notes/topic-refresh` | `notes:write` | `notes.md` |

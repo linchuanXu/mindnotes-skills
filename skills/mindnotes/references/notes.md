@@ -1204,6 +1204,36 @@ Use `/notes/topic-apply` to execute one selected write-capable topic action, or 
 
 Both default to dry-run. Real execution still requires `confirm_apply:true`, and the underlying create/sync/archive behavior is delegated to the existing topic note, topic task, and cluster note/task APIs.
 
+When the user wants to capture the results of those topic actions as a reusable note, use `/notes/topic-report`:
+
+```json
+{"api_name":"/notes/topic-report","query":"学习方法","topic":"学习方法","action_count":3,"title":"学习方法 report","tags":["整理"],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+For a real report note that also executes the selected write-capable actions, require both confirmations:
+
+```json
+{"api_name":"/notes/topic-report","query":"学习方法","topic":"学习方法","action_kinds":["save_topic_note"],"title":"学习方法 report","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+Refresh an existing topic report note with `/notes/topic-report-refresh`:
+
+```json
+{"api_name":"/notes/topic-report-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","action_kinds":["save_topic_note"],"title":"学习方法 report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Archive or unarchive it with `/notes/topic-report-archive`:
+
+```json
+{"api_name":"/notes/topic-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Refresh several saved topic report notes to the same latest result with `/notes/topic-report-sync`:
+
+```json
+{"api_name":"/notes/topic-report-sync","note_ids":["abc123","def456"],"query":"学习方法","topic":"学习方法","action_kinds":["save_topic_note"],"title":"学习方法 report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
 When the user wants to turn that draft into a note, use `/notes/topic-note` first as a preview:
 
 ```json
