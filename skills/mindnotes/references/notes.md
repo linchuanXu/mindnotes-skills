@@ -137,6 +137,23 @@ Use `/notes/cleanup-plan` when the user wants to know what to organize next acro
 
 Use it as a planning layer before choosing batch updates, batch rewrites, merge previews, or topic summaries.
 
+Use `/notes/cleanup-actions` when the user wants that plan translated into concrete next API calls:
+
+```json
+{"api_name":"/notes/cleanup-actions","count":8,"stale_days":90,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-actions` returns:
+
+| Field | Meaning |
+|---|---|
+| `actions` | Ordered cleanup moves mapped to existing APIs |
+| `api_name` | The next API to call for that move |
+| `note_ids` | The notes that action should target |
+| `params` | A ready-to-review starter payload for the next API |
+
+Use it when the user wants to move directly from diagnosis to execution planning without manually translating the cleanup plan.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
