@@ -232,6 +232,29 @@ Then execute it only after approval:
 
 Use it when the user wants the cleanup pipeline to continue from suggestion into a real write action without manually translating parameters.
 
+When the user wants several write-capable cleanup actions applied together, preview `/notes/cleanup-batch-apply` first:
+
+```json
+{"api_name":"/notes/cleanup-batch-apply","count":8,"stale_days":90,"action_count":3,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Or target specific write-capable action kinds:
+
+```json
+{"api_name":"/notes/cleanup-batch-apply","count":8,"stale_days":90,"action_kinds":["organize_folders","refresh_stale_notes"],"confirm_apply":true,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-batch-apply` returns:
+
+| Field | Meaning |
+|---|---|
+| `selected_count` | How many cleanup actions were selected for this batch |
+| `executed` | Successful write-capable cleanup executions |
+| `skipped` | Actions skipped because they were preview-only or unsupported for direct execution |
+| `apply_requirement` | Present during dry-run mode to remind the caller to set `confirm_apply:true` |
+
+Use it when the user wants cleanup to move from a runbook into a small confirmed batch of real organizing actions.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
