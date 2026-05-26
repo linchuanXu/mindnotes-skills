@@ -278,6 +278,29 @@ Then execute and save it:
 
 Use it when the user wants the cleanup pipeline to leave behind a human-readable execution report inside MindNotes.
 
+When the user already has a cleanup report note and wants it refreshed from the latest cleanup batch result, preview `/notes/cleanup-report-refresh` first:
+
+```json
+{"api_name":"/notes/cleanup-report-refresh","note_id":"abc123","count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then refresh it:
+
+```json
+{"api_name":"/notes/cleanup-report-refresh","note_id":"abc123","count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup report refreshed","confirm_refresh":true,"expected_updated_at":"2026-05-26T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-report-refresh` returns:
+
+| Field | Meaning |
+|---|---|
+| `current_note` | The existing cleanup report before refresh |
+| `refreshed_note` | The proposed updated cleanup report note |
+| `changes` | Title/content/tag differences between current and refreshed note |
+| `report` | The latest cleanup batch execution payload backing the refreshed report |
+
+Use it when the cleanup work is ongoing and the user wants one standing report note to stay current.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json

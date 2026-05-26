@@ -134,6 +134,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/cleanup-apply` | `notes:write` | `notes.md` |
 | `/notes/cleanup-batch-apply` | `notes:write` | `notes.md` |
 | `/notes/cleanup-report` | `notes:write` | `notes.md` |
+| `/notes/cleanup-report-refresh` | `notes:write` | `notes.md` |
 | `/notes/topic-brief` | `notes:export` | `notes.md` |
 | `/notes/topic-clusters` | `notes:export` | `notes.md` |
 | `/notes/topic-draft` | `notes:export` | `notes.md` |
