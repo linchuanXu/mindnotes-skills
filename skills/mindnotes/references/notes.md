@@ -232,7 +232,7 @@ When the user wants several board-notes task notes refreshed to the same latest 
 {"api_name":"/notes/board-notes-task-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes task synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views` when the user wants one unified list across saved `cleanup-note`, `cleanup-report`, `cleanup-task`, `topic-note`, `topic-report`, `topic-task`, `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `work-queue-report`, `work-queue-task`, `workboard-note`, `workboard-report`, `workboard-task`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
+Use `/notes/saved-views` when the user wants one unified list across saved `cleanup-note`, `cleanup-report`, `cleanup-task`, `topic-note`, `topic-report`, `topic-task`, `topic-cluster-note`, `topic-cluster-task`, `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `work-queue-report`, `work-queue-task`, `workboard-note`, `workboard-report`, `workboard-task`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
 
 ```json
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
