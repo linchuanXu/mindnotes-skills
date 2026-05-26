@@ -350,6 +350,30 @@ Apply only after showing the dry-run result and getting explicit approval:
 
 Do not use batch update for generated rewrites of note content. Batch update currently changes tags and folders only.
 
+Use `/notes/batch-rewrite` when the user wants deterministic title/content rewrites across a resolved note set. Always preview first:
+
+```json
+{"api_name":"/notes/batch-rewrite","note_ids":["abc123","def456"],"title_prefix":"整理: ","find_text":"旧词","replace_text":"新词","content_suffix":"\n\n总结","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Apply only after review:
+
+```json
+{"api_name":"/notes/batch-rewrite","note_ids":["abc123","def456"],"title_prefix":"整理: ","content_suffix":"\n\n总结","confirm_rewrite":true,"skill_version":"1.0.0"}
+```
+
+Supported rewrite operations:
+
+| Field | Meaning |
+|---|---|
+| `title_prefix` / `title_suffix` | Add fixed text around the title |
+| `content_prefix` / `content_suffix` | Add fixed text around the full content |
+| `find_text` + `replace_text` | Replace exact text in both title and content |
+| `trim_whitespace` | Strip leading/trailing whitespace from title and content |
+| `collapse_blank_lines` | Compress runs of 3+ blank lines down to 2 |
+
+Use batch rewrite for patterned cleanup, normalization, or summary markers after the user has already selected the target notes. Do not use it as a substitute for freeform AI rewriting.
+
 ## Duplicate Candidates
 
 Use `/graph/duplicates` to find likely duplicate or near-duplicate notes. It is suggest-only:

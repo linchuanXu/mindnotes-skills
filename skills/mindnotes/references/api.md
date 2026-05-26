@@ -122,6 +122,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/topic-cluster-sync` | `notes:write` | `notes.md` |
 | `/notes/update` | `notes:write` | `notes.md` |
 | `/notes/batch-update` | `notes:write` | `notes.md` |
+| `/notes/batch-rewrite` | `notes:write` | `notes.md` |
 | `/notes/delete` | `notes:write` | `notes.md` |
 | `/assets/upload-image` | `notes:write` | `assets.md` |
 | `/notes/collect` | `notes:export` | `notes.md` |
