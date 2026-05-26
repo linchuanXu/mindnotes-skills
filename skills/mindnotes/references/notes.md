@@ -111,7 +111,7 @@ Use `/notes/board-notes-actions` when the user wants the next likely board-note 
 {"api_name":"/notes/board-notes-actions","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, `sync_stale_board_reports`, `unarchive_board_reports`, `sync_stale_board_tasks`, `unarchive_board_tasks`, plus `save_board_notes_dashboard`, `save_board_notes_report`, and `save_board_notes_task` when the reusable dashboard/report/task notes do not exist yet.
+Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, `sync_stale_board_dashboards`, `unarchive_board_dashboards`, `refresh_active_board_dashboards`, `sync_stale_board_reports`, `unarchive_board_reports`, `sync_stale_board_tasks`, `unarchive_board_tasks`, plus `save_board_notes_dashboard`, `save_board_notes_report`, and `save_board_notes_task` when the reusable dashboard/report/task notes do not exist yet.
 
 Use `/notes/board-notes-dashboard` when the user wants the saved board notes summarized as a small action board instead of a plain list:
 
