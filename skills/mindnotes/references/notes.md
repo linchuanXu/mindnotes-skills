@@ -36,6 +36,22 @@ Read a note before making detailed claims:
 {"api_name":"/notes/get","note_id":"abc123","skill_version":"1.0.0"}
 ```
 
+Review cleanup/topic tracking notes in one overview when the user wants to see ongoing task notes and reports:
+
+```json
+{"api_name":"/notes/tracking-overview","kinds":["cleanup-task","topic-task"],"count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/tracking-overview` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.by_kind` | Counts and latest note per tracking kind |
+| `notes` | Recent tracking notes with `kind`, preview, folder tags, and optional checklist progress |
+| `kinds` | The active kind filter, or all supported kinds when omitted |
+
+Use it when the user asks for a centralized view of cleanup reports, cleanup tasks, or topic task notes before drilling into one note with `/notes/get`.
+
 Read edit history when the user asks what changed or wants a quick audit trail:
 
 ```json
