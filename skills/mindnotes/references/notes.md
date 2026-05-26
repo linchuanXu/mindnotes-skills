@@ -103,6 +103,25 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 
 Use it when the user says “给我一个统一待办”“topic 和 cleanup 一起排一下先做什么”.
 
+Use `/notes/workboard` when the user wants that same unified queue plus recent saved tracking/work-queue notes in one response:
+
+```json
+{"api_name":"/notes/workboard","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+`/notes/workboard` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary` | Combined counts for tracking notes, saved work queue notes, queue items, and the top priority source |
+| `tracking_dashboard` | The same detailed tracking dashboard payload |
+| `work_queue` | The same ordered unified queue payload |
+| `saved_notes.tracking_notes` | Recent tracking notes that belong to the active board context |
+| `saved_notes.work_queue_notes` | Recent saved work queue notes, optionally excluding archived ones |
+| `suggested_next_steps` | Short next-step guidance synthesized across queue state and saved notes |
+
+Use it when the user asks “给我一个统一工作台”“把 tracking note 和 work queue note 一起看” or wants one response that includes both active priorities and the notes already saved from them.
+
 When the user wants that unified queue saved as one reusable note, preview `/notes/work-queue-note` first:
 
 ```json
