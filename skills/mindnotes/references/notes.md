@@ -768,7 +768,7 @@ Use `/notes/tracking-actions` when the user wants the next likely tracking maint
 {"api_name":"/notes/tracking-actions","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-Those actions can include `sync_stale_tracking_notes`, `archive_done_tracking_notes`, `refresh_active_tracking_notes`, `sync_stale_tracking_reports`, `unarchive_tracking_reports`, `sync_stale_tracking_tasks`, `unarchive_tracking_tasks`, `save_tracking_dashboard`, `save_tracking_report`, and `save_tracking_task` when the reusable tracking families are missing.
+Those actions can include `sync_stale_tracking_notes`, `archive_done_tracking_notes`, `refresh_active_tracking_notes`, `sync_stale_tracking_reports`, `unarchive_tracking_reports`, `refresh_active_tracking_reports`, `sync_stale_tracking_tasks`, `unarchive_tracking_tasks`, `refresh_active_tracking_tasks`, `save_tracking_dashboard`, `save_tracking_report`, and `save_tracking_task` when the reusable tracking families are missing.
 
 Use `/notes/tracking-preview` when the user wants one of those tracking actions expanded into a real preview before deciding to sync, archive, or save a tracking dashboard note:
 
