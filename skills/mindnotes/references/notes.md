@@ -324,6 +324,30 @@ Then create it:
 
 Use it when the user wants one note that behaves more like an ongoing cleanup to-do list than a plain execution receipt.
 
+When the user already has a cleanup task note and wants it refreshed with the latest cleanup plan and execution state, preview `/notes/cleanup-task-refresh` first:
+
+```json
+{"api_name":"/notes/cleanup-task-refresh","note_id":"abc123","count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then refresh it:
+
+```json
+{"api_name":"/notes/cleanup-task-refresh","note_id":"abc123","count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup task refreshed","confirm_refresh":true,"expected_updated_at":"2026-05-26T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-task-refresh` returns:
+
+| Field | Meaning |
+|---|---|
+| `current_note` | The existing cleanup task note before refresh |
+| `refreshed_note` | The proposed updated cleanup task note |
+| `changes` | Title/content/tag differences between current and refreshed task note |
+| `runbook` | The latest cleanup plan behind the checklist |
+| `report` | The latest execution state behind the checklist |
+
+Use it when the task note should remain the living checklist for ongoing cleanup work.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
