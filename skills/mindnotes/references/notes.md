@@ -232,7 +232,7 @@ When the user wants several board-notes task notes refreshed to the same latest 
 {"api_name":"/notes/board-notes-task-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes task synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views` when the user wants one unified list across saved `cleanup-report`, `cleanup-task`, `topic-note`, `topic-report`, `topic-task`, `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `work-queue-report`, `work-queue-task`, `workboard-note`, `workboard-report`, `workboard-task`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
+Use `/notes/saved-views` when the user wants one unified list across saved `cleanup-note`, `cleanup-report`, `cleanup-task`, `topic-note`, `topic-report`, `topic-task`, `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `work-queue-report`, `work-queue-task`, `workboard-note`, `workboard-report`, `workboard-task`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
 
 ```json
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
@@ -1101,6 +1101,24 @@ Then create it only after approval:
 | `preview.runbook` | The full structured runbook that the markdown was built from |
 
 Use it when the user wants a cleanup plan to become a durable task or planning note inside MindNotes.
+
+When the user already has a cleanup runbook note and wants it refreshed from the latest cleanup runbook, preview `/notes/cleanup-note-refresh` first:
+
+```json
+{"api_name":"/notes/cleanup-note-refresh","note_id":"abc123","count":8,"stale_days":90,"action_count":3,"title":"Cleanup runbook refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants to archive or unarchive one of those cleanup runbook notes, preview `/notes/cleanup-note-archive` first:
+
+```json
+{"api_name":"/notes/cleanup-note-archive","note_id":"abc123","archived":true,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several cleanup runbook notes refreshed to the same latest cleanup plan, preview `/notes/cleanup-note-sync` first:
+
+```json
+{"api_name":"/notes/cleanup-note-sync","note_ids":["abc123","def456"],"count":8,"stale_days":90,"action_count":3,"title":"Cleanup runbook synced","dry_run":true,"skill_version":"1.0.0"}
+```
 
 When the user wants to actually run one of the write-capable cleanup actions, preview `/notes/cleanup-apply` first:
 

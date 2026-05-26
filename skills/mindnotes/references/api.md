@@ -251,6 +251,9 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/cleanup-preview` | `notes:export` | `notes.md` |
 | `/notes/cleanup-runbook` | `notes:export` | `notes.md` |
 | `/notes/cleanup-note` | `notes:write` | `notes.md` |
+| `/notes/cleanup-note-refresh` | `notes:write` | `notes.md` |
+| `/notes/cleanup-note-archive` | `notes:write` | `notes.md` |
+| `/notes/cleanup-note-sync` | `notes:write` | `notes.md` |
 | `/notes/cleanup-apply` | `notes:write` | `notes.md` |
 | `/notes/cleanup-batch-apply` | `notes:write` | `notes.md` |
 | `/notes/cleanup-report` | `notes:write` | `notes.md` |
