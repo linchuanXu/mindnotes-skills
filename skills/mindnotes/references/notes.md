@@ -406,6 +406,20 @@ Then create it only after approval:
 
 `/notes/topic-note` is the bridge between topic analysis and a saved note. It reuses the generated topic draft and shows the exact title, tags, and content preview before writing.
 
+When the user wants a checklist-style topic task note rather than a plain summary note, preview `/notes/topic-task` first:
+
+```json
+{"api_name":"/notes/topic-task","query":"学习方法","topic":"学习方法","title":"学习方法任务","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it:
+
+```json
+{"api_name":"/notes/topic-task","query":"学习方法","topic":"学习方法","title":"学习方法任务","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-task` returns a note preview built from the same `draft_markdown`, `brief`, and `clusters`, but organized as a checklist with progress and next-step items.
+
 When the user already has a summary note and wants it refreshed from the latest related notes, preview `/notes/topic-refresh` first:
 
 ```json
@@ -428,6 +442,20 @@ Then apply only after approval:
 | `draft_markdown` | The regenerated topic draft backing the refresh |
 
 Use it when a topic summary note already exists and should be updated instead of creating a second summary note.
+
+When the user already has a topic task note and wants that checklist refreshed, preview `/notes/topic-task-refresh` first:
+
+```json
+{"api_name":"/notes/topic-task-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","title":"学习方法任务","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then refresh it:
+
+```json
+{"api_name":"/notes/topic-task-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","confirm_refresh":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/topic-task-refresh` returns the same kind of `current_note`, `refreshed_note`, `changes`, `draft_markdown`, `brief`, and `clusters` preview, but updates the checklist-style task note instead of the summary note.
 
 When the user wants one summary note per subtopic cluster, preview `/notes/topic-cluster-notes` first:
 
