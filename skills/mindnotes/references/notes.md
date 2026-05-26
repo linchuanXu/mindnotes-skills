@@ -301,6 +301,29 @@ Then refresh it:
 
 Use it when the cleanup work is ongoing and the user wants one standing report note to stay current.
 
+When the user wants the cleanup work tracked as a checklist-style task note rather than only a report, preview `/notes/cleanup-task` first:
+
+```json
+{"api_name":"/notes/cleanup-task","count":8,"stale_days":90,"action_count":3,"title":"Cleanup task","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it:
+
+```json
+{"api_name":"/notes/cleanup-task","count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup task","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-task` returns:
+
+| Field | Meaning |
+|---|---|
+| `preview.runbook` | The planned cleanup actions behind the checklist |
+| `preview.report` | The execution status used to mark checklist progress |
+| `preview.content_preview` | The beginning of the generated task markdown |
+| `create_requirement` | Present until `confirm_create:true` is supplied |
+
+Use it when the user wants one note that behaves more like an ongoing cleanup to-do list than a plain execution receipt.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
