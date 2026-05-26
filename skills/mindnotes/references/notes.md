@@ -186,6 +186,29 @@ Use `/notes/cleanup-runbook` when the user wants a small bundle of the top clean
 
 Use it when the user wants a compact “show me the first few cleanup moves with previews” bundle instead of stepping through actions one by one.
 
+When the user wants that cleanup runbook saved as a note, preview `/notes/cleanup-note` first:
+
+```json
+{"api_name":"/notes/cleanup-note","count":8,"stale_days":90,"action_count":3,"title":"Cleanup runbook","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then create it only after approval:
+
+```json
+{"api_name":"/notes/cleanup-note","count":8,"stale_days":90,"action_count":3,"title":"Cleanup runbook","confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-note` returns:
+
+| Field | Meaning |
+|---|---|
+| `preview.title` | The note title that will be created |
+| `preview.tags` | Tags/folder to be attached to the runbook note |
+| `preview.content_preview` | The beginning of the generated runbook markdown |
+| `preview.runbook` | The full structured runbook that the markdown was built from |
+
+Use it when the user wants a cleanup plan to become a durable task or planning note inside MindNotes.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
