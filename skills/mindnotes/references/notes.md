@@ -111,7 +111,7 @@ Use `/notes/board-notes-actions` when the user wants the next likely board-note 
 {"api_name":"/notes/board-notes-actions","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, and `save_board_notes_dashboard` when the reusable dashboard note does not exist yet.
+Those actions can include `sync_stale_board_notes`, `unarchive_board_notes`, `refresh_active_board_notes`, `save_board_notes_dashboard`, `save_board_notes_report`, and `save_board_notes_task` when the reusable dashboard/report/task notes do not exist yet.
 
 Use `/notes/board-notes-dashboard` when the user wants the saved board notes summarized as a small action board instead of a plain list:
 
@@ -184,7 +184,55 @@ When the user wants several saved dashboard notes refreshed to the same latest s
 {"api_name":"/notes/board-notes-dashboard-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"title":"Board notes dashboard synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views` when the user wants one unified list across saved `tracking-note`, `work-queue-note`, `workboard-note`, `board-notes-dashboard-note`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
+When the user wants a durable receipt of what the saved-board batch actually did, preview `/notes/board-notes-report` first:
+
+```json
+{"api_name":"/notes/board-notes-report","count":5,"stale_days":30,"include_archived":true,"action_count":3,"title":"Board notes report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user already has a board-notes report note and wants it refreshed from the latest batch result, preview `/notes/board-notes-report-refresh` first:
+
+```json
+{"api_name":"/notes/board-notes-report-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes report refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants to archive one of those board-notes report notes, preview `/notes/board-notes-report-archive` first:
+
+```json
+{"api_name":"/notes/board-notes-report-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several board-notes report notes refreshed to the same latest batch result, preview `/notes/board-notes-report-sync` first:
+
+```json
+{"api_name":"/notes/board-notes-report-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes report synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants the saved-board work tracked as a checklist-style task note rather than only a report, preview `/notes/board-notes-task` first:
+
+```json
+{"api_name":"/notes/board-notes-task","count":5,"stale_days":30,"include_archived":true,"action_count":3,"title":"Board notes task","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user already has a board-notes task note and wants it refreshed with the latest plan and execution state, preview `/notes/board-notes-task-refresh` first:
+
+```json
+{"api_name":"/notes/board-notes-task-refresh","note_id":"abc123","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes task refreshed","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants to archive one of those board-notes task notes, preview `/notes/board-notes-task-archive` first:
+
+```json
+{"api_name":"/notes/board-notes-task-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+When the user wants several board-notes task notes refreshed to the same latest plan and status, preview `/notes/board-notes-task-sync` first:
+
+```json
+{"api_name":"/notes/board-notes-task-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes task synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Use `/notes/saved-views` when the user wants one unified list across saved `tracking-note`, `work-queue-note`, `workboard-note`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
 
 ```json
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
