@@ -232,7 +232,7 @@ When the user wants several board-notes task notes refreshed to the same latest 
 {"api_name":"/notes/board-notes-task-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"title":"Board notes task synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views` when the user wants one unified list across saved `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `work-queue-report`, `work-queue-task`, `workboard-note`, `workboard-report`, `workboard-task`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
+Use `/notes/saved-views` when the user wants one unified list across saved `cleanup-report`, `cleanup-task`, `topic-report`, `topic-task`, `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `work-queue-report`, `work-queue-task`, `workboard-note`, `workboard-report`, `workboard-task`, `board-notes-dashboard-note`, `board-notes-report`, `board-notes-task`, `saved-views-report`, `saved-views-task`, and `saved-views-dashboard-note` items:
 
 ```json
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
@@ -348,13 +348,13 @@ When the user wants several saved-views dashboard notes refreshed to the same la
 {"api_name":"/notes/saved-views-dashboard-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"include_archived":true,"title":"Saved views dashboard synced","dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views-archive` when the user wants one archive or unarchive pass across all those saved-view note families, including saved tracking/work queue/workboard reports and tasks:
+Use `/notes/saved-views-archive` when the user wants one archive or unarchive pass across all those saved-view note families, including saved cleanup/topic/tracking/work queue/workboard reports and tasks:
 
 ```json
 {"api_name":"/notes/saved-views-archive","note_ids":["note-1","note-2"],"archived":true,"dry_run":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views-sync` when the user wants one refresh pass across the same saved-view families, including saved tracking/work queue/workboard reports and tasks:
+Use `/notes/saved-views-sync` when the user wants one refresh pass across the same saved-view families, including saved cleanup/topic/tracking/work queue/workboard reports and tasks:
 
 ```json
 {"api_name":"/notes/saved-views-sync","kind":"workboard-note","count":5,"title":"Saved view synced","dry_run":true,"skill_version":"1.0.0"}
