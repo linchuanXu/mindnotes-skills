@@ -415,6 +415,22 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 
 Use it when the user says “给我一个统一待办”“topic 和 cleanup 一起排一下先做什么”.
 
+Use `/notes/work-queue-status` when the user wants only one queue status bucket such as `proposed`, `pending`, or `needs_refresh`:
+
+```json
+{"api_name":"/notes/work-queue-status","status":"proposed","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+`/notes/work-queue-status` returns:
+
+| Field | Meaning |
+|---|---|
+| `status` | The requested queue status bucket, or `null` for the mixed queue view |
+| `summary.focus_status` | The active queue bucket after filtering |
+| `summary.by_status` | Counts for queue statuses such as `proposed`, `pending`, `in_progress`, or `needs_refresh` |
+| `summary.by_source` | Counts for `tracking` items versus `cleanup-action` items inside the filtered queue |
+| `queue` | Only the queue entries that match the selected status |
+
 When the user wants that queue turned into concrete maintenance suggestions, call `/notes/work-queue-actions`:
 
 ```json
