@@ -1,6 +1,6 @@
 ---
 name: mindnotes
-description: Connect to a user's authorized MindNotes account to search, read, create, edit, delete, summarize, organize, relate, review, create cards, upload note images, inspect stats, manage folders, work with Canvas maps, manage purchase/asset records, and export their personal notes through the MindNotes Skill API. Use when the user asks about "my MindNotes notes", "my notes", personal knowledge, study review, note summaries, related ideas, tags, folders, recent notes, editing or deleting notes, uploading images, TikCard review, card creation, Canvas knowledge maps, purchases/assets/物卡, dashboard stats, or exporting/organizing MindNotes content.
+description: "MindNotes/my notes: search, summarize, edit, review/抖卡, cards/制卡, Canvas/知识图谱, 物卡, stats, export."
 ---
 
 # MindNotes
@@ -28,7 +28,7 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 ## Quick Start
 
 1. Read `references/api.md` before calling the API.
-2. Load more specific references only when needed: `notes.md`, `assets.md`, `review.md`, `cards.md`, `canvas.md`, `stats.md`, `purchases.md`, `output.md`, and `anti-patterns.md`.
+2. Load more specific references only when needed: `workflows.md`, `notes.md`, `assets.md`, `review.md`, `cards.md`, `canvas.md`, `stats.md`, `purchases.md`, `output.md`, `errors.md`, and `anti-patterns.md`.
 3. Read the API Key from `MINDNOTES_API_KEY`. The key format starts with `mn_sk_`.
 4. Use `https://app.mindnotes.cn` as the default base URL. Use `MINDNOTES_BASE_URL` only when the user explicitly says they are using a self-hosted, staging, or test deployment.
 5. If `MINDNOTES_API_KEY` is missing, give one concise setup instruction:
@@ -67,7 +67,7 @@ Before any write or irreversible action, check intent and permission:
 | Create/update/delete purchase record | User explicitly asks to record, change, retire, or delete a purchase/asset; deletion needs confirmation |
 | Export broad content | User asked to export/package/compile; confirm broad selections |
 
-If setup, permissions, pagination, writes, or failed calls are involved, read `references/anti-patterns.md`.
+If setup, permissions, pagination, writes, or failed calls are involved, read `references/anti-patterns.md` and `references/errors.md`.
 
 ## Request Contract
 
@@ -99,6 +99,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - Review, cards, Canvas, and export: follow the Safety Gates before writing or exposing broad content.
 - Purchases/物卡: use purchase APIs only for the current user's personal records; deletion requires explicit confirmation.
 - Export: use `/notes/export` only when the user asks to export, package, compile, or transform a note set.
+- For multi-step work, read `references/workflows.md` and follow the smallest workflow that matches the user's request.
 
 ## Response Rules
 
@@ -111,7 +112,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - When authentication fails, ask the user to refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
 - When a result may be incomplete due to limits, say what was searched and what limit was used.
 - Use `references/output.md` for result formats.
-- Use `references/anti-patterns.md` when the request involves setup, permissions, review submission, card creation, Canvas writes, pagination, or failed calls.
+- Use `references/anti-patterns.md` and `references/errors.md` when the request involves setup, permissions, review submission, card creation, Canvas writes, pagination, or failed calls.
 
 ## References
 
@@ -123,5 +124,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - `references/canvas.md`: Canvas node/edge/suggestion meanings and approval workflow.
 - `references/stats.md`: overview, timeline, review pressure, and graph stats.
 - `references/purchases.md`: purchase/asset record fields and safe write rules.
+- `references/workflows.md`: multi-step workflows that combine search/read/write/review/Canvas/purchase APIs.
 - `references/output.md`: user-facing output templates and failure wording.
+- `references/errors.md`: error priority, status handling, and user-facing failure wording.
 - `references/anti-patterns.md`: high-risk mistakes, forbidden behavior, and correct/incorrect examples.
