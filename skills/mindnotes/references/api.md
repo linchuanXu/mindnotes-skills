@@ -149,6 +149,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/board-notes-task-archive` | `notes:write` | `notes.md` |
 | `/notes/board-notes-task-sync` | `notes:write` | `notes.md` |
 | `/notes/saved-views` | `notes:read` | `notes.md` |
+| `/notes/saved-views-status` | `notes:read` | `notes.md` |
 | `/notes/saved-views-actions` | `notes:export` | `notes.md` |
 | `/notes/saved-views-apply` | `notes:write` | `notes.md` |
 | `/notes/saved-views-batch-apply` | `notes:write` | `notes.md` |
