@@ -18,6 +18,18 @@ Hybrid search when the user asks conceptually, combines tags/title/content signa
 
 `/notes/hybrid-search` returns ranked previews with `signals` such as `full_text`, `title`, `tag`, `content`, and `terms`. Use those signals for ranking and disambiguation only. Read details with `/notes/get` before detailed claims.
 
+Find similar notes from a note or a raw text fragment:
+
+```json
+{"api_name":"/notes/similar","note_id":"abc123","count":10,"threshold":0.45,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/similar","title":"复盘","text":"hybrid search and skill cleanup","count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/similar` compares title and content together and returns `score`, `signals`, and overlapping terms. Use it when the user asks "我之前还写过类似的吗" or when shared tags are too weak.
+
 Read a note before making detailed claims:
 
 ```json

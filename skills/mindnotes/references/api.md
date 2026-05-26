@@ -104,6 +104,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/me` | `notes:read` | this file |
 | `/notes/search` | `notes:read` | `notes.md` |
 | `/notes/hybrid-search` | `notes:read` | `notes.md` |
+| `/notes/similar` | `notes:read` | `notes.md` |
 | `/notes/recent` | `notes:read` | `notes.md` |
 | `/notes/get` | `notes:read` | `notes.md` |
 | `/notes/history` | `notes:read` | `notes.md` |

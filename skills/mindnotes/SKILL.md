@@ -11,7 +11,7 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 
 | User intent | Primary workflow | Main APIs |
 |---|---|---|
-| Search my notes or answer from my notes | Search or hybrid-search, then read details before making claims | `/notes/search`, `/notes/hybrid-search`, `/notes/get` |
+| Search my notes or answer from my notes | Search, hybrid-search, or find similar notes, then read details before making claims | `/notes/search`, `/notes/hybrid-search`, `/notes/similar`, `/notes/get` |
 | Explain what changed in a note | Read the note history, then summarize changed fields and previews | `/notes/history`, `/notes/get` |
 | Summarize a topic from my notes | Collect enough notes, group by themes, cite sources | `/notes/search`, `/notes/get`, `/notes/collect` |
 | Show recent notes or tags | List recent activity or tag distribution | `/notes/recent`, `/notes/tags`, `/notes/by-tag` |
