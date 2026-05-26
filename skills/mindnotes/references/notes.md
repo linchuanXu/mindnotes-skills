@@ -154,6 +154,22 @@ Use `/notes/cleanup-actions` when the user wants that plan translated into concr
 
 Use it when the user wants to move directly from diagnosis to execution planning without manually translating the cleanup plan.
 
+Use `/notes/cleanup-preview` when the user wants one of those suggested actions expanded into an actual next-step preview:
+
+```json
+{"api_name":"/notes/cleanup-preview","count":8,"stale_days":90,"action_kind":"review_duplicates","skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-preview` returns:
+
+| Field | Meaning |
+|---|---|
+| `action` | The selected cleanup action from `/notes/cleanup-actions` |
+| `preview_api_name` | Which downstream API was previewed |
+| `preview` | The actual preview payload from that downstream API |
+
+Use it to go from “what should I do next” to “show me that exact dry-run or preview now”.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
