@@ -36,4 +36,3 @@ Do not expose stack traces, backend paths, token hashes, storage details, or raw
 - Use only `next_cursor` returned by the API.
 - Do not invent `offset`, page numbers, or guessed cursors.
 - Tell the user when a summary is limited by `count` or pagination.
-

@@ -11,15 +11,15 @@ Use this skill to work with the user's own MindNotes knowledge base. Speak about
 
 | User intent | Primary workflow | Main APIs |
 |---|---|---|
-| Search my notes or answer from my notes | Search, then read details before making claims | `/notes/search`, `/notes/get` |
+| Search my notes or answer from my notes | Search or hybrid-search, then read details before making claims | `/notes/search`, `/notes/hybrid-search`, `/notes/get` |
 | Summarize a topic from my notes | Collect enough notes, group by themes, cite sources | `/notes/search`, `/notes/get`, `/notes/collect` |
 | Show recent notes or tags | List recent activity or tag distribution | `/notes/recent`, `/notes/tags`, `/notes/by-tag` |
 | Create, edit, or delete a note | Upload image if needed, read exact existing note first, write only after clear intent | `/assets/upload-image`, `/notes/create`, `/notes/get`, `/notes/update`, `/notes/delete` |
-| Organize folders | Inspect folder tags, hierarchy, or move a note | `/folders/list`, `/folders/stats`, `/folders/relations`, `/folders/move-note` |
+| Organize folders or tags | Inspect folder tags, hierarchy, move one note, or batch-preview tag/folder cleanup | `/folders/list`, `/folders/stats`, `/folders/relations`, `/folders/move-note`, `/notes/batch-update` |
 | Review today / start TikCard | Show one due card, wait for self-rating, then submit | `/review/next`, `/review/submit` |
 | Plan review pressure or dashboard | Summarize due, overdue, activity, and dashboard buckets | `/dashboard/summary`, `/dashboard/activity`, `/review/summary`, `/review/schedule`, `/stats/review` |
 | Create or save cards | Choose card maker, then create only on explicit intent | `/cards/functions`, `/cards/create` |
-| Find related ideas | Resolve a source note, then explain visible relation cues | `/graph/related`, `/graph/tag-relations` |
+| Find related, isolated, or duplicate ideas | Resolve source notes, explain relation cues, and suggest duplicate candidates only | `/graph/related`, `/graph/duplicates`, `/graph/tag-relations`, `/graph/orphans` |
 | Work with Canvas maps | Read maps, edit nodes/edges/groups, import notes, suggest links, accept only after approval | `/canvas/list`, `/canvas/get`, `/canvas/create`, `/canvas/node-create`, `/canvas/edge-create`, `/canvas/import-notes`, `/canvas/suggest-relations`, `/canvas/accept-relations` |
 | Manage purchases / 物卡 | List, create, update, or delete personal purchase records | `/purchases/list`, `/purchases/create`, `/purchases/update`, `/purchases/delete` |
 | Export or compile notes | Export selected notes as Markdown or JSON | `/notes/export` |
@@ -58,6 +58,7 @@ Before any write or irreversible action, check intent and permission:
 | Submit review | User explicitly rates the active card as `remembered`, `fuzzy`, or `forgotten` |
 | Create note | User clearly asks to save/create a normal note |
 | Edit note | Exact note was read first; user clearly asked to modify that note; use `dry_run` when the change is broad or ambiguous |
+| Batch organize notes | Use `dry_run:true` first; apply only after showing affected notes and receiving explicit approval |
 | Delete note | Exact note was read first; user explicitly confirms deletion; send `confirm_delete:true` only after that confirmation |
 | Upload image | User provides a local image, data URL, base64 image, or public image URL for a note or asset |
 | Create cards | User explicitly asks to save/create/make cards; confirm broad batch creation |
@@ -93,9 +94,9 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 
 ## Workflow Rules
 
-- Search/read: use `/notes/search`, then `/notes/get` for the notes you rely on. Do not answer detailed questions from previews alone.
+- Search/read: use `/notes/search` or `/notes/hybrid-search`, then `/notes/get` for the notes you rely on. Do not answer detailed questions from previews alone.
 - Summaries/writing: read 3-10 relevant notes when possible, group by theme, and separate note facts from your synthesis.
-- Create/edit/delete: use `/assets/upload-image` before attaching images; resolve exact existing notes with `/notes/get`; prefer `/notes/update` with `dry_run:true` for non-trivial changes; never call delete APIs without explicit deletion confirmation.
+- Create/edit/delete/batch organize: use `/assets/upload-image` before attaching images; resolve exact existing notes with `/notes/get`; prefer `/notes/update` or `/notes/batch-update` with `dry_run:true` for non-trivial changes; never call delete APIs without explicit deletion confirmation.
 - Review, cards, Canvas, and export: follow the Safety Gates before writing or exposing broad content.
 - Purchases/物卡: use purchase APIs only for the current user's personal records; deletion requires explicit confirmation.
 - Export: use `/notes/export` only when the user asks to export, package, compile, or transform a note set.
@@ -109,6 +110,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 - Do not imply access to all users; only the current authorized user's notes are accessible.
 - Do not fabricate note contents. Search/read first, then answer.
 - Do not submit review results, create/edit/delete notes, upload unrelated images, create cards, edit Canvas, import notes, accept Canvas relations, or change purchase records without explicit user intent.
+- Do not apply batch updates or merge/delete duplicate candidates without showing a preview and getting explicit approval.
 - When authentication fails, ask the user to refresh their MindNotes API Key and set only `MINDNOTES_API_KEY`.
 - When a result may be incomplete due to limits, say what was searched and what limit was used.
 - Use `references/output.md` for result formats.

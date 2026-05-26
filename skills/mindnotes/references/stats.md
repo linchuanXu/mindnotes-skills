@@ -69,4 +69,12 @@ Orphan notes:
 {"api_name":"/graph/orphans","mode":"no_shared_tags","count":20,"skill_version":"1.0.0"}
 ```
 
+Duplicate candidates:
+
+```json
+{"api_name":"/graph/duplicates","mode":"all","threshold":0.88,"count":20,"skill_version":"1.0.0"}
+```
+
+`/graph/duplicates` is a cleanup aid. It returns candidate groups with reasons such as `same_title`, `same_title_and_content`, or `similar_content`. Treat these as suggestions, not proof. Read full notes before proposing a merge, and require explicit approval before any edit or delete.
+
 Explain relations using shared tags and visible content cues. Do not claim semantic similarity that was not returned or visible in retrieved notes.

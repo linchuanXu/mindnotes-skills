@@ -13,6 +13,8 @@ Use this reference when a request touches setup, permissions, review submission,
 | Pagination invention | Use `offset`, page numbers, or guessed cursors | Reuse only the returned `next_cursor` |
 | Preview hallucination | Summarize details from search previews | Call `/notes/get` or `/notes/collect` before detailed claims |
 | Note edit from preview | Rewrite or retag a note from search preview only | Call `/notes/get`, show or preview the intended change, then update |
+| Batch update surprise | Apply tag/folder changes to many notes immediately | Call `/notes/batch-update` with `dry_run:true`, show the preview, then apply only with approval |
+| Duplicate overreach | Merge or delete notes from duplicate candidates alone | Read full notes, show a merge plan, and require explicit approval before writes |
 | Accidental deletion | Delete a note from a vague request or without confirmation | Read the note first and call `/notes/delete` only with `confirm_delete:true` after explicit user approval |
 | Image without upload | Put local file paths into notes or purchase records | Upload with `/assets/upload-image`, then use returned `asset.path` |
 | Review guessing | Submit `remembered`, `fuzzy`, or `forgotten` from your own judgment | Ask the user to self-rate before `/review/submit` |
@@ -59,6 +61,18 @@ Correct deletion only after explicit confirmation:
 
 ```json
 {"api_name":"/notes/delete","note_id":"abc123","confirm_delete":true,"skill_version":"1.0.0"}
+```
+
+Correct batch cleanup preview before applying:
+
+```json
+{"api_name":"/notes/batch-update","note_ids":["abc123","def456"],"add_tags":["复盘"],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Correct duplicate detection as suggestions only:
+
+```json
+{"api_name":"/graph/duplicates","mode":"all","count":20,"skill_version":"1.0.0"}
 ```
 
 Correct image upload before attaching to a note:

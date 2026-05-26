@@ -103,6 +103,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/_list` | `notes:read` | this file |
 | `/me` | `notes:read` | this file |
 | `/notes/search` | `notes:read` | `notes.md` |
+| `/notes/hybrid-search` | `notes:read` | `notes.md` |
 | `/notes/recent` | `notes:read` | `notes.md` |
 | `/notes/get` | `notes:read` | `notes.md` |
 | `/notes/tags` | `notes:read` | `notes.md` |
@@ -112,6 +113,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/snippets` | `notes:read` | `notes.md` |
 | `/notes/create` | `notes:write` | `notes.md` |
 | `/notes/update` | `notes:write` | `notes.md` |
+| `/notes/batch-update` | `notes:write` | `notes.md` |
 | `/notes/delete` | `notes:write` | `notes.md` |
 | `/assets/upload-image` | `notes:write` | `assets.md` |
 | `/notes/collect` | `notes:export` | `notes.md` |
@@ -122,6 +124,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/dashboard/summary` | `stats:read` | `stats.md` |
 | `/dashboard/activity` | `stats:read` | `stats.md` |
 | `/graph/related` | `graph:read` | `stats.md` |
+| `/graph/duplicates` | `graph:read` | `stats.md` |
 | `/graph/tag-relations` | `graph:read` | `stats.md` |
 | `/graph/orphans` | `graph:read` | `stats.md` |
 | `/folders/list` | `notes:read` | `notes.md` |

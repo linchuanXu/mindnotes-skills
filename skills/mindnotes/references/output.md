@@ -77,6 +77,33 @@ For small Markdown exports, return the content directly. For large exports, summ
 已按「主题/标签/指定笔记」导出 N 条笔记，格式是 Markdown。
 ```
 
+## Batch Organization Preview
+
+```text
+我先做了预览，还没有修改你的笔记。
+
+将更新 N 条：
+1. 《标题》：标签 A -> 标签 A, 标签 B
+2. 《标题》：移动到 📁项目
+
+跳过 M 条：
+1. 《标题》：没有变化
+
+确认后我再执行这批整理。
+```
+
+## Duplicate Candidates
+
+```text
+我找到了 N 组可能重复的笔记候选。
+
+1. 可能重复：原因/相似度
+   - 《标题 A》 updated 2026-05-20
+   - 《标题 B》 updated 2026-05-22
+
+这些只是候选。我需要读取全文并给出合并方案，确认后才会修改或删除。
+```
+
 ## Failure Wording
 
 | Error | User-facing wording |

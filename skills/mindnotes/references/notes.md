@@ -10,6 +10,14 @@ Search:
 {"api_name":"/notes/search","query":"部署","count":10,"skill_version":"1.0.0"}
 ```
 
+Hybrid search when the user asks conceptually, combines tags/title/content signals, or normal search is too narrow:
+
+```json
+{"api_name":"/notes/hybrid-search","query":"agent skill","tags":["AI"],"count":10,"skill_version":"1.0.0"}
+```
+
+`/notes/hybrid-search` returns ranked previews with `signals` such as `full_text`, `title`, `tag`, `content`, and `terms`. Use those signals for ranking and disambiguation only. Read details with `/notes/get` before detailed claims.
+
 Read a note before making detailed claims:
 
 ```json
@@ -110,6 +118,51 @@ Use `/notes/export` only when the user asks to export, package, compile, or tran
 ```json
 {"api_name":"/notes/export","format":"markdown","query":"AI 产品","count":30,"skill_version":"1.0.0"}
 ```
+
+## Batch Organization
+
+Use `/notes/batch-update` for explicit cleanup tasks such as batch tagging, removing stale tags, or moving selected notes to a folder. Always preview first:
+
+```json
+{"api_name":"/notes/batch-update","note_ids":["abc123","def456"],"add_tags":["复盘"],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Supported operations:
+
+| Field | Meaning |
+|---|---|
+| `add_tags` | Add tags while preserving existing tags |
+| `remove_tags` | Remove specific tags |
+| `set_tags` | Replace all tags |
+| `folder` / `folder_id` | Move notes to a folder tag that starts with `📁` |
+| `folder_mode` | `set`, `add`, or `remove`; default is `set` |
+
+Apply only after showing the dry-run result and getting explicit approval:
+
+```json
+{"api_name":"/notes/batch-update","note_ids":["abc123","def456"],"add_tags":["复盘"],"confirm_batch":true,"skill_version":"1.0.0"}
+```
+
+Do not use batch update for generated rewrites of note content. Batch update currently changes tags and folders only.
+
+## Duplicate Candidates
+
+Use `/graph/duplicates` to find likely duplicate or near-duplicate notes. It is suggest-only:
+
+```json
+{"api_name":"/graph/duplicates","mode":"all","threshold":0.88,"count":20,"skill_version":"1.0.0"}
+```
+
+Modes:
+
+| Value | Meaning |
+|---|---|
+| `all` | Exact content/title groups plus similar pairs |
+| `exact` | Same title and content fingerprint |
+| `title` | Same normalized title |
+| `similar` | Similar title/content pairs above `threshold` |
+
+Never merge or delete from duplicate candidates alone. Read the full notes, show the candidate group, propose a merge plan, and get explicit approval before any write.
 
 Permission boundary:
 

@@ -4,7 +4,7 @@ Use this when a request spans multiple MindNotes APIs. Keep the workflow narrow:
 
 ## Search And Answer From Notes
 
-1. Call `/notes/search` with the user's query.
+1. Call `/notes/search` with the user's query. Use `/notes/hybrid-search` when tags, title matches, or broad conceptual wording matter.
 2. Call `/notes/get` for every note you rely on.
 3. Answer from note facts first, then add synthesis separately.
 4. Mention the search terms and count limit when results may be incomplete.
@@ -43,6 +43,26 @@ Use `/notes/export` only when the user asks to export, compile, package, or tran
 3. Call `/notes/delete` with `confirm_delete:true` only after confirmation.
 4. Do not batch delete from vague instructions.
 
+## Batch Organize Notes
+
+1. Resolve the target set with `/notes/search`, `/notes/hybrid-search`, `/notes/by-tag`, or user-provided note ids.
+2. Read or list enough note summaries for the user to recognize the affected notes.
+3. Call `/notes/batch-update` with `dry_run:true`.
+4. Show the affected notes, skipped notes, and exact tag/folder changes.
+5. Apply with `confirm_batch:true` only after explicit approval.
+
+Do not batch-update content. Do not batch delete.
+
+## Duplicate Cleanup
+
+1. Call `/graph/duplicates` with `mode:"all"` or the narrowest requested mode.
+2. Show candidate groups as suggestions, including titles and update dates.
+3. Read full notes with `/notes/get` before proposing a merge.
+4. If the user approves a merge, create or update the surviving note with a dry run first.
+5. Delete old duplicates only after a separate explicit deletion confirmation.
+
+The duplicate API does not merge; it only finds candidates.
+
 ## TikCard Review
 
 1. Call `/review/next` or `/review/today`.
@@ -80,4 +100,3 @@ Do not infer the rating from the user's answer quality.
 ## Diagnostics
 
 Use `/me` to check the connected account and scopes. Use `/_list` to inspect currently supported APIs and parameters.
-
