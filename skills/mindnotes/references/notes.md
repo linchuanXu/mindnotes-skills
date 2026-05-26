@@ -170,6 +170,22 @@ Use `/notes/cleanup-preview` when the user wants one of those suggested actions 
 
 Use it to go from “what should I do next” to “show me that exact dry-run or preview now”.
 
+Use `/notes/cleanup-runbook` when the user wants a small bundle of the top cleanup actions plus their previews:
+
+```json
+{"api_name":"/notes/cleanup-runbook","count":8,"stale_days":90,"action_count":3,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-runbook` returns:
+
+| Field | Meaning |
+|---|---|
+| `actions` | The top cleanup actions selected from `/notes/cleanup-actions` |
+| `previews` | Preview payloads for those selected actions |
+| `skipped` | Actions whose previews could not be expanded |
+
+Use it when the user wants a compact “show me the first few cleanup moves with previews” bundle instead of stepping through actions one by one.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
