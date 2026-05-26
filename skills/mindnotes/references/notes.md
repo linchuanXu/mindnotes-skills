@@ -123,6 +123,34 @@ Then refresh it:
 
 `/notes/tracking-note-refresh` returns the usual `current_note`, `refreshed_note`, `changes`, and the latest `dashboard` payload behind the refresh.
 
+When the user wants to archive one of those saved tracking notes, preview `/notes/tracking-note-archive` first:
+
+```json
+{"api_name":"/notes/tracking-note-archive","note_id":"abc123","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply it:
+
+```json
+{"api_name":"/notes/tracking-note-archive","note_id":"abc123","confirm_archive":true,"skill_version":"1.0.0"}
+```
+
+Set `archived:false` to remove the archive tags again. The archive flow only changes tags; it does not delete content.
+
+When the user wants several saved tracking notes refreshed to the same current dashboard state, preview `/notes/tracking-note-sync` first:
+
+```json
+{"api_name":"/notes/tracking-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"title":"Tracking dashboard synced","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then sync them:
+
+```json
+{"api_name":"/notes/tracking-note-sync","note_ids":["abc123","def456"],"count":5,"stale_days":30,"title":"Tracking dashboard synced","confirm_sync":true,"skill_version":"1.0.0"}
+```
+
+`/notes/tracking-note-sync` returns one preview or result per target note, including `current_note`, `refreshed_note`, `changes`, and the shared `dashboard` payload behind the sync.
+
 Read edit history when the user asks what changed or wants a quick audit trail:
 
 ```json
