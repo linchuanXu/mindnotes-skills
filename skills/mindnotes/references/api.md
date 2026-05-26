@@ -198,9 +198,13 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/create` | `notes:write` | `notes.md` |
 | `/notes/import` | `notes:write` | `notes.md` |
 | `/notes/restore-version` | `notes:write` | `notes.md` |
+| `/notes/topic-actions` | `notes:export` | `notes.md` |
+| `/notes/topic-apply` | `notes:write` | `notes.md` |
+| `/notes/topic-batch-apply` | `notes:write` | `notes.md` |
 | `/notes/topic-note` | `notes:write` | `notes.md` |
 | `/notes/topic-note-archive` | `notes:write` | `notes.md` |
 | `/notes/topic-note-sync` | `notes:write` | `notes.md` |
+| `/notes/topic-preview` | `notes:export` | `notes.md` |
 | `/notes/topic-task` | `notes:write` | `notes.md` |
 | `/notes/topic-task-archive` | `notes:write` | `notes.md` |
 | `/notes/topic-refresh` | `notes:write` | `notes.md` |
@@ -212,6 +216,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/topic-cluster-task-archive` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-task-sync` | `notes:write` | `notes.md` |
+| `/notes/topic-runbook` | `notes:export` | `notes.md` |
 | `/notes/update` | `notes:write` | `notes.md` |
 | `/notes/batch-update` | `notes:write` | `notes.md` |
 | `/notes/batch-rewrite` | `notes:write` | `notes.md` |

@@ -1172,6 +1172,38 @@ Use `/notes/topic-draft` when the user wants a first-pass written draft assemble
 
 Treat this as a working draft, not a final claim. Read the key notes in full before sending the draft back as a polished answer or saving it as a note.
 
+When the user wants one unified "what should I do next with this topic" list before writing or syncing notes, use `/notes/topic-actions`:
+
+```json
+{"api_name":"/notes/topic-actions","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+`/notes/topic-actions` returns a compact topic draft summary, matching saved topic notes/tasks, and an `actions` list such as saving the main topic note/task, saving cluster notes/tasks, syncing stale topic notes, or unarchiving archived topic notes.
+
+Use `/notes/topic-preview` to expand one of those actions into the exact dry-run payload it would produce:
+
+```json
+{"api_name":"/notes/topic-preview","query":"学习方法","topic":"学习方法","action_kind":"save_topic_note","skill_version":"1.0.0"}
+```
+
+Use `/notes/topic-runbook` when you want the first few topic actions bundled with their previews:
+
+```json
+{"api_name":"/notes/topic-runbook","query":"学习方法","topic":"学习方法","action_count":3,"skill_version":"1.0.0"}
+```
+
+Use `/notes/topic-apply` to execute one selected write-capable topic action, or `/notes/topic-batch-apply` to execute the first few:
+
+```json
+{"api_name":"/notes/topic-apply","query":"学习方法","topic":"学习方法","action_kind":"save_topic_note","dry_run":true,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/topic-batch-apply","query":"学习方法","topic":"学习方法","action_count":2,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Both default to dry-run. Real execution still requires `confirm_apply:true`, and the underlying create/sync/archive behavior is delegated to the existing topic note, topic task, and cluster note/task APIs.
+
 When the user wants to turn that draft into a note, use `/notes/topic-note` first as a preview:
 
 ```json
