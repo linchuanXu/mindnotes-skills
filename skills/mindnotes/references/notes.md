@@ -103,6 +103,23 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 
 Use it when the user asks “我保存过哪些 dashboard/work queue/workboard note”“把这些 board notes 一起列出来” or wants one saved-note overview before refreshing or archiving them.
 
+Use `/notes/board-notes-dashboard` when the user wants the saved board notes summarized as a small action board instead of a plain list:
+
+```json
+{"api_name":"/notes/board-notes-dashboard","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
+`/notes/board-notes-dashboard` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.focus_status` | The status bucket that deserves attention first |
+| `top_priorities` | Saved board notes worth opening, syncing, or unarchiving next |
+| `recently_updated` | The newest saved board notes across tracking/work queue/workboard |
+| `stale_notes` | Saved board notes that are out of date |
+| `archived_notes` | Saved board notes that are currently archived |
+| `suggested_next_steps` | Short guidance about syncing stale notes or restoring archived ones |
+
 Use `/notes/board-notes-archive` when the user wants one archive or unarchive pass across saved board notes without remembering each note family separately:
 
 ```json
