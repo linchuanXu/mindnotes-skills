@@ -86,6 +86,23 @@ Use `/notes/tracking-dashboard` when the user wants one compact answer to “我
 
 Use it when the user wants a dashboard-like briefing instead of raw lists, for example “现在我应该先整理什么”“先看哪几篇 task note”.
 
+Use `/notes/work-queue` when the user wants one queue that mixes tracking priorities with cleanup action suggestions:
+
+```json
+{"api_name":"/notes/work-queue","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+`/notes/work-queue` returns:
+
+| Field | Meaning |
+|---|---|
+| `queue` | A single ordered list mixing tracking items and proposed cleanup actions |
+| `tracking_dashboard` | Compact context copied from the tracking dashboard layer |
+| `cleanup_actions` | Compact context copied from the cleanup action planner |
+| `suggested_next_steps` | Short guidance about what to open or preview first |
+
+Use it when the user says “给我一个统一待办”“topic 和 cleanup 一起排一下先做什么”.
+
 When the user wants that dashboard briefing saved as one reusable note, preview `/notes/tracking-note` first:
 
 ```json
