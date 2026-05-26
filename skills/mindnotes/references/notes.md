@@ -343,6 +343,50 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 
 Use it when the user says “给我一个统一待办”“topic 和 cleanup 一起排一下先做什么”.
 
+When the user wants that queue turned into concrete maintenance suggestions, call `/notes/work-queue-actions`:
+
+```json
+{"api_name":"/notes/work-queue-actions","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+`/notes/work-queue-actions` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary` | High-level counts for saved work queue notes, stale/archived note counts, queue size, and current focus status |
+| `actions[]` | Ordered action suggestions such as syncing stale work queue notes, unarchiving old ones, refreshing active ones, or saving the current queue as a reusable note |
+| `work_queue` | The underlying unified work queue payload that produced those actions |
+
+Use it when the user asks “这个队列下一步该怎么处理”“把 work queue 变成动作建议”.
+
+When the user wants one of those queue actions expanded into the real downstream dry-run, call `/notes/work-queue-preview`:
+
+```json
+{"api_name":"/notes/work-queue-preview","action_kind":"save_work_queue_note","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+When they want the first few queue actions packaged together with their previews, call `/notes/work-queue-runbook`:
+
+```json
+{"api_name":"/notes/work-queue-runbook","count":8,"stale_days":30,"threshold":0.88,"action_count":3,"skill_version":"1.0.0"}
+```
+
+When they want one suggested queue action executed after review, call `/notes/work-queue-apply`:
+
+```json
+{"api_name":"/notes/work-queue-apply","action_kind":"save_work_queue_note","count":8,"stale_days":30,"threshold":0.88,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Set `confirm_apply:true` to execute the underlying write-capable action.
+
+When they want several write-capable queue actions executed together after review, call `/notes/work-queue-batch-apply`:
+
+```json
+{"api_name":"/notes/work-queue-batch-apply","action_kinds":["save_work_queue_note"],"count":8,"stale_days":30,"threshold":0.88,"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Set `confirm_apply:true` to execute the selected downstream queue note actions.
+
 Use `/notes/workboard` when the user wants that same unified queue plus recent saved tracking/work-queue notes in one response:
 
 ```json

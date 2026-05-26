@@ -156,6 +156,11 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/board-notes-archive` | `notes:write` | `notes.md` |
 | `/notes/board-notes-sync` | `notes:write` | `notes.md` |
 | `/notes/work-queue` | `notes:export` | `notes.md` |
+| `/notes/work-queue-actions` | `notes:export` | `notes.md` |
+| `/notes/work-queue-apply` | `notes:write` | `notes.md` |
+| `/notes/work-queue-batch-apply` | `notes:write` | `notes.md` |
+| `/notes/work-queue-preview` | `notes:export` | `notes.md` |
+| `/notes/work-queue-runbook` | `notes:export` | `notes.md` |
 | `/notes/workboard` | `notes:export` | `notes.md` |
 | `/notes/workboard-actions` | `notes:export` | `notes.md` |
 | `/notes/workboard-apply` | `notes:write` | `notes.md` |
