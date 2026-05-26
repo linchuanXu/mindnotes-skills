@@ -503,6 +503,29 @@ Then create them:
 
 Use it when the topic is big enough that each cluster should become its own tracked checklist instead of a plain summary note.
 
+When the user already has cluster task notes and wants to sync them with the latest topic state, preview `/notes/topic-cluster-task-sync` first:
+
+```json
+{"api_name":"/notes/topic-cluster-task-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法任务","tags":["同步"],"dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then apply only after approval:
+
+```json
+{"api_name":"/notes/topic-cluster-task-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法任务","confirm_sync":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+```
+
+`/notes/topic-cluster-task-sync` previews one result per cluster task:
+
+| Field | Meaning |
+|---|---|
+| `action` | `update`, `create`, or `skip` for that cluster task |
+| `existing_note` | Present when the cluster already has a matching task note |
+| `proposed_note` | The task note state that would be written or created |
+| `changes` | Field-level differences for update actions |
+
+Use it when cluster tasks already exist and should stay aligned with the latest topic structure without manually refreshing each one.
+
 When the user already has cluster summary notes and wants to sync them with the latest source notes, preview `/notes/topic-cluster-sync` first:
 
 ```json
