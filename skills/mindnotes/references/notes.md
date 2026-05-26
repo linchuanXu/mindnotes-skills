@@ -255,6 +255,29 @@ Or target specific write-capable action kinds:
 
 Use it when the user wants cleanup to move from a runbook into a small confirmed batch of real organizing actions.
 
+When the user wants a durable receipt of what the cleanup batch actually did, preview `/notes/cleanup-report` first:
+
+```json
+{"api_name":"/notes/cleanup-report","count":8,"stale_days":90,"action_count":3,"title":"Cleanup report","tags":["整理"],"folder":"📁Summary","dry_run":true,"skill_version":"1.0.0"}
+```
+
+Then execute and save it:
+
+```json
+{"api_name":"/notes/cleanup-report","count":8,"stale_days":90,"action_kinds":["organize_folders"],"title":"Cleanup report","confirm_apply":true,"confirm_create":true,"skill_version":"1.0.0"}
+```
+
+`/notes/cleanup-report` returns:
+
+| Field | Meaning |
+|---|---|
+| `preview.report` | The cleanup batch execution payload used to build the receipt |
+| `preview.content_preview` | The beginning of the generated execution-report markdown |
+| `apply_requirement` | Present when the cleanup actions have not been executed yet |
+| `create_requirement` | Present until `confirm_create:true` is supplied |
+
+Use it when the user wants the cleanup pipeline to leave behind a human-readable execution report inside MindNotes.
+
 Use `/notes/topic-brief` when the user wants a fast structured overview before a full synthesis:
 
 ```json
