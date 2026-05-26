@@ -1315,7 +1315,7 @@ When the user wants one unified "what should I do next with this topic" list bef
 {"api_name":"/notes/topic-actions","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-`/notes/topic-actions` returns a compact topic draft summary, matching saved topic notes/reports/tasks, and an `actions` list such as saving the main topic note/report/task, saving cluster notes/tasks, syncing stale topic notes or reports, or unarchiving archived topic notes.
+`/notes/topic-actions` returns a compact topic draft summary, matching saved topic notes/reports/tasks, and an `actions` list such as saving the main topic note/report/task, saving cluster notes/tasks, syncing stale topic notes/reports/tasks, refreshing active topic notes/reports/tasks, or unarchiving archived topic notes.
 
 Use `/notes/topic-preview` to expand one of those actions into the exact dry-run payload it would produce:
 
@@ -1323,7 +1323,7 @@ Use `/notes/topic-preview` to expand one of those actions into the exact dry-run
 {"api_name":"/notes/topic-preview","query":"学习方法","topic":"学习方法","action_kind":"save_topic_note","skill_version":"1.0.0"}
 ```
 
-Use `/notes/topic-runbook` when you want the first few topic actions bundled with their previews:
+Use `/notes/topic-runbook` when you want the first few topic actions bundled with their previews. You can pass `action_kinds` to pin it to a smaller set instead of always taking the first few:
 
 ```json
 {"api_name":"/notes/topic-runbook","query":"学习方法","topic":"学习方法","action_count":3,"skill_version":"1.0.0"}
