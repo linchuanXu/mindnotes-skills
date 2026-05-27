@@ -493,7 +493,7 @@ When they want several write-capable queue actions executed together after revie
 
 Set `confirm_apply:true` to execute the selected downstream queue note actions.
 
-Use `/notes/workboard` when the user wants that same unified queue plus recent saved tracking/work-queue notes in one response:
+Use `/notes/workboard` when the user wants that same unified queue plus recent saved tracking/work-queue/workboard surfaces in one response:
 
 ```json
 {"api_name":"/notes/workboard","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
@@ -507,13 +507,17 @@ Use `/notes/workboard` when the user wants that same unified queue plus recent s
 | `tracking_dashboard` | The same detailed tracking dashboard payload |
 | `work_queue` | The same ordered unified queue payload |
 | `saved_notes.tracking_notes` | Recent tracking notes that belong to the active board context |
+| `saved_notes.tracking_reports` | Recent tracking report notes that belong to the same board context |
+| `saved_notes.tracking_tasks` | Recent tracking task notes that belong to the same board context |
 | `saved_notes.work_queue_notes` | Recent saved work queue notes, optionally excluding archived ones |
 | `saved_notes.workboard_notes` | Recent saved workboard notes, optionally excluding archived ones |
+| `saved_notes.workboard_reports` | Recent saved workboard report notes |
+| `saved_notes.workboard_tasks` | Recent saved workboard task notes |
 | `suggested_next_steps` | Short next-step guidance synthesized across queue state and saved notes |
 
 Use it when the user asks “给我一个统一工作台”“把 tracking note 和 work queue note 一起看” or wants one response that includes both active priorities and the notes already saved from them.
 
-Use `/notes/workboard-status` when the user specifically wants the `stale`, `active`, or `archived` slice of the saved work queue/workboard surfaces inside that board:
+Use `/notes/workboard-status` when the user specifically wants the `stale`, `active`, or `archived` slice of the saved tracking/work queue/workboard surfaces inside that board:
 
 ```json
 {"api_name":"/notes/workboard-status","status":"active","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
@@ -525,9 +529,12 @@ Use `/notes/workboard-status` when the user specifically wants the `stale`, `act
 |---|---|
 | `status` | The requested saved-note status bucket, or `null` for the mixed board view |
 | `summary.focus_status` | The active saved-note status after filtering |
-| `summary.by_kind` | Counts for `work-queue-note` and `workboard-note` inside that status |
+| `summary.by_kind` | Counts for `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `workboard-note`, `workboard-report`, and `workboard-task` inside that status |
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board surfaces |
-| `summary.by_saved_kind` | Saved workboard family counts grouped as `work-queue-note`, `workboard-note`, `workboard-report`, and `workboard-task` |
+| `summary.by_saved_kind` | Saved workboard family counts grouped as `tracking-note`, `tracking-report`, `tracking-task`, `work-queue-note`, `workboard-note`, `workboard-report`, and `workboard-task` |
+| `saved_notes.tracking_notes` | Only the saved tracking notes that match the selected status |
+| `saved_notes.tracking_reports` | Only the saved tracking report notes that match the selected status |
+| `saved_notes.tracking_tasks` | Only the saved tracking task notes that match the selected status |
 | `saved_notes.work_queue_notes` | Only the saved work queue notes that match the selected status |
 | `saved_notes.workboard_notes` | Only the saved workboard notes that match the selected status |
 | `saved_notes.workboard_reports` | Only the saved workboard report notes that match the selected status |
