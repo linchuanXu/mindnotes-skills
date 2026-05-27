@@ -99,6 +99,7 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 | Field | Meaning |
 |---|---|
 | `summary.by_kind` | Counts for `tracking-note`, `work-queue-note`, and `workboard-note` |
+| `summary.by_saved_kind` | Counts for the broader saved board surface family, including `tracking-note`, `work-queue-note`, `workboard-note`, `board-notes-dashboard-note`, `board-notes-report`, and `board-notes-task` |
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board notes |
 | `notes` | Saved board notes with `kind`, folder tags, stale flag, and archive flag |
 | `suggested_next_steps` | Short guidance about refreshing stale board notes or reopening archived ones |
@@ -118,6 +119,7 @@ Use `/notes/board-notes-status` when the user already knows they want only the `
 | `status` | The requested status bucket, or `null` when showing the mixed view |
 | `summary.focus_status` | The active status bucket after filtering |
 | `summary.by_kind` | Counts for board-note kinds inside the selected status |
+| `summary.by_saved_kind` | Counts for all saved board surface families inside the selected status, including dashboard/report/task notes |
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` after the current filters |
 | `notes` | Only the saved board notes that match the selected status |
 
@@ -140,6 +142,7 @@ Use `/notes/board-notes-dashboard` when the user wants the saved board notes sum
 | Field | Meaning |
 |---|---|
 | `summary.focus_status` | The status bucket that deserves attention first |
+| `summary.by_saved_kind` | Counts for the full saved board surface family so you can see whether the dashboard/report/task notes already exist |
 | `top_priorities` | Saved board notes worth opening, syncing, or unarchiving next |
 | `recently_updated` | The newest saved board notes across tracking/work queue/workboard |
 | `stale_notes` | Saved board notes that are out of date |
