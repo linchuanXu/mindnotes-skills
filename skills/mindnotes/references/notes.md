@@ -524,6 +524,7 @@ Use `/notes/workboard-status` when the user specifically wants the `stale`, `act
 | `summary.focus_status` | The active saved-note status after filtering |
 | `summary.by_kind` | Counts for `work-queue-note` and `workboard-note` inside that status |
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board surfaces |
+| `summary.by_saved_kind` | Saved workboard family counts grouped as `work-queue-note`, `workboard-note`, `workboard-report`, and `workboard-task` |
 | `saved_notes.work_queue_notes` | Only the saved work queue notes that match the selected status |
 | `saved_notes.workboard_notes` | Only the saved workboard notes that match the selected status |
 | `saved_notes.workboard_reports` | Only the saved workboard report notes that match the selected status |
