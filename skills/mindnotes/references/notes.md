@@ -277,6 +277,8 @@ Use `/notes/saved-views-overview` when the user explicitly asks for an overview-
 {"api_name":"/notes/saved-views-overview","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+`/notes/saved-views` now also returns grouped `saved_notes` families plus `summary.by_saved_kind`, so callers can read per-family groups like `workboard_reports`, `topic_cluster_notes`, or `saved_views_tasks` directly instead of re-grouping the flat list.
+
 Use `/notes/saved-views-status` when the user wants the same saved-view families filtered down to just one status such as `stale`, `active`, or `archived`:
 
 ```json
