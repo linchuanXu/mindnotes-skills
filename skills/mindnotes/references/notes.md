@@ -116,6 +116,7 @@ Use `/notes/board-notes-overview` when the user explicitly wants the overview-st
 | `summary.by_saved_kind` | Counts for the broader saved board surface family, including `tracking-note`, `work-queue-note`, `workboard-note`, `board-notes-dashboard-note`, `board-notes-report`, and `board-notes-task` |
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board notes |
 | `notes` | Saved board notes with `kind`, folder tags, stale flag, and archive flag |
+| `saved_notes` | Grouped saved board surfaces such as `tracking_notes`, `workboard_reports`, or `board_notes_tasks` |
 | `suggested_next_steps` | Short guidance about refreshing stale board notes or reopening archived ones |
 
 Use it when the user asks “我保存过哪些 dashboard/work queue/workboard note”“把这些 board notes 一起列出来” or wants one saved-note overview before refreshing or archiving them.
@@ -136,6 +137,7 @@ Use `/notes/board-notes-status` when the user already knows they want only the `
 | `summary.by_saved_kind` | Counts for all saved board surface families inside the selected status, including dashboard/report/task notes |
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` after the current filters |
 | `notes` | Only the saved board notes that match the selected status |
+| `saved_notes` | Grouped saved board surfaces inside the selected status |
 
 Use `/notes/board-notes-actions` when the user wants the next likely board-note maintenance actions spelled out as concrete API suggestions:
 
@@ -161,6 +163,7 @@ Use `/notes/board-notes-dashboard` when the user wants the saved board notes sum
 | `recently_updated` | The newest saved board notes across tracking/work queue/workboard |
 | `stale_notes` | Saved board notes that are out of date |
 | `archived_notes` | Saved board notes that are currently archived |
+| `saved_notes` | Grouped saved board surfaces carried through from the overview layer |
 | `suggested_next_steps` | Short guidance about syncing stale notes or restoring archived ones |
 
 Use `/notes/board-notes-preview` when the user wants one of those board-note actions expanded into a real preview before deciding to sync, unarchive, or save a dashboard note:
