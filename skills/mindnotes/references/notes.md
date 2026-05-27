@@ -520,6 +520,8 @@ Use `/notes/workboard-status` when the user specifically wants the `stale`, `act
 | `summary.by_status` | Counts for `stale`, `active`, and `archived` saved board surfaces |
 | `saved_notes.work_queue_notes` | Only the saved work queue notes that match the selected status |
 | `saved_notes.workboard_notes` | Only the saved workboard notes that match the selected status |
+| `saved_notes.workboard_reports` | Only the saved workboard report notes that match the selected status |
+| `saved_notes.workboard_tasks` | Only the saved workboard task notes that match the selected status |
 
 When the user wants the workboard turned into a concrete maintenance queue, call `/notes/workboard-actions`:
 
