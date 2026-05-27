@@ -114,6 +114,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/random` | `notes:read` | `notes.md` |
 | `/notes/snippets` | `notes:read` | `notes.md` |
 | `/notes/tracking-overview` | `notes:read` | `notes.md` |
+| `/notes/tracking` | `notes:read` | `notes.md` |
 | `/notes/tracking-status` | `notes:read` | `notes.md` |
 | `/notes/tracking-dashboard` | `notes:read` | `notes.md` |
 | `/notes/tracking-actions` | `notes:export` | `notes.md` |
@@ -225,6 +226,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/import` | `notes:write` | `notes.md` |
 | `/notes/restore-version` | `notes:write` | `notes.md` |
 | `/notes/topic-overview` | `notes:read` | `notes.md` |
+| `/notes/topic` | `notes:read` | `notes.md` |
 | `/notes/topic-status` | `notes:read` | `notes.md` |
 | `/notes/topic-dashboard` | `notes:read` | `notes.md` |
 | `/notes/topic-actions` | `notes:export` | `notes.md` |
@@ -263,6 +265,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/cleanup-preview` | `notes:export` | `notes.md` |
 | `/notes/cleanup-runbook` | `notes:export` | `notes.md` |
 | `/notes/cleanup-overview` | `notes:export` | `notes.md` |
+| `/notes/cleanup` | `notes:export` | `notes.md` |
 | `/notes/cleanup-status` | `notes:export` | `notes.md` |
 | `/notes/cleanup-dashboard` | `notes:export` | `notes.md` |
 | `/notes/cleanup-note` | `notes:write` | `notes.md` |

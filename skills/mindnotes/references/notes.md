@@ -54,6 +54,12 @@ Supported tracking kinds include `cleanup-report`, `cleanup-task`, `tracking-rep
 
 Use it when the user asks for a centralized view of cleanup reports, cleanup tasks, or topic task notes before drilling into one note with `/notes/get`.
 
+Use `/notes/tracking` when the user wants that same tracking overview through a shorter family root entry point:
+
+```json
+{"api_name":"/notes/tracking","kinds":["cleanup-task","topic-task"],"count":10,"skill_version":"1.0.0"}
+```
+
 Use `/notes/tracking-status` when the user wants those same tracking notes grouped by execution state instead of only seeing a recent list:
 
 ```json
@@ -1195,6 +1201,12 @@ Use `/notes/cleanup-overview` when the user wants one unified read-only list of 
 {"api_name":"/notes/cleanup-overview","count":10,"stale_days":90,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/cleanup` when the user wants that same cleanup overview through a shorter family root entry point:
+
+```json
+{"api_name":"/notes/cleanup","count":10,"stale_days":90,"skill_version":"1.0.0"}
+```
+
 It summarizes saved `cleanup-note`, `cleanup-report`, and `cleanup-task` items and adds suggested next steps.
 
 Use `/notes/cleanup-status` when the user wants those saved cleanup notes filtered by lifecycle state:
@@ -1465,6 +1477,12 @@ Use `/notes/topic-overview` when the user wants a unified read-only list of the 
 
 ```json
 {"api_name":"/notes/topic-overview","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
+```
+
+Use `/notes/topic` when the user wants that same topic overview through a shorter family root entry point:
+
+```json
+{"api_name":"/notes/topic","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
 It returns the matching saved `topic-note`, `topic-report`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task` entries plus a `summary` and `suggested_next_steps`.
