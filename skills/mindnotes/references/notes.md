@@ -1577,6 +1577,8 @@ Then apply only after approval:
 | `changes` | Title/content/tag/image differences that would be written |
 | `draft_markdown` | The regenerated topic draft backing the refresh |
 
+The older `/notes/topic-refresh` name is still accepted as a compatibility alias, but prefer `/notes/topic-note-refresh` for new calls so the topic note lifecycle stays consistent.
+
 Use it when a topic summary note already exists and should be updated instead of creating a second summary note.
 
 When the user already has a topic task note and wants that checklist refreshed, preview `/notes/topic-task-refresh` first:
@@ -1722,6 +1724,8 @@ Then apply only after approval:
 | `changes` | Field-level differences for update actions |
 
 Use it when the cluster summaries already exist and should stay aligned with the latest topic structure without manually refreshing each one.
+
+The older `/notes/topic-cluster-sync` name is still accepted as a compatibility alias, but prefer `/notes/topic-cluster-note-sync` for new calls so the cluster-note family stays symmetric with create/archive/sync naming.
 
 When the user wants to archive or unarchive one of those cluster summary notes, preview `/notes/topic-cluster-note-archive` first:
 
