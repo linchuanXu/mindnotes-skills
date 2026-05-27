@@ -89,9 +89,11 @@ Use `/notes/tracking-dashboard` when the user wants one compact answer to “我
 | Field | Meaning |
 |---|---|
 | `summary.focus_status` | The most urgent bucket to work from first |
+| `summary.by_saved_kind` | Counts per saved tracking surface kind inside the current dashboard |
 | `top_priorities` | The first few tracking notes worth opening next, with reasons |
 | `recently_updated` | A compact list of the newest tracking notes |
 | `stale_notes` | Tracking notes that may need a refresh |
+| `saved_notes` | Grouped saved tracking surfaces carried through from the overview layer |
 | `suggested_next_steps` | Short next-step guidance based on the current board |
 
 Use it when the user wants a dashboard-like briefing instead of raw lists, for example “现在我应该先整理什么”“先看哪几篇 task note”.
@@ -1231,7 +1233,7 @@ Use `/notes/cleanup-dashboard` when the user wants a compact cleanup surface pan
 {"api_name":"/notes/cleanup-dashboard","count":5,"stale_days":90,"skill_version":"1.0.0"}
 ```
 
-It returns `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, and `suggested_next_steps`.
+It returns `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, grouped `saved_notes`, `summary.by_saved_kind`, and `suggested_next_steps`.
 
 When the user wants that cleanup runbook saved as a note, preview `/notes/cleanup-note` first:
 
@@ -1508,7 +1510,7 @@ Use `/notes/topic-dashboard` when the user wants a compact priority board instea
 {"api_name":"/notes/topic-dashboard","query":"学习方法","topic":"学习方法","count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-`/notes/topic-dashboard` highlights `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, and `suggested_next_steps`.
+`/notes/topic-dashboard` highlights `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, grouped `saved_notes`, `summary.by_saved_kind`, and `suggested_next_steps`.
 
 When the user wants one unified "what should I do next with this topic" list before writing or syncing notes, use `/notes/topic-actions`:
 
