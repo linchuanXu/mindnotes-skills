@@ -1700,19 +1700,19 @@ Then apply only after approval:
 
 Use it when cluster tasks already exist and should stay aligned with the latest topic structure without manually refreshing each one.
 
-When the user already has cluster summary notes and wants to sync them with the latest source notes, preview `/notes/topic-cluster-sync` first:
+When the user already has cluster summary notes and wants to sync them with the latest source notes, preview `/notes/topic-cluster-note-sync` first:
 
 ```json
-{"api_name":"/notes/topic-cluster-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","tags":["同步"],"dry_run":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/topic-cluster-note-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","tags":["同步"],"dry_run":true,"skill_version":"1.0.0"}
 ```
 
 Then apply only after approval:
 
 ```json
-{"api_name":"/notes/topic-cluster-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","confirm_sync":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+{"api_name":"/notes/topic-cluster-note-sync","query":"学习方法","topic":"学习方法","title_prefix":"学习方法整理","confirm_sync":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
 ```
 
-`/notes/topic-cluster-sync` previews one result per cluster:
+`/notes/topic-cluster-note-sync` previews one result per cluster:
 
 | Field | Meaning |
 |---|---|

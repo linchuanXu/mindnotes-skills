@@ -239,6 +239,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/topic-task-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-notes` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-note-archive` | `notes:write` | `notes.md` |
+| `/notes/topic-cluster-note-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-tasks` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-task-archive` | `notes:write` | `notes.md` |
 | `/notes/topic-cluster-sync` | `notes:write` | `notes.md` |
