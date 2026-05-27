@@ -257,6 +257,12 @@ Use `/notes/saved-views` when the user wants one unified list across saved `clea
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/saved-views-overview` when the user explicitly asks for an overview-style entry point for that same saved-view family set. It is a naming-aligned alias of `/notes/saved-views`:
+
+```json
+{"api_name":"/notes/saved-views-overview","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
 Use `/notes/saved-views-status` when the user wants the same saved-view families filtered down to just one status such as `stale`, `active`, or `archived`:
 
 ```json
