@@ -47,7 +47,9 @@ Review cleanup/topic tracking notes in one overview when the user wants to see o
 | Field | Meaning |
 |---|---|
 | `summary.by_kind` | Counts and latest note per tracking kind |
+| `summary.by_saved_kind` | Counts per saved tracking surface kind, aligned with grouped `saved_notes` families |
 | `notes` | Recent tracking notes with `kind`, preview, folder tags, and optional checklist progress |
+| `saved_notes` | Grouped saved tracking surfaces such as `cleanup_reports`, `topic_notes`, or `topic_cluster_tasks` |
 | `kinds` | The active kind filter, or all supported kinds when omitted |
 
 Supported tracking kinds include `cleanup-report`, `cleanup-task`, `tracking-report`, `tracking-task`, `topic-note`, `topic-report`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task`.
@@ -1208,6 +1210,7 @@ Use `/notes/cleanup` when the user wants that same cleanup overview through a sh
 ```
 
 It summarizes saved `cleanup-note`, `cleanup-report`, and `cleanup-task` items and adds suggested next steps.
+It also returns grouped `saved_notes` (`cleanup_notes`, `cleanup_reports`, `cleanup_tasks`) and `summary.by_saved_kind` for callers that want per-family counts without re-grouping the flat list.
 
 Use `/notes/cleanup-status` when the user wants those saved cleanup notes filtered by lifecycle state:
 
@@ -1486,6 +1489,7 @@ Use `/notes/topic` when the user wants that same topic overview through a shorte
 ```
 
 It returns the matching saved `topic-note`, `topic-report`, `topic-task`, `topic-cluster-note`, and `topic-cluster-task` entries plus a `summary` and `suggested_next_steps`.
+It also returns grouped `saved_notes` (`topic_notes`, `topic_reports`, `topic_tasks`, `topic_cluster_notes`, `topic_cluster_tasks`) and `summary.by_saved_kind` for callers that want the per-family breakdown directly.
 
 Use `/notes/topic-status` when the user wants those same saved topic notes grouped by `active`, `stale`, or `archived` state:
 
