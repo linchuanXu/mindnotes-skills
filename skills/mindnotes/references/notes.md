@@ -1134,6 +1134,30 @@ Use `/notes/cleanup-runbook` when the user wants a small bundle of the top clean
 
 Use it when the user wants a compact “show me the first few cleanup moves with previews” bundle instead of stepping through actions one by one.
 
+Use `/notes/cleanup-overview` when the user wants one unified read-only list of saved cleanup surfaces before choosing the next action:
+
+```json
+{"api_name":"/notes/cleanup-overview","count":10,"stale_days":90,"skill_version":"1.0.0"}
+```
+
+It summarizes saved `cleanup-note`, `cleanup-report`, and `cleanup-task` items and adds suggested next steps.
+
+Use `/notes/cleanup-status` when the user wants those saved cleanup notes filtered by lifecycle state:
+
+```json
+{"api_name":"/notes/cleanup-status","status":"stale","count":10,"stale_days":90,"skill_version":"1.0.0"}
+```
+
+Supported statuses are `active`, `stale`, and `archived`.
+
+Use `/notes/cleanup-dashboard` when the user wants a compact cleanup surface panel with priorities and recent items:
+
+```json
+{"api_name":"/notes/cleanup-dashboard","count":5,"stale_days":90,"skill_version":"1.0.0"}
+```
+
+It returns `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, and `suggested_next_steps`.
+
 When the user wants that cleanup runbook saved as a note, preview `/notes/cleanup-note` first:
 
 ```json
