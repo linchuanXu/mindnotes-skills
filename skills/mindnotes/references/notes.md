@@ -425,6 +425,12 @@ Use `/notes/work-queue-overview` when the user explicitly wants an overview-styl
 {"api_name":"/notes/work-queue-overview","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/work-queue-dashboard` when the user explicitly wants a dashboard-style alias for that same unified queue entry point:
+
+```json
+{"api_name":"/notes/work-queue-dashboard","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
 `/notes/work-queue` returns:
 
 | Field | Meaning |
@@ -521,6 +527,12 @@ Use `/notes/workboard-overview` when the user explicitly wants an overview-style
 
 ```json
 {"api_name":"/notes/workboard-overview","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+Use `/notes/workboard-dashboard` when the user explicitly wants a dashboard-style alias for that same unified workboard entry point:
+
+```json
+{"api_name":"/notes/workboard-dashboard","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
 `/notes/workboard` returns:
