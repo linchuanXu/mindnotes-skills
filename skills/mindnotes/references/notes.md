@@ -410,6 +410,7 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 |---|---|
 | `queue` | A single ordered list mixing tracking items and proposed cleanup actions |
 | `summary.total_work_queue_notes/reports/tasks` | Counts for the saved work queue note, report, and task families already stored in MindNotes |
+| `summary.by_saved_kind` | The same saved work queue family counts grouped as `work-queue-note`, `work-queue-report`, and `work-queue-task` |
 | `saved_notes.work_queue_notes/reports/tasks` | Recent saved work queue surfaces so the queue can show both live actions and reusable queue notes/reports/tasks |
 | `tracking_dashboard` | Compact context copied from the tracking dashboard layer |
 | `cleanup_actions` | Compact context copied from the cleanup action planner |
@@ -432,6 +433,7 @@ Use `/notes/work-queue-status` when the user wants only one queue status bucket 
 | `summary.by_status` | Counts for queue statuses such as `proposed`, `pending`, `in_progress`, or `needs_refresh` |
 | `summary.by_source` | Counts for `tracking` items versus `cleanup-action` items inside the filtered queue |
 | `summary.total_work_queue_notes/reports/tasks` | Snapshot counts for the saved work queue note, report, and task families |
+| `summary.by_saved_kind` | Saved work queue family counts grouped as `work-queue-note`, `work-queue-report`, and `work-queue-task` |
 | `saved_notes.work_queue_notes/reports/tasks` | Recent saved work queue surfaces included alongside the filtered queue |
 | `queue` | Only the queue entries that match the selected status |
 
