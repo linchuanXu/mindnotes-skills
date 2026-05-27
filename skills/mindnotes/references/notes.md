@@ -56,7 +56,7 @@ Supported tracking kinds include `cleanup-report`, `cleanup-task`, `tracking-rep
 
 Use it when the user asks for a centralized view of cleanup reports, cleanup tasks, or topic task notes before drilling into one note with `/notes/get`.
 
-Use `/notes/tracking` when the user wants that same tracking overview through a shorter family root entry point:
+Use `/notes/tracking` when the user wants that same tracking overview through a shorter family root entry point. It is a family-root alias of `/notes/tracking-overview`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/tracking","kinds":["cleanup-task","topic-task"],"count":10,"skill_version":"1.0.0"}
@@ -68,13 +68,17 @@ Use `/notes/tracking-status` when the user wants those same tracking notes group
 {"api_name":"/notes/tracking-status","kinds":["cleanup-task","topic-task"],"status":"pending","count":10,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
+这个状态视图会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，所以调用方可以直接按 `cleanup_reports`、`topic_notes`、`topic_cluster_tasks` 这些 family 读取。
+
 `/notes/tracking-status` returns:
 
 | Field | Meaning |
 |---|---|
 | `summary.by_status` | Counts for `pending`, `in_progress`, `done`, `needs_refresh`, and `snapshot` |
 | `summary.focus_status` | The most urgent status bucket to look at first |
+| `summary.by_saved_kind` | Counts per saved tracking surface kind inside the selected status |
 | `notes` | Tracking notes annotated with `status`, optional progress percentage, and stale flag |
+| `saved_notes` | Grouped saved tracking surfaces that match the selected status, such as `cleanup_reports` or `topic_cluster_tasks` |
 
 Use it when the user asks “哪些整理任务还没做完”“哪些 tracking note 该刷新了” or wants a compact status board instead of a plain recent-notes view.
 
@@ -83,6 +87,8 @@ Use `/notes/tracking-dashboard` when the user wants one compact answer to “我
 ```json
 {"api_name":"/notes/tracking-dashboard","kinds":["cleanup-task","topic-task","cleanup-report"],"count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
+
+这个面板也会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，方便快速看出哪些 tracking family 已经有沉淀、哪些还缺。
 
 `/notes/tracking-dashboard` returns:
 
@@ -104,7 +110,7 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 {"api_name":"/notes/board-notes","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/board-notes-overview` when the user explicitly wants the overview-style name for that same entry point. It is a naming-aligned alias of `/notes/board-notes`:
+Use `/notes/board-notes-overview` when the user explicitly wants the overview-style name for that same entry point. It is a naming-aligned alias of `/notes/board-notes`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/board-notes-overview","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
@@ -128,6 +134,8 @@ Use `/notes/board-notes-status` when the user already knows they want only the `
 ```json
 {"api_name":"/notes/board-notes-status","status":"active","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
+
+这个状态视图会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，所以调用方可以直接按 `tracking_notes`、`workboard_reports`、`board_notes_tasks` 这些 family 读取。
 
 `/notes/board-notes-status` returns:
 
@@ -155,6 +163,8 @@ Use `/notes/board-notes-dashboard` when the user wants the saved board notes sum
 {"api_name":"/notes/board-notes-dashboard","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+这个面板也会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，方便快速判断哪些 board surface family 已经沉淀、哪些还缺。
+
 `/notes/board-notes-dashboard` returns:
 
 | Field | Meaning |
@@ -178,6 +188,10 @@ Use `/notes/board-notes-runbook` when the user wants a small bundle of the top b
 
 ```json
 {"api_name":"/notes/board-notes-runbook","count":5,"stale_days":30,"include_archived":true,"action_count":3,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/board-notes-runbook","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_board_notes"],"skill_version":"1.0.0"}
 ```
 
 When the user wants to actually run one of the write-capable board-note actions, preview `/notes/board-notes-apply` first:
@@ -276,19 +290,23 @@ Use `/notes/saved-views` when the user wants one unified list across saved `clea
 {"api_name":"/notes/saved-views","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views-overview` when the user explicitly asks for an overview-style entry point for that same saved-view family set. It is a naming-aligned alias of `/notes/saved-views`:
+`/notes/saved-views` returns grouped `saved_notes` families plus `summary.by_saved_kind`, so callers can read per-family groups like `workboard_reports`, `topic_cluster_notes`, or `saved_views_tasks` directly instead of re-grouping the flat list.
+
+Use `/notes/saved-views-overview` when the user explicitly asks for an overview-style entry point for that same saved-view family set. It is a naming-aligned alias of `/notes/saved-views`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/saved-views-overview","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
-
-`/notes/saved-views` now also returns grouped `saved_notes` families plus `summary.by_saved_kind`, so callers can read per-family groups like `workboard_reports`, `topic_cluster_notes`, or `saved_views_tasks` directly instead of re-grouping the flat list.
 
 Use `/notes/saved-views-status` when the user wants the same saved-view families filtered down to just one status such as `stale`, `active`, or `archived`:
 
 ```json
 {"api_name":"/notes/saved-views-status","status":"stale","count":12,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
+
+这个状态视图也会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，所以调用方可以继续按 `workboard_reports`、`topic_cluster_notes`、`saved_views_tasks` 这些 family 读取。
+
+`/notes/saved-views-status` returns grouped `saved_notes` plus `summary.by_saved_kind`, so the caller can keep per-family saved-view counts even after focusing on just one lifecycle state.
 
 Use `/notes/saved-views-actions` when the user wants the next likely saved-view maintenance actions spelled out as concrete API suggestions:
 
@@ -304,10 +322,14 @@ Use `/notes/saved-views-preview` when the user wants one of those saved-view act
 {"api_name":"/notes/saved-views-preview","action_kind":"unarchive_saved_views","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/saved-views-runbook` when the user wants a small bundle of the top saved-view actions plus their previews:
+Use `/notes/saved-views-runbook` when the user wants a small bundle of the top saved-view actions plus their previews. You can also pass `action_kinds` to pin it to a narrower subset:
 
 ```json
 {"api_name":"/notes/saved-views-runbook","count":5,"stale_days":30,"include_archived":true,"action_count":3,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/saved-views-runbook","count":5,"stale_days":30,"include_archived":true,"action_kinds":["unarchive_saved_views"],"skill_version":"1.0.0"}
 ```
 
 When the user wants to actually run one of the write-capable saved-view actions, preview `/notes/saved-views-apply` first:
@@ -376,6 +398,10 @@ Use `/notes/saved-views-dashboard` when the user wants those saved views summari
 {"api_name":"/notes/saved-views-dashboard","count":5,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+这个面板同样会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，方便快速看出哪些 saved view family 已经有沉淀。
+
+`/notes/saved-views-dashboard` highlights `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, grouped `saved_notes`, `summary.by_saved_kind`, and `suggested_next_steps`.
+
 When the user wants that saved-views dashboard preserved as one reusable note, preview `/notes/saved-views-dashboard-note` first:
 
 ```json
@@ -434,13 +460,13 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 {"api_name":"/notes/work-queue","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/work-queue-overview` when the user explicitly wants an overview-style alias for that same unified queue entry point:
+Use `/notes/work-queue-overview` when the user explicitly wants an overview-style alias for that same unified queue entry point. It is an overview-style alias of `/notes/work-queue`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/work-queue-overview","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/work-queue-dashboard` when the user explicitly wants a dashboard-style alias for that same unified queue entry point:
+Use `/notes/work-queue-dashboard` when the user explicitly wants a dashboard-style alias for that same unified queue entry point. It is a dashboard-style alias of `/notes/work-queue`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/work-queue-dashboard","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
@@ -516,6 +542,10 @@ When they want the first few queue actions packaged together with their previews
 {"api_name":"/notes/work-queue-runbook","count":8,"stale_days":30,"threshold":0.88,"action_count":3,"skill_version":"1.0.0"}
 ```
 
+```json
+{"api_name":"/notes/work-queue-runbook","count":8,"stale_days":30,"threshold":0.88,"action_kinds":["save_work_queue_note"],"skill_version":"1.0.0"}
+```
+
 When they want one suggested queue action executed after review, call `/notes/work-queue-apply`:
 
 ```json
@@ -538,13 +568,13 @@ Use `/notes/workboard` when the user wants that same unified queue plus recent s
 {"api_name":"/notes/workboard","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/workboard-overview` when the user explicitly wants an overview-style alias for that same unified workboard entry point:
+Use `/notes/workboard-overview` when the user explicitly wants an overview-style alias for that same unified workboard entry point. It is an overview-style alias of `/notes/workboard`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/workboard-overview","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/workboard-dashboard` when the user explicitly wants a dashboard-style alias for that same unified workboard entry point:
+Use `/notes/workboard-dashboard` when the user explicitly wants a dashboard-style alias for that same unified workboard entry point. It is a dashboard-style alias of `/notes/workboard`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/workboard-dashboard","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
@@ -627,6 +657,10 @@ When they want the first few workboard actions packaged together with their prev
 
 ```json
 {"api_name":"/notes/workboard-runbook","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_count":3,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/workboard-runbook","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"action_kinds":["save_workboard_note"],"skill_version":"1.0.0"}
 ```
 
 When they want one suggested workboard action executed after review, call `/notes/workboard-apply`:
@@ -915,6 +949,10 @@ Use `/notes/tracking-runbook` when the user wants a small bundle of the top trac
 {"api_name":"/notes/tracking-runbook","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_count":3,"skill_version":"1.0.0"}
 ```
 
+```json
+{"api_name":"/notes/tracking-runbook","kinds":["cleanup-task","topic-report","topic-task","cleanup-report"],"count":5,"stale_days":30,"action_kinds":["archive_done_tracking_notes"],"skill_version":"1.0.0"}
+```
+
 When the user wants to actually run one of the write-capable tracking actions, preview `/notes/tracking-apply` first:
 
 ```json
@@ -1194,6 +1232,10 @@ Use `/notes/cleanup-runbook` when the user wants a small bundle of the top clean
 {"api_name":"/notes/cleanup-runbook","count":8,"stale_days":90,"action_count":3,"skill_version":"1.0.0"}
 ```
 
+```json
+{"api_name":"/notes/cleanup-runbook","count":8,"stale_days":90,"action_kinds":["organize_folders"],"skill_version":"1.0.0"}
+```
+
 `/notes/cleanup-runbook` returns:
 
 | Field | Meaning |
@@ -1210,7 +1252,17 @@ Use `/notes/cleanup-overview` when the user wants one unified read-only list of 
 {"api_name":"/notes/cleanup-overview","count":10,"stale_days":90,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/cleanup` when the user wants that same cleanup overview through a shorter family root entry point:
+`/notes/cleanup-overview` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.by_kind` | Counts and latest note per cleanup surface kind |
+| `summary.by_saved_kind` | Counts per saved cleanup surface kind, aligned with grouped `saved_notes` families |
+| `notes` | Recent cleanup notes with `kind`, preview, folder tags, stale flag, and archive flag |
+| `saved_notes` | Grouped saved cleanup surfaces such as `cleanup_notes`, `cleanup_reports`, or `cleanup_tasks` |
+| `suggested_next_steps` | Short guidance about what cleanup surface to refresh or open next |
+
+Use `/notes/cleanup` when the user wants that same cleanup overview through a shorter family root entry point. It is a family-root alias of `/notes/cleanup-overview`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/cleanup","count":10,"stale_days":90,"skill_version":"1.0.0"}
@@ -1225,13 +1277,18 @@ Use `/notes/cleanup-status` when the user wants those saved cleanup notes filter
 {"api_name":"/notes/cleanup-status","status":"stale","count":10,"stale_days":90,"skill_version":"1.0.0"}
 ```
 
+这个状态视图也会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，所以调用方可以继续按 `cleanup_notes`、`cleanup_reports`、`cleanup_tasks` 这些 family 读取。
+
 Supported statuses are `active`, `stale`, and `archived`.
+`/notes/cleanup-status` also carries grouped `saved_notes` plus `summary.by_saved_kind`, so callers can keep the per-family cleanup breakdown even after narrowing to one lifecycle bucket.
 
 Use `/notes/cleanup-dashboard` when the user wants a compact cleanup surface panel with priorities and recent items:
 
 ```json
 {"api_name":"/notes/cleanup-dashboard","count":5,"stale_days":90,"skill_version":"1.0.0"}
 ```
+
+这个面板同样会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，方便快速看出哪些 cleanup family 已经有沉淀。
 
 It returns `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, grouped `saved_notes`, `summary.by_saved_kind`, and `suggested_next_steps`.
 
@@ -1489,7 +1546,17 @@ Use `/notes/topic-overview` when the user wants a unified read-only list of the 
 {"api_name":"/notes/topic-overview","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
-Use `/notes/topic` when the user wants that same topic overview through a shorter family root entry point:
+`/notes/topic-overview` returns:
+
+| Field | Meaning |
+|---|---|
+| `summary.by_kind` | Counts and latest note per topic surface kind |
+| `summary.by_saved_kind` | Counts per saved topic surface kind, aligned with grouped `saved_notes` families |
+| `notes` | Recent topic notes with `kind`, preview, folder tags, stale flag, and archive flag |
+| `saved_notes` | Grouped saved topic surfaces such as `topic_notes`, `topic_reports`, `topic_tasks`, `topic_cluster_notes`, or `topic_cluster_tasks` |
+| `suggested_next_steps` | Short guidance about what topic surface to refresh, sync, or open next |
+
+Use `/notes/topic` when the user wants that same topic overview through a shorter family root entry point. It is a family-root alias of `/notes/topic-overview`, including the same grouped `saved_notes` families and `summary.by_saved_kind` breakdown:
 
 ```json
 {"api_name":"/notes/topic","query":"学习方法","topic":"学习方法","count":10,"stale_days":30,"skill_version":"1.0.0"}
@@ -1504,11 +1571,17 @@ Use `/notes/topic-status` when the user wants those same saved topic notes group
 {"api_name":"/notes/topic-status","query":"学习方法","topic":"学习方法","status":"active","count":10,"stale_days":30,"skill_version":"1.0.0"}
 ```
 
+这个状态视图会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，所以调用方可以直接按 `topic_notes`、`topic_reports`、`topic_cluster_tasks` 这些 family 读取。
+
+`/notes/topic-status` keeps grouped `saved_notes` and `summary.by_saved_kind` in the response, so you can keep the per-family topic breakdown while focusing on only one lifecycle state.
+
 Use `/notes/topic-dashboard` when the user wants a compact priority board instead of a flat list:
 
 ```json
 {"api_name":"/notes/topic-dashboard","query":"学习方法","topic":"学习方法","count":5,"stale_days":30,"skill_version":"1.0.0"}
 ```
+
+这个面板同样会保留 grouped `saved_notes` 和 `summary.by_saved_kind`，方便快速看出哪些 topic family 已经有沉淀。
 
 `/notes/topic-dashboard` highlights `top_priorities`, `recently_updated`, `stale_notes`, `active_notes`, `archived_notes`, grouped `saved_notes`, `summary.by_saved_kind`, and `suggested_next_steps`.
 
@@ -1530,6 +1603,10 @@ Use `/notes/topic-runbook` when you want the first few topic actions bundled wit
 
 ```json
 {"api_name":"/notes/topic-runbook","query":"学习方法","topic":"学习方法","action_count":3,"skill_version":"1.0.0"}
+```
+
+```json
+{"api_name":"/notes/topic-runbook","query":"学习方法","topic":"学习方法","action_kinds":["save_topic_note"],"skill_version":"1.0.0"}
 ```
 
 Use `/notes/topic-apply` to execute one selected write-capable topic action, or `/notes/topic-batch-apply` to execute the first few:
