@@ -234,6 +234,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/topic-report-sync` | `notes:write` | `notes.md` |
 | `/notes/topic-task` | `notes:write` | `notes.md` |
 | `/notes/topic-task-archive` | `notes:write` | `notes.md` |
+| `/notes/topic-note-refresh` | `notes:write` | `notes.md` |
 | `/notes/topic-refresh` | `notes:write` | `notes.md` |
 | `/notes/topic-task-refresh` | `notes:write` | `notes.md` |
 | `/notes/topic-task-sync` | `notes:write` | `notes.md` |

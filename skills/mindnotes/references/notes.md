@@ -1556,19 +1556,19 @@ Then create it:
 
 `/notes/topic-task` returns a note preview built from the same `draft_markdown`, `brief`, and `clusters`, but organized as a checklist with progress and next-step items.
 
-When the user already has a summary note and wants it refreshed from the latest related notes, preview `/notes/topic-refresh` first:
+When the user already has a summary note and wants it refreshed from the latest related notes, preview `/notes/topic-note-refresh` first:
 
 ```json
-{"api_name":"/notes/topic-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","title":"学习方法整理","dry_run":true,"skill_version":"1.0.0"}
+{"api_name":"/notes/topic-note-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","title":"学习方法整理","dry_run":true,"skill_version":"1.0.0"}
 ```
 
 Then apply only after approval:
 
 ```json
-{"api_name":"/notes/topic-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","confirm_refresh":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
+{"api_name":"/notes/topic-note-refresh","note_id":"abc123","query":"学习方法","topic":"学习方法","confirm_refresh":true,"expected_updated_at":"2026-05-23T12:00:00","skill_version":"1.0.0"}
 ```
 
-`/notes/topic-refresh` keeps the same note id and previews:
+`/notes/topic-note-refresh` keeps the same note id and previews:
 
 | Field | Meaning |
 |---|---|
