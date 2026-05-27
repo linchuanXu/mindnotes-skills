@@ -16,14 +16,6 @@ List card makers:
 {"api_name":"/cards/functions","skill_version":"1.0.0"}
 ```
 
-Evaluate card candidates before saving them:
-
-```json
-{"api_name":"/cards/evaluate","cards":[{"question":"什么是 FSRS？","answer":"一种间隔重复调度算法。"}],"skill_version":"1.0.0"}
-```
-
-You can also send one candidate directly with `question` and `answer`, or a rough `text` block when checking whether it is still source material instead of a good card.
-
 Create cards:
 
 ```json
@@ -31,7 +23,6 @@ Create cards:
 ```
 
 `/cards/create` requires `cards:write`.
-`/cards/evaluate` requires only `notes:read`.
 
 ## Common Function Choices
 
@@ -51,5 +42,3 @@ Call `/cards/functions` if the available function ids may have changed or the be
 ## Output
 
 After creation, say what was created, which function was used, and any tags/title used. Do not expose internal handler names unless the user needs debugging.
-
-For `/cards/evaluate`, explain whether the card is `strong`, `usable`, `needs_work`, or `rewrite`, and mention the top one or two issues instead of listing every metric unless the user asks.
