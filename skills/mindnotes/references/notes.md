@@ -94,6 +94,12 @@ Use `/notes/board-notes` when the user wants one list for saved `tracking-note`,
 {"api_name":"/notes/board-notes","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/board-notes-overview` when the user explicitly wants the overview-style name for that same entry point. It is a naming-aligned alias of `/notes/board-notes`:
+
+```json
+{"api_name":"/notes/board-notes-overview","count":10,"stale_days":30,"include_archived":true,"skill_version":"1.0.0"}
+```
+
 `/notes/board-notes` returns:
 
 | Field | Meaning |
@@ -413,6 +419,12 @@ Use `/notes/work-queue` when the user wants one queue that mixes tracking priori
 {"api_name":"/notes/work-queue","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
+Use `/notes/work-queue-overview` when the user explicitly wants an overview-style alias for that same unified queue entry point:
+
+```json
+{"api_name":"/notes/work-queue-overview","count":8,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
 `/notes/work-queue` returns:
 
 | Field | Meaning |
@@ -503,6 +515,12 @@ Use `/notes/workboard` when the user wants that same unified queue plus recent s
 
 ```json
 {"api_name":"/notes/workboard","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
+```
+
+Use `/notes/workboard-overview` when the user explicitly wants an overview-style alias for that same unified workboard entry point:
+
+```json
+{"api_name":"/notes/workboard-overview","count":8,"note_count":5,"stale_days":30,"threshold":0.88,"skill_version":"1.0.0"}
 ```
 
 `/notes/workboard` returns:

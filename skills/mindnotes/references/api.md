@@ -130,6 +130,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/tracking-task-archive` | `notes:write` | `notes.md` |
 | `/notes/tracking-task-sync` | `notes:write` | `notes.md` |
 | `/notes/board-notes` | `notes:read` | `notes.md` |
+| `/notes/board-notes-overview` | `notes:read` | `notes.md` |
 | `/notes/board-notes-status` | `notes:read` | `notes.md` |
 | `/notes/board-notes-actions` | `notes:export` | `notes.md` |
 | `/notes/board-notes-apply` | `notes:write` | `notes.md` |
@@ -175,6 +176,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/board-notes-archive` | `notes:write` | `notes.md` |
 | `/notes/board-notes-sync` | `notes:write` | `notes.md` |
 | `/notes/work-queue` | `notes:export` | `notes.md` |
+| `/notes/work-queue-overview` | `notes:export` | `notes.md` |
 | `/notes/work-queue-status` | `notes:export` | `notes.md` |
 | `/notes/work-queue-actions` | `notes:export` | `notes.md` |
 | `/notes/work-queue-apply` | `notes:write` | `notes.md` |
@@ -182,6 +184,7 @@ If `ok` is false, explain the failure in user-facing language. For `401`, ask th
 | `/notes/work-queue-preview` | `notes:export` | `notes.md` |
 | `/notes/work-queue-runbook` | `notes:export` | `notes.md` |
 | `/notes/workboard` | `notes:export` | `notes.md` |
+| `/notes/workboard-overview` | `notes:export` | `notes.md` |
 | `/notes/workboard-status` | `notes:export` | `notes.md` |
 | `/notes/workboard-actions` | `notes:export` | `notes.md` |
 | `/notes/workboard-apply` | `notes:write` | `notes.md` |
