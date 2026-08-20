@@ -210,6 +210,17 @@ Use `mode:"add"` to keep existing folder tags, `mode:"remove"` to remove one fol
 | `memory.s` | Memory stability |
 | `memory.r` | Current retrievability probability when returned by review APIs |
 
+## Note Content Format
+
+- Note content is Markdown (headings, lists, links, tables, images). Preserve that Markdown structure when creating or editing.
+- MindNotes notes are often used as occlusion cards (遮挡卡): wrap the exact content the user should recall in `<mark>…</mark>` so review can hide and reveal it.
+- When the user asks to create or rewrite a note for memorization, mark the key facts, answers, terms, numbers, and conclusions with `<mark>…</mark>` by default; keep enough context outside the marks so the rest reads naturally.
+- Marking rules:
+  - Wrap short, complete, independently recallable units; prefer the minimal precise fragment (e.g. `于<mark>1895</mark>年签订`, not the whole sentence).
+  - Keep existing marks when editing; never nest `<mark>` inside `<mark>`; do not rewrite text outside the marks.
+  - Do not wrap headings, connectors, generic adjectives, whole sentences, or whole paragraphs.
+  - Do not use `**` as a substitute for occlusion; `**bold**` stays bold.
+
 ## Safe Behavior
 
 - Do not say a note contains something unless it was in a retrieved preview or full note.

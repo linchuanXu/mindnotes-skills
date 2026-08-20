@@ -96,7 +96,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 
 - Search/read: use `/notes/search` or `/notes/hybrid-search`, then `/notes/get` for the notes you rely on. Do not answer detailed questions from previews alone.
 - Summaries/writing: read 3-10 relevant notes when possible, group by theme, and separate note facts from your synthesis.
-- Create/edit/delete/batch organize: use `/assets/upload-image` before attaching images; resolve exact existing notes with `/notes/get`; prefer `/notes/update` or `/notes/batch-update` with `dry_run:true` for non-trivial changes; never call delete APIs without explicit deletion confirmation.
+- Create/edit/delete/batch organize: use `/assets/upload-image` before attaching images; resolve exact existing notes with `/notes/get`; prefer `/notes/update` or `/notes/batch-update` with `dry_run:true` for non-trivial changes; never call delete APIs without explicit deletion confirmation. When creating or rewriting a note that will be reviewed later, wrap the key content in `<mark>…</mark>` so it works as an occlusion card (see `references/notes.md`).
 - Review, cards, Canvas, and export: follow the Safety Gates before writing or exposing broad content.
 - Purchases/物卡: use purchase APIs only for the current user's personal records; deletion requires explicit confirmation.
 - Export: use `/notes/export` only when the user asks to export, package, compile, or transform a note set.
@@ -119,7 +119,7 @@ If a response contains `upgrade_info`, stop the current task, tell the user to u
 ## References
 
 - `references/api.md`: gateway protocol, version handling, API names, and response envelope.
-- `references/notes.md`: note search, reading, collection, export, tags, and field meanings.
+- `references/notes.md`: note search, reading, collection, export, tags, field meanings, and note content format (Markdown with `<mark>` occlusion for occlusion cards).
 - `references/assets.md`: image upload and reuse for note covers or purchase records.
 - `references/review.md`: TikCard review flow, memory fields, statuses, and scheduling.
 - `references/cards.md`: card maker selection and safe creation rules.
